@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="分布式ID介绍 什么是 ID？ 简单来说，ID 就是数据的唯一标识。 什么是分布式 ID？ 分布式 ID 是分布式系统下的 ID。分布式 ID 不存在与现实生活中，属于计算机系统中的一个概念。 我简单举一个分库分表的例子。 比如有一个项目，使用的是单机 MySQL 。但是，没想到的是，项目上线一个月之后，随着使用人数越来越多，整个系统的数据量将越来越大。单机 MySQL 已经没办法支撑了，需要进行">
+    <meta name="description" content="分布式ID介绍 什么是 ID？ 简单来说，ID 就是数据的唯一标识。 什么是分布式 ID？ 分布式 ID 是分布式系统下的 ID。分布式 ID 不存在与现实生活中，属于计算机系统中的一个概念。 随着数据量越来越大，系统开始分库之后， 数据遍布在不同服务器上的数据库，数据库的自增主键已经没办法满足生成的主键唯一了。如何为不同的数据节点生成全局唯一主键呢？ 这个时候就需要生成分布式 ID了。  分布式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式ID解决方案">
 <meta property="og:url" content="http://example.com/2025/04/18/%E5%88%86%E5%B8%83%E5%BC%8FID%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="Ak1raKay&#39;s Blog">
-<meta property="og:description" content="分布式ID介绍 什么是 ID？ 简单来说，ID 就是数据的唯一标识。 什么是分布式 ID？ 分布式 ID 是分布式系统下的 ID。分布式 ID 不存在与现实生活中，属于计算机系统中的一个概念。 我简单举一个分库分表的例子。 比如有一个项目，使用的是单机 MySQL 。但是，没想到的是，项目上线一个月之后，随着使用人数越来越多，整个系统的数据量将越来越大。单机 MySQL 已经没办法支撑了，需要进行">
+<meta property="og:description" content="分布式ID介绍 什么是 ID？ 简单来说，ID 就是数据的唯一标识。 什么是分布式 ID？ 分布式 ID 是分布式系统下的 ID。分布式 ID 不存在与现实生活中，属于计算机系统中的一个概念。 随着数据量越来越大，系统开始分库之后， 数据遍布在不同服务器上的数据库，数据库的自增主键已经没办法满足生成的主键唯一了。如何为不同的数据节点生成全局唯一主键呢？ 这个时候就需要生成分布式 ID了。  分布式">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.loli.net/2025/04/18/yCWcn3qm2IgYfwe.png">
 <meta property="og:image" content="https://s2.loli.net/2025/04/18/kqOsEyGiAUdwWrS.png">
@@ -27,9 +27,8 @@
 <meta property="og:image" content="https://s2.loli.net/2025/04/18/lNmonO3kpGYsMVT.png">
 <meta property="og:image" content="https://s2.loli.net/2025/04/18/8kVl1TWj7F4SgLt.png">
 <meta property="og:image" content="https://s2.loli.net/2025/04/18/hFUzGklxv3VpAJj.png">
-<meta property="og:image" content="https://s2.loli.net/2025/04/18/tQCD1JYUTyoXVrq.png">
 <meta property="article:published_time" content="2025-04-18T01:46:19.000Z">
-<meta property="article:modified_time" content="2025-04-18T02:31:51.644Z">
+<meta property="article:modified_time" content="2025-04-18T06:25:50.538Z">
 <meta property="article:author" content="Ak1raKay">
 <meta property="article:tag" content="分布式">
 <meta name="twitter:card" content="summary">
@@ -132,7 +131,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8FID%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">分布式ID介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-ID%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F-ID%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是分布式 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E9%9C%80%E8%A6%81%E6%BB%A1%E8%B6%B3%E5%93%AA%E4%BA%9B%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">分布式 ID 需要满足哪些要求?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E5%B8%B8%E8%A7%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">分布式 ID 常见解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E9%94%AE%E8%87%AA%E5%A2%9E"><span class="toc-number">2.1.1.</span> <span class="toc-text">数据库主键自增</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%B7%E6%AE%B5%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">数据库号段模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NoSQL"><span class="toc-number">2.1.3.</span> <span class="toc-text">NoSQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UUID"><span class="toc-number">2.2.1.</span> <span class="toc-text">UUID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Snowflake-%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">Snowflake(雪花算法)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6"><span class="toc-number">2.3.</span> <span class="toc-text">开源框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UidGenerator-%E7%99%BE%E5%BA%A6"><span class="toc-number">2.3.1.</span> <span class="toc-text">UidGenerator(百度)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Leaf-%E7%BE%8E%E5%9B%A2"><span class="toc-number">2.3.2.</span> <span class="toc-text">Leaf(美团)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tinyid-%E6%BB%B4%E6%BB%B4"><span class="toc-number">2.3.3.</span> <span class="toc-text">Tinyid(滴滴)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IdGenerator-%E4%B8%AA%E4%BA%BA"><span class="toc-number">2.3.4.</span> <span class="toc-text">IdGenerator(个人)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8FID%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">分布式ID介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-ID%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F-ID%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是分布式 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E9%9C%80%E8%A6%81%E6%BB%A1%E8%B6%B3%E5%93%AA%E4%BA%9B%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">分布式 ID 需要满足哪些要求?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E5%B8%B8%E8%A7%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">分布式 ID 常见解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E9%94%AE%E8%87%AA%E5%A2%9E"><span class="toc-number">2.1.1.</span> <span class="toc-text">数据库主键自增</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%B7%E6%AE%B5%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">数据库号段模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NoSQL"><span class="toc-number">2.1.3.</span> <span class="toc-text">NoSQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UUID"><span class="toc-number">2.2.1.</span> <span class="toc-text">UUID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Snowflake-%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">Snowflake(雪花算法)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6"><span class="toc-number">2.3.</span> <span class="toc-text">开源框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UidGenerator-%E7%99%BE%E5%BA%A6"><span class="toc-number">2.3.1.</span> <span class="toc-text">UidGenerator(百度)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Leaf-%E7%BE%8E%E5%9B%A2"><span class="toc-number">2.3.2.</span> <span class="toc-text">Leaf(美团)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tinyid-%E6%BB%B4%E6%BB%B4"><span class="toc-number">2.3.3.</span> <span class="toc-text">Tinyid(滴滴)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -181,9 +180,7 @@
 <p>简单来说，<strong>ID 就是数据的唯一标识</strong>。</p>
 <h3 id="什么是分布式-ID？"><a class="header-anchor" href="#什么是分布式-ID？"></a>什么是分布式 ID？</h3>
 <p>分布式 ID 是分布式系统下的 ID。分布式 ID 不存在与现实生活中，属于计算机系统中的一个概念。</p>
-<p>我简单举一个分库分表的例子。</p>
-<p>比如有一个项目，使用的是单机 MySQL 。但是，没想到的是，项目上线一个月之后，随着使用人数越来越多，整个系统的数据量将越来越大。单机 MySQL 已经没办法支撑了，需要进行分库分表（推荐 Sharding-JDBC）。</p>
-<p>在分库之后， 数据遍布在不同服务器上的数据库，数据库的自增主键已经没办法满足生成的主键唯一了。<strong>我们如何为不同的数据节点生成全局唯一主键呢？</strong></p>
+<p>随着数据量越来越大，系统开始分库之后， 数据遍布在不同服务器上的数据库，数据库的自增主键已经没办法满足生成的主键唯一了。<strong>如何为不同的数据节点生成全局唯一主键呢？</strong></p>
 <p>这个时候就需要生成<strong>分布式 ID</strong>了。</p>
 <p><img src="https://s2.loli.net/2025/04/18/yCWcn3qm2IgYfwe.png" alt="1717569876026-757e1ce1-8a1b-4079-b134-ad6a1d7ff3e8.png"></p>
 <h3 id="分布式-ID-需要满足哪些要求"><a class="header-anchor" href="#分布式-ID-需要满足哪些要求"></a>分布式 ID 需要满足哪些要求?</h3>
@@ -362,24 +359,6 @@
 <li><strong>增加多 db 支持</strong>：支持多个 DB，并且，每个 DB 都能生成唯一 ID，提高了可用性。</li>
 <li><strong>增加 tinyid-client</strong>：纯本地操作，无 HTTP 请求消耗，性能和可用性都有很大提升。</li>
 </ul>
-<p>Tinyid 的优缺点这里就不分析了，结合数据库号段模式的优缺点和 Tinyid 的原理就能知道。</p>
-<h4 id="IdGenerator-个人"><a class="header-anchor" href="#IdGenerator-个人"></a>IdGenerator(个人)</h4>
-<p>和 UidGenerator、Leaf 一样，<a target="_blank" rel="noopener" href="https://github.com/yitter/IdGenerator">IdGenerator</a> 也是一款基于 Snowflake(雪花算法)的唯一 ID 生成器。IdGenerator 有如下特点：</p>
-<ul>
-<li>生成的唯一 ID 更短；</li>
-<li>兼容所有雪花算法（号段模式或经典模式，大厂或小厂）；</li>
-<li>原生支持 C#/Java/Go/C/Rust/Python/Node.js/PHP(C 扩展)/SQL/ 等语言，并提供多线程安全调用动态库（FFI）；</li>
-<li>解决了时间回拨问题，支持手工插入新 ID（当业务需要在历史时间生成新 ID 时，用本算法的预留位能生成 5000 个每秒）；</li>
-<li>不依赖外部存储系统;</li>
-<li>默认配置下，ID 可用 71000 年不重复。</li>
-</ul>
-<p>IdGenerator 生成的唯一 ID 组成如下：<img src="https://s2.loli.net/2025/04/18/tQCD1JYUTyoXVrq.png" alt="1717569877240-4ec35fa0-c68f-4f5a-b332-81bbb055c0d4.png"></p>
-<ul>
-<li><strong>timestamp (位数不固定)</strong>:时间差，是生成 ID 时的系统时间减去 BaseTime(基础时间，也称基点时间、原点时间、纪元时间，默认值为 2020 年) 的总时间差（毫秒单位）。初始为 5bits，随着运行时间而增加。如果觉得默认值太老，你可以重新设置，不过要注意，这个值以后最好不变。</li>
-<li><strong>worker id (默认 6 bits)</strong>:机器 id，机器码，最重要参数，是区分不同机器或不同应用的唯一 ID，最大值由 WorkerIdBitLength（默认 6）限定。如果一台服务器部署多个独立服务，需要为每个服务指定不同的 WorkerId。</li>
-<li><strong>sequence (默认 6 bits)</strong>:序列数，是每毫秒下的序列数，由参数中的 SeqBitLength（默认 6）限定。增加 SeqBitLength 会让性能更高，但生成的 ID 也会更长。</li>
-</ul>
-<p>Java 语言使用示例：<a target="_blank" rel="noopener" href="https://github.com/yitter/idgenerator/tree/master/Java">https://github.com/yitter/idgenerator/tree/master/Java</a>。</p>
 <h2 id="总结"><a class="header-anchor" href="#总结"></a>总结</h2>
 <ol>
 <li><strong>数据库</strong>
@@ -387,13 +366,27 @@
 <li>主键自增
 <ul>
 <li>优点：实现起来比较简单、ID 有序递增、存储消耗空间小。</li>
-<li>缺点：支持的并发量不大、存在数据库单点问题（可以使用数据库集群解决，不过增加了复杂度）、ID 没有具体业务含义、安全问题（比如根据订单 ID 的递增规律就能推算出每天的订单量，商业机密啊！ ）、每次获取 ID 都要访问一次数据库（增加了对数据库的压力，获取速度也慢）</li>
+<li>缺点：
+<ul>
+<li>支持的并发量不大</li>
+<li>存在数据库单点问题（可以使用数据库集群解决，不过增加了复杂度）</li>
+<li>ID 没有具体业务含义</li>
+<li>安全问题（比如根据订单 ID 的递增规律就能推算出每天的订单量）</li>
+<li>每次获取 ID 都要访问一次数据库（增加了对数据库的压力，获取速度也慢）</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>号段模式
 <ul>
 <li>优点：ID 有序递增、存储消耗空间小</li>
-<li>缺点：存在数据库单点问题(可以使用数据库集群解决，不过增加了复杂度)、ID 没有具体业务含义、安全问题(比如根据订单 ID 的递增规律就能推算出每天的订单量，商业机密啊！)</li>
+<li>缺点：
+<ul>
+<li>存在数据库单点问题（可以使用数据库集群解决，不过增加了复杂度）</li>
+<li>ID 没有具体业务含义</li>
+<li>安全问题（比如根据订单 ID 的递增规律就能推算出每天的订单量）</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>NoSQL，比如Redis
@@ -471,7 +464,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8FID%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">分布式ID介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-ID%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F-ID%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是分布式 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E9%9C%80%E8%A6%81%E6%BB%A1%E8%B6%B3%E5%93%AA%E4%BA%9B%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">分布式 ID 需要满足哪些要求?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E5%B8%B8%E8%A7%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">分布式 ID 常见解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E9%94%AE%E8%87%AA%E5%A2%9E"><span class="toc-number">2.1.1.</span> <span class="toc-text">数据库主键自增</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%B7%E6%AE%B5%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">数据库号段模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NoSQL"><span class="toc-number">2.1.3.</span> <span class="toc-text">NoSQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UUID"><span class="toc-number">2.2.1.</span> <span class="toc-text">UUID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Snowflake-%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">Snowflake(雪花算法)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6"><span class="toc-number">2.3.</span> <span class="toc-text">开源框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UidGenerator-%E7%99%BE%E5%BA%A6"><span class="toc-number">2.3.1.</span> <span class="toc-text">UidGenerator(百度)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Leaf-%E7%BE%8E%E5%9B%A2"><span class="toc-number">2.3.2.</span> <span class="toc-text">Leaf(美团)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tinyid-%E6%BB%B4%E6%BB%B4"><span class="toc-number">2.3.3.</span> <span class="toc-text">Tinyid(滴滴)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IdGenerator-%E4%B8%AA%E4%BA%BA"><span class="toc-number">2.3.4.</span> <span class="toc-text">IdGenerator(个人)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8FID%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">分布式ID介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-ID%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F-ID%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是分布式 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E9%9C%80%E8%A6%81%E6%BB%A1%E8%B6%B3%E5%93%AA%E4%BA%9B%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">分布式 ID 需要满足哪些要求?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E5%B8%B8%E8%A7%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">分布式 ID 常见解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E9%94%AE%E8%87%AA%E5%A2%9E"><span class="toc-number">2.1.1.</span> <span class="toc-text">数据库主键自增</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%B7%E6%AE%B5%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">数据库号段模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NoSQL"><span class="toc-number">2.1.3.</span> <span class="toc-text">NoSQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UUID"><span class="toc-number">2.2.1.</span> <span class="toc-text">UUID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Snowflake-%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">Snowflake(雪花算法)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6"><span class="toc-number">2.3.</span> <span class="toc-text">开源框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UidGenerator-%E7%99%BE%E5%BA%A6"><span class="toc-number">2.3.1.</span> <span class="toc-text">UidGenerator(百度)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Leaf-%E7%BE%8E%E5%9B%A2"><span class="toc-number">2.3.2.</span> <span class="toc-text">Leaf(美团)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tinyid-%E6%BB%B4%E6%BB%B4"><span class="toc-number">2.3.3.</span> <span class="toc-text">Tinyid(滴滴)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
