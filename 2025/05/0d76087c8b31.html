@@ -13,16 +13,16 @@
 <meta property="og:site_name" content="Ak1raKay&#39;s Blog">
 <meta property="og:description" content="1. 窗口函数概念和语法窗口函数对一组查询行执行类似聚合的操作。然而，聚合操作将查询行分组到单个结果行，而窗口函数为每个查询行产生一个结果:  函数求值发生的行称为当前行 与发生函数求值的当前行相关的查询行组成了当前行的窗口  相比之下，窗口操作不会将一组查询行折叠到单个输出行。相反，它们为每一行生成一个结果。 12345SELECT    manufacturer, product, profi">
 <meta property="og:locale">
-<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4dcee212-7389-4e44-8c2e-b0987973a2ea/Untitled.png">
-<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dd9e9d48-2573-4cfe-918e-f3aa06250c89/Untitled.png">
-<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/080cda53-1d5c-47de-94b1-ffd266a7344a/Untitled.png">
-<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/68d5edd4-a342-4c37-bfe5-0802f15b80aa/Untitled.png">
+<meta property="og:image" content="https://s2.loli.net/2025/05/27/Tn8skE7ogyAUOcm.png">
+<meta property="og:image" content="https://s2.loli.net/2025/05/27/8tYQHohiumEg1zv.png">
+<meta property="og:image" content="https://s2.loli.net/2025/05/27/NuQmH93yzahO56x.png">
+<meta property="og:image" content="https://s2.loli.net/2025/05/27/ctSWKkG5zZxhr9q.png">
 <meta property="article:published_time" content="2025-05-27T15:01:33.000Z">
-<meta property="article:modified_time" content="2025-05-27T15:04:33.408Z">
+<meta property="article:modified_time" content="2025-05-27T15:21:28.060Z">
 <meta property="article:author" content="Ak1raKay">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4dcee212-7389-4e44-8c2e-b0987973a2ea/Untitled.png">
+<meta name="twitter:image" content="https://s2.loli.net/2025/05/27/Tn8skE7ogyAUOcm.png">
     
     
       
@@ -177,7 +177,7 @@
 </ul>
 <p>相比之下，窗口操作不会将一组查询行折叠到单个输出行。相反，它们为每一行生成一个结果。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    manufacturer, product, profit,</span><br><span class="line">    <span class="built_in">SUM</span>(profit) <span class="keyword">OVER</span>() <span class="keyword">AS</span> total_profit,</span><br><span class="line">    <span class="built_in">SUM</span>(profit) <span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> manufacturer) <span class="keyword">AS</span> manufacturer_profit</span><br><span class="line"><span class="keyword">FROM</span> sales;</span><br></pre></td></tr></table></figure>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4dcee212-7389-4e44-8c2e-b0987973a2ea/Untitled.png" alt="Untitled"></p>
+<p><img src="https://s2.loli.net/2025/05/27/Tn8skE7ogyAUOcm.png" alt="concept"></p>
 <p>查询中的每个窗口操作都通过包含一个 OVER 子句来表示，该子句指定如何将查询行划分为组以供窗口函数处理：</p>
 <ul>
 <li>第一个 <strong>OVER</strong> 子句是空的，它将整个查询行集视为一个分区。窗口函数因此产生一个全局和，但对每一行都这样做。</li>
@@ -191,7 +191,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CUME_DIST</span>()</span><br><span class="line"><span class="built_in">DENSE_RANK</span>()</span><br><span class="line"><span class="built_in">FIRST_VALUE</span>()</span><br><span class="line"><span class="built_in">LAG</span>()</span><br><span class="line"><span class="built_in">LAST_VALUE</span>()</span><br><span class="line"><span class="built_in">LEAD</span>()</span><br><span class="line"><span class="built_in">NTH_VALUE</span>()</span><br><span class="line"><span class="built_in">NTILE</span>()</span><br><span class="line"><span class="built_in">PERCENT_RANK</span>()</span><br><span class="line"><span class="built_in">RANK</span>()</span><br><span class="line"><span class="built_in">ROW_NUMBER</span>()</span><br></pre></td></tr></table></figure>
 <p><strong>ROW_NUMBER()</strong> 它生成其分区内每一行的行号。默认情况下，分区行是无序的，行编号是不确定的。若要对分区行进行排序，请在窗口定义中包含一个ORDER BY子句。下面的示例中，查询使用无序分区和有序分区(row_num1和row_num2列)来说明省略和包含ORDER BY之间的区别:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    manufacturer, product, profit,</span><br><span class="line">    <span class="built_in">ROW_NUMBER</span>() <span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> manufacturer) <span class="keyword">AS</span> row_num1,</span><br><span class="line">    <span class="built_in">ROW_NUMBER</span>() <span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> manufacturer ORDERBY profit) <span class="keyword">AS</span> row_num2</span><br><span class="line"><span class="keyword">FROM</span> sales;</span><br></pre></td></tr></table></figure>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dd9e9d48-2573-4cfe-918e-f3aa06250c89/Untitled.png" alt="Untitled"></p>
+<p><img src="https://s2.loli.net/2025/05/27/8tYQHohiumEg1zv.png" alt="row_number"></p>
 <p>如前所述，要使用窗口函数（或将聚合函数视为窗口函数），需要在函数调用后包含OVER子句。OVER子句有两种形式:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">over_clause:</span><br><span class="line">    &#123;<span class="keyword">OVER</span> (window_spec) <span class="operator">|</span><span class="keyword">OVER</span> window_name&#125;</span><br></pre></td></tr></table></figure>
 <p>这两种形式都定义了窗口函数应该如何处理查询行。它们的区别在于窗口是直接在OVER子句中定义的，还是通过对查询中其他地方定义的命名窗口的引用提供的:</p>
@@ -235,7 +235,7 @@
 </ul>
 <p>下面的查询演示了如何使用移动帧来计算每组按时间顺序排列的值的总和，以及从当前行和紧随其后的行计算的滚动平均值:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  manufacturer, `<span class="keyword">month</span>`, profit,</span><br><span class="line">  <span class="built_in">SUM</span>(profit) <span class="keyword">OVER</span>(</span><br><span class="line">	    <span class="keyword">PARTITION</span> <span class="keyword">BY</span> manufacturer</span><br><span class="line">	    <span class="keyword">ORDER</span> <span class="keyword">BY</span> `<span class="keyword">month</span>`</span><br><span class="line">	    <span class="keyword">ROWS</span> unbounded PRECEDING</span><br><span class="line">	  ) <span class="keyword">AS</span> running_total,</span><br><span class="line">  <span class="built_in">AVG</span>(profit) <span class="keyword">OVER</span>(</span><br><span class="line">	    <span class="keyword">PARTITION</span> <span class="keyword">BY</span> manufacturer</span><br><span class="line">	    ORDERBY `<span class="keyword">month</span>`</span><br><span class="line">	    <span class="keyword">ROWS</span> <span class="keyword">BETWEEN</span> <span class="number">1</span> PRECEDING <span class="keyword">AND</span> <span class="number">1</span> FOLLOWING</span><br><span class="line">	  ) <span class="keyword">AS</span> running_average</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  sales;</span><br></pre></td></tr></table></figure>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/080cda53-1d5c-47de-94b1-ffd266a7344a/Untitled.png" alt="Untitled"></p>
+<p><img src="https://s2.loli.net/2025/05/27/NuQmH93yzahO56x.png" alt="frame"></p>
 <p>frame 子句语法：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">frame_clause:</span><br><span class="line">    frame_units frame_extent</span><br><span class="line"></span><br><span class="line">frame_units:</span><br><span class="line">    &#123;<span class="keyword">ROWS</span><span class="operator">|</span><span class="keyword">RANGE</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>在没有frame子句的情况下，默认frame取决于是否存在ORDER BY子句。</p>
@@ -267,8 +267,7 @@
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">RANGE</span> <span class="keyword">BETWEEN</span> UNBOUNDED PRECEDING <span class="keyword">AND</span> UNBOUNDED FOLLOWING</span><br></pre></td></tr></table></figure>
 <p>因为默认frame会根据是否存在ORDER BY而有所不同，所以向查询添加ORDER BY以获得确定性结果可能会更改结果。要获得相同的结果，但按ORDER BY排序，无论ORDER BY是否存在，都要提供要使用的显式frame规范。</p>
-<h3 id="3-窗口函数应用"><a href="#3-窗口函数应用" class="headerlink" title="3. 窗口函数应用"></a><strong>3. 窗口函数应用</strong></h3><p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/68d5edd4-a342-4c37-bfe5-0802f15b80aa/Untitled.png" alt="Untitled"></p>
-<p>窗口函数只能在查询或子查询中使用，不能在UPDATE或DELETE语句中使用它们来更新行。</p>
+<h3 id="3-窗口函数应用"><a href="#3-窗口函数应用" class="headerlink" title="3. 窗口函数应用"></a><strong>3. 窗口函数应用</strong></h3><p><img src="https://s2.loli.net/2025/05/27/ctSWKkG5zZxhr9q.png" alt="window"><br>窗口函数只能在查询或子查询中使用，不能在UPDATE或DELETE语句中使用它们来更新行。</p>
 
   </div>
 </article>
