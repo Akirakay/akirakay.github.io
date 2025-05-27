@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="分布式ID介绍什么是 ID？简单来说，ID 就是数据的唯一标识。 什么是分布式 ID？分布式 ID 是分布式系统下的 ID。分布式 ID 不存在与现实生活中，属于计算机系统中的一个概念。 随着数据量越来越大，系统开始分库之后， 数据遍布在不同服务器上的数据库，数据库的自增主键已经没办法满足生成的主键唯一了。如何为不同的数据节点生成全局唯一主键呢？ 这个时候就需要生成分布式 ID了。  分布式 ID">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式ID解决方案">
+<meta property="og:url" content="http://example.com/2025/04/53672db5ba40.html">
+<meta property="og:site_name" content="Ak1raKay&#39;s Blog">
+<meta property="og:description" content="分布式ID介绍什么是 ID？简单来说，ID 就是数据的唯一标识。 什么是分布式 ID？分布式 ID 是分布式系统下的 ID。分布式 ID 不存在与现实生活中，属于计算机系统中的一个概念。 随着数据量越来越大，系统开始分库之后， 数据遍布在不同服务器上的数据库，数据库的自增主键已经没办法满足生成的主键唯一了。如何为不同的数据节点生成全局唯一主键呢？ 这个时候就需要生成分布式 ID了。  分布式 ID">
+<meta property="og:locale">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/yCWcn3qm2IgYfwe.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/kqOsEyGiAUdwWrS.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/mRNh5fPDZduCb7c.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/DUcrC5wVeFJBSYg.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/c7WDrTd1epQHXAf.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/Q1ezbEm578RaMnD.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/dHw41AgPIVh2oTY.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/cuNYStzKCRa7DlX.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/nHrwX9mosNJv5C1.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/PMruGhmNcOijCD8.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/siTRo9avnVNEmr4.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/lNmonO3kpGYsMVT.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/8kVl1TWj7F4SgLt.png">
+<meta property="og:image" content="https://s2.loli.net/2025/04/18/hFUzGklxv3VpAJj.png">
+<meta property="article:published_time" content="2025-04-18T01:46:19.000Z">
+<meta property="article:modified_time" content="2025-05-26T09:19:10.299Z">
+<meta property="article:author" content="Ak1raKay">
+<meta property="article:tag" content="分布式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2025/04/18/yCWcn3qm2IgYfwe.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Category: 分布式</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags">tags</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2025/04/4648b9b9cb63.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2025/04/4227f15fd919.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/04/53672db5ba40.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/04/53672db5ba40.html&text=分布式ID解决方案"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/04/53672db5ba40.html&title=分布式ID解决方案"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/04/53672db5ba40.html&is_video=false&description=分布式ID解决方案"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=分布式ID解决方案&body=Check out this article: http://example.com/2025/04/53672db5ba40.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/04/53672db5ba40.html&title=分布式ID解决方案"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/04/53672db5ba40.html&title=分布式ID解决方案"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/04/53672db5ba40.html&title=分布式ID解决方案"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/04/53672db5ba40.html&title=分布式ID解决方案"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/04/53672db5ba40.html&name=分布式ID解决方案&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/04/53672db5ba40.html&t=分布式ID解决方案"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8FID%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">分布式ID介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-ID%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F-ID%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是分布式 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E9%9C%80%E8%A6%81%E6%BB%A1%E8%B6%B3%E5%93%AA%E4%BA%9B%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">分布式 ID 需要满足哪些要求?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E5%B8%B8%E8%A7%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">分布式 ID 常见解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E9%94%AE%E8%87%AA%E5%A2%9E"><span class="toc-number">2.1.1.</span> <span class="toc-text">数据库主键自增</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%B7%E6%AE%B5%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">数据库号段模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NoSQL"><span class="toc-number">2.1.3.</span> <span class="toc-text">NoSQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UUID"><span class="toc-number">2.2.1.</span> <span class="toc-text">UUID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Snowflake-%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">Snowflake(雪花算法)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6"><span class="toc-number">2.3.</span> <span class="toc-text">开源框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UidGenerator-%E7%99%BE%E5%BA%A6"><span class="toc-number">2.3.1.</span> <span class="toc-text">UidGenerator(百度)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Leaf-%E7%BE%8E%E5%9B%A2"><span class="toc-number">2.3.2.</span> <span class="toc-text">Leaf(美团)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tinyid-%E6%BB%B4%E6%BB%B4"><span class="toc-number">2.3.3.</span> <span class="toc-text">Tinyid(滴滴)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        分布式ID解决方案
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Ak1raKay</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-04-18T01:46:19.000Z" itemprop="datePublished">2025-04-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag">分布式</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="分布式ID介绍"><a href="#分布式ID介绍" class="headerlink" title="分布式ID介绍"></a>分布式ID介绍</h2><h3 id="什么是-ID？"><a href="#什么是-ID？" class="headerlink" title="什么是 ID？"></a>什么是 ID？</h3><p>简单来说，<strong>ID 就是数据的唯一标识</strong>。</p>
+<h3 id="什么是分布式-ID？"><a href="#什么是分布式-ID？" class="headerlink" title="什么是分布式 ID？"></a>什么是分布式 ID？</h3><p>分布式 ID 是分布式系统下的 ID。分布式 ID 不存在与现实生活中，属于计算机系统中的一个概念。</p>
+<p>随着数据量越来越大，系统开始分库之后， 数据遍布在不同服务器上的数据库，数据库的自增主键已经没办法满足生成的主键唯一了。<strong>如何为不同的数据节点生成全局唯一主键呢？</strong></p>
+<p>这个时候就需要生成<strong>分布式 ID</strong>了。</p>
+<p><img src="https://s2.loli.net/2025/04/18/yCWcn3qm2IgYfwe.png" alt="1717569876026-757e1ce1-8a1b-4079-b134-ad6a1d7ff3e8.png"></p>
+<h3 id="分布式-ID-需要满足哪些要求"><a href="#分布式-ID-需要满足哪些要求" class="headerlink" title="分布式 ID 需要满足哪些要求?"></a>分布式 ID 需要满足哪些要求?</h3><p><img src="https://s2.loli.net/2025/04/18/kqOsEyGiAUdwWrS.png" alt="1717569876154-fb797c77-aac1-4cfa-a050-ad88aa5b1c54.png"></p>
+<p>分布式 ID 作为分布式系统中必不可少的一环，很多地方都要用到分布式 ID。</p>
+<p>一个最基本的分布式 ID 需要满足下面这些要求：</p>
+<ul>
+<li><strong>全局唯一</strong>：ID 的全局唯一性肯定是首先要满足的！</li>
+<li><strong>高性能</strong>：分布式 ID 的生成速度要快，对本地资源消耗要小。</li>
+<li><strong>高可用</strong>：生成分布式 ID 的服务要保证可用性无限接近于 100%。</li>
+<li><strong>方便易用</strong>：拿来即用，使用方便，快速接入！</li>
+</ul>
+<p>除了这些之外，一个比较好的分布式 ID 还应保证：</p>
+<ul>
+<li><strong>安全</strong>：ID 中不包含敏感信息。</li>
+<li><strong>有序递增</strong>：如果要把 ID 存放在数据库的话，ID 的有序性可以提升数据库写入速度。并且，很多时候 ，我们还很有可能会直接通过 ID 来进行排序。</li>
+<li><strong>有具体的业务含义</strong>：生成的 ID 如果能有具体的业务含义，可以让定位问题以及开发更透明化（通过 ID 就能确定是哪个业务）。</li>
+<li><strong>独立部署</strong>：也就是分布式系统单独有一个发号器服务，专门用来生成分布式 ID。这样就生成 ID 的服务可以和业务相关的服务解耦。不过，这样同样带来了网络调用消耗增加的问题。总的来说，如果需要用到分布式 ID 的场景比较多的话，独立部署的发号器服务还是很有必要的。<h2 id="分布式-ID-常见解决方案"><a href="#分布式-ID-常见解决方案" class="headerlink" title="分布式 ID 常见解决方案"></a>分布式 ID 常见解决方案</h2></li>
+</ul>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><h4 id="数据库主键自增"><a href="#数据库主键自增" class="headerlink" title="数据库主键自增"></a>数据库主键自增</h4><p>这种方式就比较简单直白了，就是通过关系型数据库的自增主键产生来唯一的 ID。</p>
+<p><img src="https://s2.loli.net/2025/04/18/mRNh5fPDZduCb7c.png" alt="1717569876232-84620fb3-cae5-4485-bd64-5f2a6b6dfe3f.png"></p>
+<p>以 MySQL 举例</p>
+<p><strong>1.创建一个数据库表。</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> `sequence_id` (  </span><br><span class="line">  `id` <span class="type">bigint</span>(<span class="number">20</span>) unsigned <span class="keyword">NOT NULL</span> AUTO_INCREMENT,  </span><br><span class="line">  `stub` <span class="type">char</span>(<span class="number">10</span>) <span class="keyword">NOT NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,  </span><br><span class="line">  <span class="keyword">PRIMARY KEY</span> (`id`),  </span><br><span class="line">  <span class="keyword">UNIQUE</span> KEY `stub` (`stub`)  </span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4;</span><br></pre></td></tr></table></figure>
+<p>stub 字段无意义，只是为了占位，便于我们插入或者修改数据。并且，给 stub 字段创建了唯一索引，保证其唯一性。</p>
+<p><strong>2.通过 replace into 来插入数据。</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span>;  </span><br><span class="line">REPLACE <span class="keyword">INTO</span> sequence_id (stub) <span class="keyword">VALUES</span> (<span class="string">&#x27;stub&#x27;</span>);  </span><br><span class="line"><span class="keyword">SELECT</span> LAST_INSERT_ID();  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></table></figure>
+<p>插入数据这里，我们没有使用 insert into 而是使用 replace into 来插入数据，具体步骤是这样的：</p>
+<ul>
+<li>第一步：尝试把数据插入到表中。</li>
+<li>第二步：如果主键或唯一索引字段出现重复数据错误而插入失败时，先从表中删除含有重复关键字值的冲突行，然后再次尝试把数据插入到表中。</li>
+</ul>
+<p>这种方式的优缺点也比较明显：</p>
+<ul>
+<li><strong>优点</strong>：实现起来比较简单、ID 有序递增、存储消耗空间小</li>
+<li><strong>缺点</strong>：支持的并发量不大、存在数据库单点问题（可以使用数据库集群解决，不过增加了复杂度）、ID 没有具体业务含义、安全问题（比如根据订单 ID 的递增规律就能推算出每天的订单量，商业机密啊！ ）、每次获取 ID 都要访问一次数据库（增加了对数据库的压力，获取速度也慢）<h4 id="数据库号段模式"><a href="#数据库号段模式" class="headerlink" title="数据库号段模式"></a>数据库号段模式</h4></li>
+</ul>
+<p>数据库主键自增这种模式，每次获取 ID 都要访问一次数据库，ID 需求比较大的时候，肯定是不行的。</p>
+<p>如果我们可以批量获取，然后存在在内存里面，需要用到的时候，直接从内存里面拿就舒服了！这也就是我们说的 <strong>基于数据库的号段模式来生成分布式 ID。</strong></p>
+<p>数据库的号段模式也是目前比较主流的一种分布式 ID 生成方式。像滴滴开源的<a target="_blank" rel="noopener" href="https://github.com/didi/tinyid/wiki/tinyid%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D">Tinyid</a> 就是基于这种方式来做的。不过，TinyId 使用了双号段缓存、增加多 db 支持等方式来进一步优化。</p>
+<p>以 MySQL 举例</p>
+<p><strong>1. 创建一个数据库表。</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> `sequence_id_generator` (  </span><br><span class="line">  `id` <span class="type">int</span>(<span class="number">10</span>) <span class="keyword">NOT NULL</span>,  </span><br><span class="line">  `current_max_id` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT NULL</span> COMMENT <span class="string">&#x27;当前最大id&#x27;</span>,  </span><br><span class="line">  `step` <span class="type">int</span>(<span class="number">10</span>) <span class="keyword">NOT NULL</span> COMMENT <span class="string">&#x27;号段的长度&#x27;</span>,  </span><br><span class="line">  `version` <span class="type">int</span>(<span class="number">20</span>) <span class="keyword">NOT NULL</span> COMMENT <span class="string">&#x27;版本号&#x27;</span>,  </span><br><span class="line">  `biz_type`    <span class="type">int</span>(<span class="number">20</span>) <span class="keyword">NOT NULL</span> COMMENT <span class="string">&#x27;业务类型&#x27;</span>,  </span><br><span class="line">   <span class="keyword">PRIMARY KEY</span> (`id`)  </span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4;</span><br></pre></td></tr></table></figure>
+<p>current_max_id 字段和step字段主要用于获取批量 ID，获取的批量 id 为：<code>current_max_id ~ current_max_id + step</code></p>
+<p><img src="https://s2.loli.net/2025/04/18/DUcrC5wVeFJBSYg.png" alt="1717569876294-1046ec20-d580-46ca-96aa-c204f10afd20.png"></p>
+<p>version 字段主要用于解决并发问题（乐观锁）,biz_type 主要用于表示业务类型。</p>
+<p><strong>2. 先插入一行数据。</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT INTO</span> `sequence_id_generator` (`id`, `current_max_id`, `step`, `version`, `biz_type`)  </span><br><span class="line"><span class="keyword">VALUES</span>  (<span class="number">1</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">0</span>, <span class="number">101</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>3. 通过 SELECT 获取指定业务下的批量唯一 ID</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> `current_max_id`, `step`,`version` <span class="keyword">FROM</span> `sequence_id_generator` <span class="keyword">where</span> `biz_type` <span class="operator">=</span> <span class="number">101</span></span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">|</span> id <span class="operator">|</span> current_max_id <span class="operator">|</span> step <span class="operator">|</span> version <span class="operator">|</span> biz_type <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span>       <span class="number">0</span>        <span class="operator">|</span>  <span class="number">100</span> <span class="operator">|</span>     <span class="number">0</span>   <span class="operator">|</span>    <span class="number">101</span>   <span class="operator">|</span></span><br></pre></td></tr></table></figure>
+<p><strong>4. 不够用的话，更新之后重新 SELECT 即可。</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> sequence_id_generator <span class="keyword">SET</span> current_max_id <span class="operator">=</span> <span class="number">0</span><span class="operator">+</span><span class="number">100</span>, version<span class="operator">=</span>version<span class="operator">+</span><span class="number">1</span> <span class="keyword">WHERE</span> version <span class="operator">=</span> <span class="number">0</span>  <span class="keyword">AND</span> `biz_type` <span class="operator">=</span> <span class="number">101</span>;  </span><br><span class="line"><span class="keyword">SELECT</span> `current_max_id`, `step`,`version` <span class="keyword">FROM</span> `sequence_id_generator` <span class="keyword">where</span> `biz_type` <span class="operator">=</span> <span class="number">101</span></span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">|</span> id <span class="operator">|</span> current_max_id <span class="operator">|</span> step <span class="operator">|</span> version <span class="operator">|</span> biz_type <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span>       <span class="number">100</span>      <span class="operator">|</span>  <span class="number">101</span> <span class="operator">|</span>     <span class="number">1</span>   <span class="operator">|</span>    <span class="number">101</span>   <span class="operator">|</span></span><br></pre></td></tr></table></figure>
+<p>相比于数据库主键自增的方式，<strong>数据库的号段模式对于数据库的访问次数更少，数据库压力更小。</strong></p>
+<p>另外，为了避免单点问题，你可以从使用主从模式来提高可用性。</p>
+<p><strong>数据库号段模式的优缺点:</strong></p>
+<ul>
+<li><strong>优点</strong>：ID 有序递增、存储消耗空间小</li>
+<li><strong>缺点</strong>：存在数据库单点问题（可以使用数据库集群解决，不过增加了复杂度）、ID 没有具体业务含义、安全问题（比如根据订单 ID 的递增规律就能推算出每天的订单量，商业机密啊！ ）<h4 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h4></li>
+</ul>
+<p><img src="https://s2.loli.net/2025/04/18/c7WDrTd1epQHXAf.png" alt="1717569876379-15a519e2-3993-425f-accf-faf735261dc5.png"></p>
+<p>一般情况下，NoSQL 方案使用 Redis 多一些。我们通过 Redis 的 incr 命令即可实现对 id 原子顺序递增。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set sequence_id_biz_type 1  </span><br><span class="line">OK  </span><br><span class="line">127.0.0.1:6379&gt; incr sequence_id_biz_type  </span><br><span class="line">(integer) 2  </span><br><span class="line">127.0.0.1:6379&gt; get sequence_id_biz_type  </span><br><span class="line">&quot;2&quot;</span><br></pre></td></tr></table></figure>
+<p>为了提高可用性和并发，我们可以使用 Redis Cluster。Redis Cluster 是 Redis 官方提供的 Redis 集群解决方案（3.0+版本）。</p>
+<p><strong>Redis 方案的优缺点：</strong></p>
+<ul>
+<li><strong>优点</strong>：性能不错并且生成的 ID 是有序递增的</li>
+<li><strong>缺点</strong>：和数据库主键自增方案的缺点类似</li>
+</ul>
+<p>除了 Redis 之外，MongoDB ObjectId 经常也会被拿来当做分布式 ID 的解决方案。</p>
+<p><img src="https://s2.loli.net/2025/04/18/Q1ezbEm578RaMnD.png" alt="1717569876463-7529d10c-c28c-47cf-92de-1b14a6411c6c.png"></p>
+<p>MongoDB ObjectId 一共需要 12 个字节存储：</p>
+<ul>
+<li>0~3：时间戳</li>
+<li>3~6：代表机器 ID</li>
+<li>7~8：机器进程 ID</li>
+<li>9~11：自增值</li>
+</ul>
+<p><strong>MongoDB 方案的优缺点：</strong></p>
+<ul>
+<li><strong>优点</strong>：性能不错并且生成的 ID 是有序递增的</li>
+<li><strong>缺点</strong>：需要解决重复 ID 问题（当机器时间不对的情况下，可能导致会产生重复 ID）、有安全性问题（ID 生成有规律性）<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3></li>
+</ul>
+<h4 id="UUID"><a href="#UUID" class="headerlink" title="UUID"></a>UUID</h4><p>UUID 是 Universally Unique Identifier（通用唯一标识符） 的缩写。UUID 包含 32 个 16 进制数字（8-4-4-4-12）。</p>
+<p>JDK 就提供了现成的生成 UUID 的方法，一行代码就行了：<code>UUID.randomUUID()</code></p>
+<p><a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc4122">RFC 4122</a> 中关于 UUID 的示例是这样的：</p>
+<p><img src="https://s2.loli.net/2025/04/18/dHw41AgPIVh2oTY.png" alt="1717569876532-f2c0b034-0460-44ef-adea-390c8291a4bf.png"></p>
+<p>我们这里重点关注一下这个 Version(版本)，不同的版本对应的 UUID 的生成规则是不同的。</p>
+<p>5 种不同的 Version(版本)值分别对应的含义（参考<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81">维基百科对于 UUID 的介绍</a>）：</p>
+<ul>
+<li><strong>版本 1</strong> : UUID 是根据时间和节点 ID（通常是 MAC 地址）生成；</li>
+<li><strong>版本 2</strong> : UUID 是根据标识符（通常是组或用户 ID）、时间和节点 ID 生成；</li>
+<li><strong>版本 3、版本 5</strong> : 版本 5 - 确定性 UUID 通过散列（hashing）名字空间（namespace）标识符和名称生成；</li>
+<li><strong>版本 4</strong> : UUID 使用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%9A%8F%E6%9C%BA%E6%80%A7">随机性</a>或<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%80%A7">伪随机性</a>生成。</li>
+</ul>
+<p>下面是 Version 1 版本下生成的 UUID 的示例：</p>
+<p><img src="https://s2.loli.net/2025/04/18/cuNYStzKCRa7DlX.png" alt="1717569876591-461ffcb2-31fc-4d5b-afc8-923657235854.png"></p>
+<p>JDK 中通过 UUID 的 randomUUID() 方法生成的 UUID 的版本默认为 4。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">UUID</span> <span class="variable">uuid</span> <span class="operator">=</span> UUID.randomUUID();  </span><br><span class="line"><span class="type">int</span> <span class="variable">version</span> <span class="operator">=</span> uuid.version();<span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+<p>从上面的介绍中可以看出，UUID 可以保证唯一性，因为其生成规则包括 MAC 地址、时间戳、名字空间（Namespace）、随机或伪随机数、时序等元素，计算机基于这些规则生成的 UUID 是肯定不会重复的。</p>
+<p>虽然，UUID 可以做到全局唯一性，但是，我们一般很少会使用它。</p>
+<p>比如使用 UUID 作为 MySQL 数据库主键的时候就非常不合适：</p>
+<ul>
+<li>数据库主键要尽量越短越好，而 UUID 的消耗的存储空间比较大（32 个字符串，128 位）。</li>
+<li>UUID 是无顺序的，InnoDB 引擎下，数据库主键的无序性会严重影响数据库性能。</li>
+</ul>
+<p>最后，我们再简单分析一下 <strong>UUID 的优缺点</strong></p>
+<ul>
+<li><strong>优点</strong>：生成速度比较快、简单易用</li>
+<li><strong>缺点</strong>：存储消耗空间大（32 个字符串，128 位）、 不安全（基于 MAC 地址生成 UUID 的算法会造成 MAC 地址泄露)、无序（非自增）、没有具体业务含义、需要解决重复 ID 问题（当机器时间不对的情况下，可能导致会产生重复 ID）<h4 id="Snowflake-雪花算法"><a href="#Snowflake-雪花算法" class="headerlink" title="Snowflake(雪花算法)"></a>Snowflake(雪花算法)</h4></li>
+</ul>
+<p>Snowflake 是 Twitter 开源的分布式 ID 生成算法。Snowflake 由 64 bit 的二进制数字组成，这 64bit 的二进制被分成了几部分，每一部分存储的数据都有特定的含义：</p>
+<p><img src="https://s2.loli.net/2025/04/18/nHrwX9mosNJv5C1.png" alt="1717569876674-503ea3bc-d69d-4054-83c1-31b63471ccdd.png"></p>
+<ul>
+<li><strong>sign(1bit)</strong>:符号位（标识正负），始终为 0，代表生成的 ID 为正数。</li>
+<li><strong>timestamp (41 bits)</strong>:一共 41 位，用来表示时间戳，单位是毫秒，可以支撑 2 ^41 毫秒（约 69 年）</li>
+<li><strong>datacenter id + worker id (10 bits)</strong>:一般来说，前 5 位表示机房 ID，后 5 位表示机器 ID（实际项目中可以根据实际情况调整）。这样就可以区分不同集群/机房的节点。</li>
+<li><strong>sequence (12 bits)</strong>:一共 12 位，用来表示序列号。 序列号为自增值，代表单台机器每毫秒能够产生的最大 ID 数(2^12 = 4096),也就是说单台机器每毫秒最多可以生成 4096 个 唯一 ID。</li>
+</ul>
+<p>在实际项目中，我们一般也会对 Snowflake 算法进行改造，最常见的就是在 Snowflake 算法生成的 ID 中加入业务类型信息。</p>
+<p>我们再来看看 Snowflake 算法的优缺点：</p>
+<ul>
+<li><strong>优点</strong>：生成速度比较快、生成的 ID 有序递增、比较灵活（可以对 Snowflake 算法进行简单的改造比如加入业务 ID）    </li>
+<li><strong>缺点</strong>：需要解决重复 ID 问题（ID 生成依赖时间，在获取时间的时候，可能会出现时间回拨的问题，也就是服务器上的时间突然倒退到之前的时间，进而导致会产生重复 ID）、依赖机器 ID 对分布式环境不友好（当需要自动启停或增减机器时，固定的机器 ID 可能不够灵活）。<h3 id="开源框架"><a href="#开源框架" class="headerlink" title="开源框架"></a>开源框架</h3></li>
+</ul>
+<h4 id="UidGenerator-百度"><a href="#UidGenerator-百度" class="headerlink" title="UidGenerator(百度)"></a>UidGenerator(百度)</h4><p><a target="_blank" rel="noopener" href="https://github.com/baidu/uid-generator">UidGenerator</a> 是百度开源的一款基于 Snowflake(雪花算法)的唯一 ID 生成器。</p>
+<p>不过，UidGenerator 对 Snowflake(雪花算法)进行了改进，生成的唯一 ID 组成如下：</p>
+<p><img src="https://s2.loli.net/2025/04/18/PMruGhmNcOijCD8.png" alt="1717569876795-08c4f066-3124-44f9-b235-9fa5f3264648.png"></p>
+<ul>
+<li><strong>sign(1bit)</strong>:符号位（标识正负），始终为 0，代表生成的 ID 为正数。</li>
+<li><strong>delta seconds (28 bits)</strong>:当前时间，相对于时间基点”2016-05-20”的增量值，单位：秒，最多可支持约 8.7 年</li>
+<li><strong>worker id (22 bits)</strong>:机器 id，最多可支持约 420w 次机器启动。内置实现为在启动时由数据库分配，默认分配策略为用后即弃，后续可提供复用策略。</li>
+<li><strong>sequence (13 bits)</strong>:每秒下的并发序列，13 bits 可支持每秒 8192 个并发。</li>
+</ul>
+<p>可以看出，和原始 Snowflake(雪花算法)生成的唯一 ID 的组成不太一样。并且，上面这些参数我们都可以自定义。</p>
+<p>UidGenerator 官方文档中的介绍如下：</p>
+<p><img src="https://s2.loli.net/2025/04/18/siTRo9avnVNEmr4.png" alt="1717569876938-6047d39a-df9a-47e9-ab99-d88fe6bcc163.png"></p>
+<p>自 18 年后，UidGenerator 就基本没有再维护了</p>
+<h4 id="Leaf-美团"><a href="#Leaf-美团" class="headerlink" title="Leaf(美团)"></a>Leaf(美团)</h4><p><a target="_blank" rel="noopener" href="https://github.com/Meituan-Dianping/Leaf">Leaf</a> 是美团开源的一个分布式 ID 解决方案 。这个项目的名字 Leaf（树叶） 起源于德国哲学家、数学家莱布尼茨的一句话：“There are no two identical leaves in the world”（世界上没有两片相同的树叶） 。这名字起得真心挺不错的，有点文艺青年那味了！</p>
+<p>Leaf 提供了 <strong>号段模式</strong> 和 <strong>Snowflake(雪花算法)</strong> 这两种模式来生成分布式 ID。并且，它支持双号段，还解决了雪花 ID 系统时钟回拨问题。不过，时钟问题的解决需要弱依赖于 Zookeeper（使用 Zookeeper 作为注册中心，通过在特定路径下读取和创建子节点来管理 workId） 。</p>
+<p>Leaf 的诞生主要是为了解决美团各个业务线生成分布式 ID 的方法多种多样以及不可靠的问题。</p>
+<p>Leaf 对原有的号段模式进行改进，比如它这里增加了双号段避免获取 DB 在获取号段的时候阻塞请求获取 ID 的线程。简单来说，就是我一个号段还没用完之前，我自己就主动提前去获取下一个号段</p>
+<p><img src="https://s2.loli.net/2025/04/18/lNmonO3kpGYsMVT.png" alt="1717569877026-a190aab9-165c-450f-aec2-e5dcdfbcad13.png"></p>
+<p>根据项目 README 介绍，在 4C8G VM 基础上，通过公司 RPC 方式调用，QPS 压测结果近 5w/s，TP999 1ms。</p>
+<h4 id="Tinyid-滴滴"><a href="#Tinyid-滴滴" class="headerlink" title="Tinyid(滴滴)"></a>Tinyid(滴滴)</h4><p><a target="_blank" rel="noopener" href="https://github.com/didi/tinyid">Tinyid</a> 是滴滴开源的一款基于数据库号段模式的唯一 ID 生成器。</p>
+<p>数据库号段模式的原理我们在上面已经介绍过了。<strong>Tinyid 有哪些亮点呢？</strong></p>
+<p>为了搞清楚这个问题，我们先来看看基于数据库号段模式的简单架构方案。（图片来自于 Tinyid 的官方 wiki:<a target="_blank" rel="noopener" href="https://github.com/didi/tinyid/wiki/tinyid%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D">《Tinyid 原理介绍》</a>）</p>
+<p><img src="https://s2.loli.net/2025/04/18/8kVl1TWj7F4SgLt.png" alt="1717569877088-402e9c44-9893-44d6-b473-ff495f8d949b.png"></p>
+<p>在这种架构模式下，我们通过 HTTP 请求向发号器服务申请唯一 ID。负载均衡 router 会把我们的请求送往其中的一台 tinyid-server。</p>
+<p>这种方案有什么问题呢？在我看来（Tinyid 官方 wiki 也有介绍到），主要由下面这 2 个问题：</p>
+<ul>
+<li>获取新号段的情况下，程序获取唯一 ID 的速度比较慢。</li>
+<li>需要保证 DB 高可用，这个是比较麻烦且耗费资源的。</li>
+</ul>
+<p>除此之外，HTTP 调用也存在网络开销。</p>
+<p>Tinyid 的原理比较简单，其架构如下图所示：</p>
+<p><img src="https://s2.loli.net/2025/04/18/hFUzGklxv3VpAJj.png" alt="1717569877157-f83b74a9-7cdd-4ae3-a9f7-248af58d54f9.png"></p>
+<p>相比于基于数据库号段模式的简单架构方案，Tinyid 方案主要做了下面这些优化：</p>
+<ul>
+<li><strong>双号段缓存</strong>：为了避免在获取新号段的情况下，程序获取唯一 ID 的速度比较慢。 Tinyid 中的号段在用到一定程度的时候，就会去异步加载下一个号段，保证内存中始终有可用号段。</li>
+<li><strong>增加多 db 支持</strong>：支持多个 DB，并且，每个 DB 都能生成唯一 ID，提高了可用性。</li>
+<li><strong>增加 tinyid-client</strong>：纯本地操作，无 HTTP 请求消耗，性能和可用性都有很大提升。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li><strong>数据库</strong><ol>
+<li>主键自增<ul>
+<li>优点：实现起来比较简单、ID 有序递增、存储消耗空间小。</li>
+<li>缺点：<ul>
+<li>支持的并发量不大</li>
+<li>存在数据库单点问题（可以使用数据库集群解决，不过增加了复杂度）</li>
+<li>ID 没有具体业务含义</li>
+<li>安全问题（比如根据订单 ID 的递增规律就能推算出每天的订单量）</li>
+<li>每次获取 ID 都要访问一次数据库（增加了对数据库的压力，获取速度也慢）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>号段模式<ul>
+<li>优点：ID 有序递增、存储消耗空间小</li>
+<li>缺点：<ul>
+<li>存在数据库单点问题（可以使用数据库集群解决，不过增加了复杂度）</li>
+<li>ID 没有具体业务含义</li>
+<li>安全问题（比如根据订单 ID 的递增规律就能推算出每天的订单量）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>NoSQL，比如Redis<ul>
+<li>优点：性能不错并且生成的 ID 是有序递增的</li>
+<li>缺点：和数据库主键自增方案的缺点类似</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>算法</strong><ol>
+<li>UUID<ul>
+<li>优点：生成速度比较快、简单易用</li>
+<li>缺点：存储消耗空间大（32 个字符串，128 位）、 不安全（基于 MAC 地址生成 UUID 的算法会造成 MAC 地址泄露)、无序（非自增）、没有具体业务含义、需要解决重复 ID 问题（当机器时间不对的情况下，可能导致会产生重复 ID）</li>
+</ul>
+</li>
+<li>Snowflake(雪花算法)<ul>
+<li>优点：生成速度比较快、生成的 ID 有序递增、比较灵活（可以对 Snowflake 算法进行简单的改造比如加入业务 ID）</li>
+<li>缺点：需要解决重复 ID 问题（ID 生成依赖时间，在获取时间的时候，可能会出现时间回拨的问题，也就是服务器上的时间突然倒退到之前的时间，进而导致会产生重复 ID）、依赖机器 ID 对分布式环境不友好（当需要自动启停或增减机器时，固定的机器 ID 可能不够灵活）。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>开源框架</strong><ol>
+<li>UidGenerator(百度)：基于Snowflake(雪花算法)做了改进</li>
+<li>Leaf(美团)： 支持号段模式 和 Snowflake(雪花算法) 来生成分布式 ID，增加了双号段避免获取 DB 在获取号段的时候阻塞请求获取 ID 的线程</li>
+<li>Tinyid(滴滴)<ul>
+<li>双号段缓存：为了避免在获取新号段的情况下，程序获取唯一 ID 的速度比较慢。 Tinyid 中的号段在用到一定程度的时候，就会去异步加载下一个号段，保证内存中始终有可用号段。</li>
+<li>增加多 db 支持：支持多个 DB，并且，每个 DB 都能生成唯一 ID，提高了可用性。</li>
+<li>增加 tinyid-client：纯本地操作，无 HTTP 请求消耗，性能和可用性都有很大提升。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags">tags</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8FID%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">分布式ID介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-ID%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F-ID%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是分布式 ID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E9%9C%80%E8%A6%81%E6%BB%A1%E8%B6%B3%E5%93%AA%E4%BA%9B%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">分布式 ID 需要满足哪些要求?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E5%B8%B8%E8%A7%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">分布式 ID 常见解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E9%94%AE%E8%87%AA%E5%A2%9E"><span class="toc-number">2.1.1.</span> <span class="toc-text">数据库主键自增</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%B7%E6%AE%B5%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">数据库号段模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NoSQL"><span class="toc-number">2.1.3.</span> <span class="toc-text">NoSQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UUID"><span class="toc-number">2.2.1.</span> <span class="toc-text">UUID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Snowflake-%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">Snowflake(雪花算法)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6"><span class="toc-number">2.3.</span> <span class="toc-text">开源框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UidGenerator-%E7%99%BE%E5%BA%A6"><span class="toc-number">2.3.1.</span> <span class="toc-text">UidGenerator(百度)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Leaf-%E7%BE%8E%E5%9B%A2"><span class="toc-number">2.3.2.</span> <span class="toc-text">Leaf(美团)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tinyid-%E6%BB%B4%E6%BB%B4"><span class="toc-number">2.3.3.</span> <span class="toc-text">Tinyid(滴滴)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/04/53672db5ba40.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/04/53672db5ba40.html&text=分布式ID解决方案"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/04/53672db5ba40.html&title=分布式ID解决方案"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/04/53672db5ba40.html&is_video=false&description=分布式ID解决方案"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=分布式ID解决方案&body=Check out this article: http://example.com/2025/04/53672db5ba40.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/04/53672db5ba40.html&title=分布式ID解决方案"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/04/53672db5ba40.html&title=分布式ID解决方案"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/04/53672db5ba40.html&title=分布式ID解决方案"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/04/53672db5ba40.html&title=分布式ID解决方案"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/04/53672db5ba40.html&name=分布式ID解决方案&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/04/53672db5ba40.html&t=分布式ID解决方案"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2025
+    Ak1raKay
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags">tags</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
