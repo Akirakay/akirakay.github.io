@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="深分页的原因：1select * from table where a &#x3D; x limit m, n 数据量比较大的时候，此种方式的查询效果性能会显著下降 性能问题成因：  全表扫描：当 OFFSET 值增大时，MySQL必须跳过前面的所有记录。这意味着 MySQL 需要对前面的记录进行排序（如果使用 ORDER BY），即使这些记录并不在最终结果中。这导致查询的执行时间线性增长。 内存消耗：随着">
+    <meta name="description" content="深分页的原因： 1select * from table where a &#x3D; x limit m, n 数据量比较大的时候，此种方式的查询效果性能会显著下降 性能问题 成因：  全表扫描：当 OFFSET 值增大时，MySQL必须跳过前面的所有记录。这意味着 MySQL 需要对前面的记录进行排序（如果使用 ORDER BY），即使这些记录并不在最终结果中。这导致查询的执行时间线性增长。 内存消耗：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深分页解决方案">
 <meta property="og:url" content="http://example.com/2025/04/83e42223e4f8.html">
 <meta property="og:site_name" content="Ak1raKay&#39;s Blog">
-<meta property="og:description" content="深分页的原因：1select * from table where a &#x3D; x limit m, n 数据量比较大的时候，此种方式的查询效果性能会显著下降 性能问题成因：  全表扫描：当 OFFSET 值增大时，MySQL必须跳过前面的所有记录。这意味着 MySQL 需要对前面的记录进行排序（如果使用 ORDER BY），即使这些记录并不在最终结果中。这导致查询的执行时间线性增长。 内存消耗：随着">
+<meta property="og:description" content="深分页的原因： 1select * from table where a &#x3D; x limit m, n 数据量比较大的时候，此种方式的查询效果性能会显著下降 性能问题 成因：  全表扫描：当 OFFSET 值增大时，MySQL必须跳过前面的所有记录。这意味着 MySQL 需要对前面的记录进行排序（如果使用 ORDER BY），即使这些记录并不在最终结果中。这导致查询的执行时间线性增长。 内存消耗：">
 <meta property="og:locale">
 <meta property="article:published_time" content="2025-04-26T03:32:18.000Z">
 <meta property="article:modified_time" content="2025-05-26T09:19:10.299Z">
@@ -167,9 +167,11 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="深分页的原因："><a href="#深分页的原因：" class="headerlink" title="深分页的原因："></a>深分页的原因：</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> a <span class="operator">=</span> x limit m, n</span><br></pre></td></tr></table></figure>
+    <h2 id="深分页的原因："><a class="header-anchor" href="#深分页的原因："></a>深分页的原因：</h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> a <span class="operator">=</span> x limit m, n</span><br></pre></td></tr></table></figure>
 <p>数据量比较大的时候，此种方式的查询效果性能会显著下降</p>
-<h2 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h2><p>成因：</p>
+<h2 id="性能问题"><a class="header-anchor" href="#性能问题"></a>性能问题</h2>
+<p>成因：</p>
 <ul>
 <li><strong>全表扫描</strong>：当 OFFSET 值增大时，MySQL必须跳过前面的所有记录。这意味着 MySQL 需要对前面的记录进行排序（如果使用 <code>ORDER BY</code>），即使这些记录并不在最终结果中。这导致查询的执行时间线性增长。</li>
 <li><strong>内存消耗</strong>：随着 OFFSET 的增加，MySQL 需要使用更多的内存来存储那些被跳过的记录，尤其在进行排序时，这会对性能产生显著影响。</li>
@@ -177,17 +179,23 @@
 <p>影响：</p>
 <ul>
 <li>响应时间延迟</li>
-<li>数据库负载增加<h2 id="优化策略"><a href="#优化策略" class="headerlink" title="优化策略"></a>优化策略</h2></li>
+<li>数据库负载增加</li>
 </ul>
+<h2 id="优化策略"><a class="header-anchor" href="#优化策略"></a>优化策略</h2>
 <ol>
-<li><p>基于主键的游标分页（比较依赖主键递增）<br>通过前端传递最后一条数据id，查询大于此id的数据</p>
+<li>
+<p>基于主键的游标分页（比较依赖主键递增）<br>
+通过前端传递最后一条数据id，查询大于此id的数据</p>
 </li>
-<li><p>分段加载<br>通过在业务上调整跳页，改成懒加载模式，滚动加载</p>
+<li>
+<p>分段加载<br>
+通过在业务上调整跳页，改成懒加载模式，滚动加载</p>
 </li>
-<li><p>inner join 延迟关联</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">table</span> t1 <span class="keyword">inner</span> <span class="keyword">join</span> (<span class="keyword">select</span> id <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> a <span class="operator">=</span> x limit m, n) t2 <span class="keyword">on</span> t1.id <span class="operator">=</span> t2.id</span><br></pre></td></tr></table></figure>
+<li>
+<p>inner join 延迟关联</p>
 </li>
 </ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">table</span> t1 <span class="keyword">inner</span> <span class="keyword">join</span> (<span class="keyword">select</span> id <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> a <span class="operator">=</span> x limit m, n) t2 <span class="keyword">on</span> t1.id <span class="operator">=</span> t2.id</span><br></pre></td></tr></table></figure>
 <p>通过将条件转移到主键树，减少回表降低磁盘IO</p>
 
   </div>

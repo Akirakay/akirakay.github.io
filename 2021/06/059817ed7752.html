@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="UML类间关系简介uml类图中大概可以分为：泛化（Generalization）, 实现（Realization），关联（Association），聚合（Aggregation），组合（Composition），依赖（Dependency）此六种类间关系。 经典实例  车的类图为&lt;\&gt;，表明车是一个接口 小汽车与自行车继承车类；它们之间关系为实现关系，用带有空心箭头的虚线表示； 小汽车">
+    <meta name="description" content="UML类间关系 简介 uml类图中大概可以分为：泛化（Generalization）, 实现（Realization），关联（Association），聚合（Aggregation），组合（Composition），依赖（Dependency）此六种类间关系。 经典实例   车的类图为&lt;&lt;interface&gt;&gt;，表明车是一个接口 小汽车与自行车继承车类；它们之间关系为实现关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="uml类间关系">
 <meta property="og:url" content="http://example.com/2021/06/059817ed7752.html">
 <meta property="og:site_name" content="Ak1raKay&#39;s Blog">
-<meta property="og:description" content="UML类间关系简介uml类图中大概可以分为：泛化（Generalization）, 实现（Realization），关联（Association），聚合（Aggregation），组合（Composition），依赖（Dependency）此六种类间关系。 经典实例  车的类图为&lt;\&gt;，表明车是一个接口 小汽车与自行车继承车类；它们之间关系为实现关系，用带有空心箭头的虚线表示； 小汽车">
+<meta property="og:description" content="UML类间关系 简介 uml类图中大概可以分为：泛化（Generalization）, 实现（Realization），关联（Association），聚合（Aggregation），组合（Composition），依赖（Dependency）此六种类间关系。 经典实例   车的类图为&lt;&lt;interface&gt;&gt;，表明车是一个接口 小汽车与自行车继承车类；它们之间关系为实现关">
 <meta property="og:locale">
 <meta property="og:image" content="https://i.loli.net/2021/06/19/tPCN4Ekz7W5lFYo.png">
 <meta property="og:image" content="https://i.loli.net/2021/06/19/VetK2EFaCNZpRAv.png">
@@ -126,7 +126,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UML%E7%B1%BB%E9%97%B4%E5%85%B3%E7%B3%BB"><span class="toc-number">1.</span> <span class="toc-text">UML类间关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">经典实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E9%97%B4%E5%85%B3%E7%B3%BB"><span class="toc-number">1.3.</span> <span class="toc-text">类间关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%8C%96%EF%BC%88Generalization%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">泛化（Generalization）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%EF%BC%88Realization%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">实现（Realization）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%EF%BC%88Association%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">关联（Association）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB%EF%BC%88Aggregation%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">聚合关系（Aggregation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%EF%BC%88Composition%EF%BC%89"><span class="toc-number">1.3.5.</span> <span class="toc-text">组合（Composition）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%EF%BC%88Dependency%EF%BC%89"><span class="toc-number">1.3.6.</span> <span class="toc-text">依赖（Dependency）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ref"><span class="toc-number">1.4.</span> <span class="toc-text">Ref</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UML类间关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">经典实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E9%97%B4%E5%85%B3%E7%B3%BB"><span class="toc-number">1.3.</span> <span class="toc-text">类间关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%8C%96%EF%BC%88Generalization%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">泛化（Generalization）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%EF%BC%88Realization%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">实现（Realization）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%EF%BC%88Association%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">关联（Association）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB%EF%BC%88Aggregation%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">聚合关系（Aggregation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%EF%BC%88Composition%EF%BC%89"><span class="toc-number">1.3.5.</span> <span class="toc-text">组合（Composition）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%EF%BC%88Dependency%EF%BC%89"><span class="toc-number">1.3.6.</span> <span class="toc-text">依赖（Dependency）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ref"><span class="toc-number">1.4.</span> <span class="toc-text">Ref</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -175,10 +175,13 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="UML类间关系"><a href="#UML类间关系" class="headerlink" title="UML类间关系"></a>UML类间关系</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>uml类图中大概可以分为：泛化（Generalization）, 实现（Realization），关联（Association），聚合（Aggregation），组合（Composition），依赖（Dependency）此六种类间关系。</p>
-<h2 id="经典实例"><a href="#经典实例" class="headerlink" title="经典实例"></a>经典实例</h2><p><img src="https://i.loli.net/2021/06/19/tPCN4Ekz7W5lFYo.png" alt="gGTPMWe23jayYd5"></p>
+    <h1>UML类间关系</h1>
+<h2 id="简介"><a class="header-anchor" href="#简介"></a>简介</h2>
+<p>uml类图中大概可以分为：泛化（Generalization）, 实现（Realization），关联（Association），聚合（Aggregation），组合（Composition），依赖（Dependency）此六种类间关系。</p>
+<h2 id="经典实例"><a class="header-anchor" href="#经典实例"></a>经典实例</h2>
+<p><img src="https://i.loli.net/2021/06/19/tPCN4Ekz7W5lFYo.png" alt="gGTPMWe23jayYd5"></p>
 <ul>
-<li>车的类图为&lt;\<interface\>&gt;，表明车是一个接口</li>
+<li>车的类图为&lt;&lt;interface&gt;&gt;，表明车是一个接口</li>
 <li>小汽车与自行车继承车类；它们之间关系为<strong>实现</strong>关系，用带有<strong>空心箭头的虚线</strong>表示；</li>
 <li>小汽车与SUV之间也是继承关系，它们之间关系为<strong>泛化</strong>关系，用<strong>带有空心箭头的实线</strong>表示；</li>
 <li>小汽车与发动机之间是<strong>组合</strong>关系，用<strong>带有实心菱形箭头的实线</strong>表示；</li>
@@ -186,28 +189,36 @@
 <li>学生与身份证之间为<strong>关联</strong>关系，用<strong>实线</strong>表示；</li>
 <li>学生上学需要用到自行车，与自行车是一种<strong>依赖</strong>关系，用<strong>带箭头的虚线</strong>表示；</li>
 </ul>
-<h2 id="类间关系"><a href="#类间关系" class="headerlink" title="类间关系"></a>类间关系</h2><h3 id="泛化（Generalization）"><a href="#泛化（Generalization）" class="headerlink" title="泛化（Generalization）"></a>泛化（Generalization）</h3><p>泛化关系是模拟两个类之间强<code>is-a</code>的关系，强<code>is-a</code>表达的是一种继承关系；</p>
+<h2 id="类间关系"><a class="header-anchor" href="#类间关系"></a>类间关系</h2>
+<h3 id="泛化（Generalization）"><a class="header-anchor" href="#泛化（Generalization）"></a>泛化（Generalization）</h3>
+<p>泛化关系是模拟两个类之间强<code>is-a</code>的关系，强<code>is-a</code>表达的是一种继承关系；</p>
 <p>UML图中，泛化关系使用带空心三角箭头的实线表示，箭头从子类指向父类。</p>
-<p><img src="https://i.loli.net/2021/06/19/VetK2EFaCNZpRAv.png" alt="yAMR7WhDnw59ZQa" style="zoom:50%;" /></p>
-<h3 id="实现（Realization）"><a href="#实现（Realization）" class="headerlink" title="实现（Realization）"></a>实现（Realization）</h3><p>实现关系是接口与接口的实现类之间的关系，是一种弱<code>is-a</code>的关系</p>
+<img src="https://i.loli.net/2021/06/19/VetK2EFaCNZpRAv.png" alt="yAMR7WhDnw59ZQa" style="zoom:50%;" />
+<h3 id="实现（Realization）"><a class="header-anchor" href="#实现（Realization）"></a>实现（Realization）</h3>
+<p>实现关系是接口与接口的实现类之间的关系，是一种弱<code>is-a</code>的关系</p>
 <p>UML图中，实现关系使用带空心三角箭头的虚线表示，箭头从实现类指向接口。</p>
-<p><img src="https://i.loli.net/2021/06/19/FdDyWM7zKY4asfI.png" alt="51rtS63C7fyPFGN" style="zoom:50%;" /></p>
-<h3 id="关联（Association）"><a href="#关联（Association）" class="headerlink" title="关联（Association）"></a>关联（Association）</h3><p>关联关系描述不同类对象间的结构关系；通常与运行状态无关；在最终代码中，关联对象通常是以成员变量的形式实现的。</p>
+<img src="https://i.loli.net/2021/06/19/FdDyWM7zKY4asfI.png" alt="51rtS63C7fyPFGN" style="zoom:50%;" />
+<h3 id="关联（Association）"><a class="header-anchor" href="#关联（Association）"></a>关联（Association）</h3>
+<p>关联关系描述不同类对象间的结构关系；通常与运行状态无关；在最终代码中，关联对象通常是以成员变量的形式实现的。</p>
 <p>UML图中，关联关系使用一条实线表示。</p>
-<p><img src="https://i.loli.net/2021/06/19/Zpc8yrQUtxAFPOI.png" alt="cumSpEWxVDqrNYb" style="zoom:50%;" /></p>
-<h3 id="聚合关系（Aggregation）"><a href="#聚合关系（Aggregation）" class="headerlink" title="聚合关系（Aggregation）"></a>聚合关系（Aggregation）</h3><p>聚合关系是关联关系的一种，表示整体由部分构成，属于<code>has-a</code>的关系。</p>
+<img src="https://i.loli.net/2021/06/19/Zpc8yrQUtxAFPOI.png" alt="cumSpEWxVDqrNYb" style="zoom:50%;" />
+<h3 id="聚合关系（Aggregation）"><a class="header-anchor" href="#聚合关系（Aggregation）"></a>聚合关系（Aggregation）</h3>
+<p>聚合关系是关联关系的一种，表示整体由部分构成，属于<code>has-a</code>的关系。</p>
 <p>聚合关系中，被聚合对象和聚合对象有着各自的生命周期。</p>
 <p>UML图中，聚合关系使用带有空心菱形箭头的实线表示，箭头从聚合者指向被聚合者。</p>
-<p><img src="https://i.loli.net/2021/06/19/iZcblG4q7MfWQrt.png" alt="cQVpx1eDFj5naO9" style="zoom:50%;" /></p>
-<h3 id="组合（Composition）"><a href="#组合（Composition）" class="headerlink" title="组合（Composition）"></a>组合（Composition）</h3><p>组合关系也是关联关系的一种，也表示类之间的整体与部分的关系，是一种更强烈的聚合关系，是<code>contains-a</code> 关系。</p>
+<img src="https://i.loli.net/2021/06/19/iZcblG4q7MfWQrt.png" alt="cQVpx1eDFj5naO9" style="zoom:50%;" />
+<h3 id="组合（Composition）"><a class="header-anchor" href="#组合（Composition）"></a>组合（Composition）</h3>
+<p>组合关系也是关联关系的一种，也表示类之间的整体与部分的关系，是一种更强烈的聚合关系，是<code> contains-a</code> 关系。</p>
 <p>组合关系中，整体对象可以控制部分对象的生命周期，部分对象不能脱离整体而存在。</p>
 <p>UML图中，组合关系使用带有实心菱形箭头的实线表示，箭头从部分指向整体。</p>
-<p><img src="https://i.loli.net/2021/06/19/GOQ397aTMriqAIu.png" alt="LbFAs6cXKCBraPV" style="zoom:50%;" /></p>
-<h3 id="依赖（Dependency）"><a href="#依赖（Dependency）" class="headerlink" title="依赖（Dependency）"></a>依赖（Dependency）</h3><p>依赖关系是一种临时性的关系，描述一个对象的运行期间会用到另外一个对象的关系，是一种对象间关系耦合度较弱的关系。</p>
+<img src="https://i.loli.net/2021/06/19/GOQ397aTMriqAIu.png" alt="LbFAs6cXKCBraPV" style="zoom:50%;" />
+<h3 id="依赖（Dependency）"><a class="header-anchor" href="#依赖（Dependency）"></a>依赖（Dependency）</h3>
+<p>依赖关系是一种临时性的关系，描述一个对象的运行期间会用到另外一个对象的关系，是一种对象间关系耦合度较弱的关系。</p>
 <p>在代码中，某个类的方法通过局部变量、方法的参数或者对静态方法的调用来访问另一个类（被依赖类）中的某些方法来完成一些职责。</p>
 <p>UML图中，依赖关系使用带箭头的虚线表示，从使用者指向被依赖者。</p>
-<p><img src="https://i.loli.net/2021/06/19/s2gaXnNi5rcyCJW.png" alt="23XOyC8fWEc7GVJ" style="zoom:50%;" /></p>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<img src="https://i.loli.net/2021/06/19/s2gaXnNi5rcyCJW.png" alt="23XOyC8fWEc7GVJ" style="zoom:50%;" />
+<h2 id="Ref"><a class="header-anchor" href="#Ref"></a>Ref</h2>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://my.oschina.net/jackieyeah/blog/224265">UML类图中的六大关系：关联、聚合、组合、依赖、继承、实现</a></li>
 <li><a target="_blank" rel="noopener" href="https://design-patterns.readthedocs.io/zh_CN/latest/read_uml.html">看懂UML类图和时序图</a></li>
 <li><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/8374.html">UML类图及类图之间的关系</a></li>
@@ -239,7 +250,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UML%E7%B1%BB%E9%97%B4%E5%85%B3%E7%B3%BB"><span class="toc-number">1.</span> <span class="toc-text">UML类间关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">经典实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E9%97%B4%E5%85%B3%E7%B3%BB"><span class="toc-number">1.3.</span> <span class="toc-text">类间关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%8C%96%EF%BC%88Generalization%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">泛化（Generalization）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%EF%BC%88Realization%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">实现（Realization）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%EF%BC%88Association%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">关联（Association）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB%EF%BC%88Aggregation%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">聚合关系（Aggregation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%EF%BC%88Composition%EF%BC%89"><span class="toc-number">1.3.5.</span> <span class="toc-text">组合（Composition）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%EF%BC%88Dependency%EF%BC%89"><span class="toc-number">1.3.6.</span> <span class="toc-text">依赖（Dependency）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ref"><span class="toc-number">1.4.</span> <span class="toc-text">Ref</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UML类间关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">经典实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E9%97%B4%E5%85%B3%E7%B3%BB"><span class="toc-number">1.3.</span> <span class="toc-text">类间关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%8C%96%EF%BC%88Generalization%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">泛化（Generalization）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%EF%BC%88Realization%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">实现（Realization）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%EF%BC%88Association%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">关联（Association）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB%EF%BC%88Aggregation%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">聚合关系（Aggregation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%EF%BC%88Composition%EF%BC%89"><span class="toc-number">1.3.5.</span> <span class="toc-text">组合（Composition）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%EF%BC%88Dependency%EF%BC%89"><span class="toc-number">1.3.6.</span> <span class="toc-text">依赖（Dependency）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ref"><span class="toc-number">1.4.</span> <span class="toc-text">Ref</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

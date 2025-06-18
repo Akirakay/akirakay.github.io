@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="MySQL Explain详解Explain是什么Explain1是MySQL提供的一个工具，用来收集MySQL Statement执行计划的相关信息。 Explain怎么使用explain的语句格式如下： 12345678910111213141516171819202122232425&#123;EXPLAIN | DESCRIBE | DESC&#125;    tbl_name [col_">
+    <meta name="description" content="MySQL Explain详解 Explain是什么 Explain[1]是MySQL提供的一个工具，用来收集MySQL Statement执行计划的相关信息。 Explain怎么使用 explain的语句格式如下： 12345678910111213141516171819202122232425&#123;EXPLAIN | DESCRIBE | DESC&#125;    tbl_name">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL Explain详解">
 <meta property="og:url" content="http://example.com/2021/06/7e693b095c25.html">
 <meta property="og:site_name" content="Ak1raKay&#39;s Blog">
-<meta property="og:description" content="MySQL Explain详解Explain是什么Explain1是MySQL提供的一个工具，用来收集MySQL Statement执行计划的相关信息。 Explain怎么使用explain的语句格式如下： 12345678910111213141516171819202122232425&#123;EXPLAIN | DESCRIBE | DESC&#125;    tbl_name [col_">
+<meta property="og:description" content="MySQL Explain详解 Explain是什么 Explain[1]是MySQL提供的一个工具，用来收集MySQL Statement执行计划的相关信息。 Explain怎么使用 explain的语句格式如下： 12345678910111213141516171819202122232425&#123;EXPLAIN | DESCRIBE | DESC&#125;    tbl_name">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-06-19T08:38:51.000Z">
 <meta property="article:modified_time" content="2025-05-26T09:16:34.907Z">
@@ -118,7 +118,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL-Explain%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">MySQL Explain详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">Explain是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">Explain怎么使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain-%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">Explain 解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ref"><span class="toc-number">1.3.1.</span> <span class="toc-text">Ref</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">MySQL Explain详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">Explain是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">Explain怎么使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain-%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">Explain 解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ref"><span class="toc-number">1.3.1.</span> <span class="toc-text">Ref</span></a></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -167,12 +167,15 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="MySQL-Explain详解"><a href="#MySQL-Explain详解" class="headerlink" title="MySQL Explain详解"></a>MySQL Explain详解</h1><h2 id="Explain是什么"><a href="#Explain是什么" class="headerlink" title="Explain是什么"></a>Explain是什么</h2><p><code>Explain</code><sup><a href="#fn_1" id="reffn_1">1</a></sup>是MySQL提供的一个工具，用来收集MySQL Statement执行计划的相关信息。</p>
-<h2 id="Explain怎么使用"><a href="#Explain怎么使用" class="headerlink" title="Explain怎么使用"></a>Explain怎么使用</h2><p>explain的语句格式如下：</p>
+    <h1>MySQL Explain详解</h1>
+<h2 id="Explain是什么"><a class="header-anchor" href="#Explain是什么"></a>Explain是什么</h2>
+<p><code>Explain</code><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>是MySQL提供的一个工具，用来收集MySQL Statement执行计划的相关信息。</p>
+<h2 id="Explain怎么使用"><a class="header-anchor" href="#Explain怎么使用"></a>Explain怎么使用</h2>
+<p>explain的语句格式如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;EXPLAIN | DESCRIBE | DESC&#125;</span><br><span class="line">    tbl_name [col_name | wild]</span><br><span class="line"></span><br><span class="line">&#123;EXPLAIN | DESCRIBE | DESC&#125;</span><br><span class="line">    [explain_type]</span><br><span class="line">    &#123;explainable_stmt | FOR CONNECTION connection_id&#125;</span><br><span class="line"></span><br><span class="line">explain_type: &#123;</span><br><span class="line">    EXTENDED</span><br><span class="line">  | PARTITIONS</span><br><span class="line">  | FORMAT = format_name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">format_name: &#123;</span><br><span class="line">    TRADITIONAL</span><br><span class="line">  | JSON</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">explainable_stmt: &#123;</span><br><span class="line">    SELECT statement</span><br><span class="line">  | DELETE statement</span><br><span class="line">  | INSERT statement</span><br><span class="line">  | REPLACE statement</span><br><span class="line">  | UPDATE statement</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Example:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN SELECT</span><br><span class="line">	devc.ctrl_area_id AS `name`,</span><br><span class="line">	count( devc.ctrl_area_id ) AS `value` </span><br><span class="line">FROM</span><br><span class="line">	zdcl_vhc_alarm_record record</span><br><span class="line">	INNER JOIN zdcl_bas_control_area_devc devc ON record.bayonet_code = devc.devc_code </span><br><span class="line">WHERE</span><br><span class="line">	record.monitor_type = &#x27;20&#x27; </span><br><span class="line">	AND DATEDIFF( record.create_time, CURRENT_DATE ) = 0 </span><br><span class="line">GROUP BY</span><br><span class="line">	devc.ctrl_area_id</span><br></pre></td></tr></table></figure>
-<h2 id="Explain-解析"><a href="#Explain-解析" class="headerlink" title="Explain 解析"></a>Explain 解析</h2><div class="table-container">
+<h2 id="Explain-解析"><a class="header-anchor" href="#Explain-解析"></a>Explain 解析</h2>
 <table>
 <thead>
 <tr>
@@ -231,18 +234,20 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/explain-output.html" title="字段说明">属性解读</a>：</p>
 <p><strong>id</strong>：SQL语句顺序执行唯一标识。</p>
 <ul>
-<li><p>id如果相同，可以认为是一组，从上往下顺序执行</p>
+<li>
+<p>id如果相同，可以认为是一组，从上往下顺序执行</p>
 </li>
-<li><p>如果是子查询，id的序号会递增</p>
+<li>
+<p>如果是子查询，id的序号会递增</p>
 </li>
-<li>在所有组中，id值越大，优先级越高，越先执行</li>
+<li>
+<p>在所有组中，id值越大，优先级越高，越先执行</p>
+</li>
 </ul>
 <p><strong>select_type</strong>：查询类型</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -297,44 +302,57 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p><strong>table</strong>：当前这一行正在访问哪张表（或表的别名）</p>
 <p><strong>partitions</strong>：查询匹配记录的分区。对于未分区的表，返回null</p>
 <p><strong><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/explain-output.html#explain-join-types" title="Join Types">type</a></strong>：连接类型</p>
 <ul>
-<li><p>system：特殊的 const 连接，表中只有一行数据</p>
+<li>
+<p>system：特殊的 const 连接，表中只有一行数据</p>
 </li>
-<li><p>const：表最多有一行匹配行，查询开始时被读取。常用作主键或唯一键的等值查询</p>
+<li>
+<p>const：表最多有一行匹配行，查询开始时被读取。常用作主键或唯一键的等值查询</p>
 </li>
-<li><p>eq_ref：使用索引的全部组成部分，常用于主键或唯一键的多表连接查询</p>
+<li>
+<p>eq_ref：使用索引的全部组成部分，常用于主键或唯一键的多表连接查询</p>
 </li>
-<li><p>ref：满足最左匹配原则，或者索引非主键或唯一键时，用到的连接方式</p>
+<li>
+<p>ref：满足最左匹配原则，或者索引非主键或唯一键时，用到的连接方式</p>
 <blockquote>
 <p>Tips</p>
 <p>最左前缀原则，指的是索引按照最左优先的方式匹配索引。比如创建了一个组合索引(column1, column2, column3)，那么，如果查询条件是：</p>
 <ul>
-<li><p>WHERE column1 = 1、WHERE column1= 1 AND column2 = 2、WHERE column1= 1 AND column2 = 2 AND column3 = 3 都可以使用该索引；</p>
+<li>
+<p>WHERE column1 = 1、WHERE column1= 1 AND column2 = 2、WHERE column1= 1 AND column2 = 2 AND column3 = 3 都可以使用该索引；</p>
 </li>
-<li><p>WHERE column1 = 2、WHERE column1 = 1 AND column3 = 3就无法匹配该索引。</p>
+<li>
+<p>WHERE column1 = 2、WHERE column1 = 1 AND column3 = 3就无法匹配该索引。</p>
 </li>
 </ul>
 </blockquote>
 </li>
-<li><p>fulltext：全文索引</p>
+<li>
+<p>fulltext：全文索引</p>
 </li>
-<li><p>ref_or_null：类似于ref，但是MySQL会额外搜索哪些行包含了NULL。这种类型常见于解析子查询</p>
+<li>
+<p>ref_or_null：类似于ref，但是MySQL会额外搜索哪些行包含了NULL。这种类型常见于解析子查询</p>
 </li>
-<li><p>index_merge：使用索引合并，表示查询使用到了多个索引</p>
+<li>
+<p>index_merge：使用索引合并，表示查询使用到了多个索引</p>
 </li>
-<li><p>unique_subquery：类似eq_ref，使用了<code>IN</code>查询，且子查询为主键或唯一键索引</p>
+<li>
+<p>unique_subquery：类似eq_ref，使用了<code>IN</code>查询，且子查询为主键或唯一键索引</p>
 </li>
-<li><p>index_subquery：类似unique_subquery，但是子查询使用的是非唯一索引</p>
+<li>
+<p>index_subquery：类似unique_subquery，但是子查询使用的是非唯一索引</p>
 </li>
-<li><p>range：索引上的范围搜索，between或where子句中有&gt;、&gt;=、&lt;、&lt;=、IS NULL、&lt;=&gt;、BETWEEN、LIKE、IN()操作</p>
+<li>
+<p>range：索引上的范围搜索，between或where子句中有&gt;、&gt;=、&lt;、&lt;=、IS NULL、&lt;=&gt;、BETWEEN、LIKE、IN()操作</p>
 </li>
-<li><p>index：全索引扫描，与ALL类似，index是扫描索引的全部数据</p>
+<li>
+<p>index：全索引扫描，与ALL类似，index是扫描索引的全部数据</p>
 </li>
-<li><p>all：全表扫描</p>
+<li>
+<p>all：全表扫描</p>
 </li>
 </ul>
 <p><strong>possible_keys</strong>：指出MySQL能使用哪个索引在表中找到记录，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用</p>
@@ -344,14 +362,19 @@
 <p><strong>rows</strong>：扫描行数，越小越好</p>
 <p><strong>filtered</strong>：表示符合条件的数据百分比</p>
 <p><strong><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/explain-output.html#explain-extra-information" title="EXPLAIN Extra Information">extra</a></strong>：<a target="_blank" rel="noopener" href="https://www.itmuch.com/mysql/explain/">Extra Information</a></p>
-<h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><ul>
+<h3 id="Ref"><a class="header-anchor" href="#Ref"></a>Ref</h3>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xuanzhi201111/p/4175635.html">https://www.cnblogs.com/xuanzhi201111/p/4175635.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.itmuch.com/mysql/explain/">https://www.itmuch.com/mysql/explain/</a></li>
 <li><a target="_blank" rel="noopener" href="http://www.cnitblog.com/aliyiyi08/archive/2008/09/09/48878.html">http://www.cnitblog.com/aliyiyi08/archive/2008/09/09/48878.html</a></li>
 </ul>
-<blockquote id="fn_1">
-<sup>1</sup>. EXPLAIN Statement <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/explain.html">https://dev.mysql.com/doc/refman/5.7/en/explain.html</a><a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>EXPLAIN Statement <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/explain.html">https://dev.mysql.com/doc/refman/5.7/en/explain.html</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
   </div>
 </article>
@@ -379,7 +402,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL-Explain%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">MySQL Explain详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">Explain是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">Explain怎么使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain-%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">Explain 解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ref"><span class="toc-number">1.3.1.</span> <span class="toc-text">Ref</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">MySQL Explain详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">Explain是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">Explain怎么使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain-%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">Explain 解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ref"><span class="toc-number">1.3.1.</span> <span class="toc-text">Ref</span></a></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

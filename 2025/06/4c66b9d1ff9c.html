@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="传播行为  代码示例 SQL 123456789101112CREATE TABLE IF NOT EXISTS product (    id BIGINT AUTO_INCREMENT PRIMARY KEY,    name VARCHAR(100),    stock INT);CREATE TABLE IF NOT EXISTS orders (    id BIGINT AUTO_IN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring-事务传播机制">
+<meta property="og:url" content="http://example.com/2025/06/4c66b9d1ff9c.html">
+<meta property="og:site_name" content="Ak1raKay&#39;s Blog">
+<meta property="og:description" content="传播行为  代码示例 SQL 123456789101112CREATE TABLE IF NOT EXISTS product (    id BIGINT AUTO_INCREMENT PRIMARY KEY,    name VARCHAR(100),    stock INT);CREATE TABLE IF NOT EXISTS orders (    id BIGINT AUTO_IN">
+<meta property="og:locale">
+<meta property="og:image" content="https://s2.loli.net/2025/06/17/ehGok1qlzwmFgds.jpg">
+<meta property="og:image" content="https://s2.loli.net/2025/06/17/GVhcjdvtkR8M4Fi.jpg">
+<meta property="article:published_time" content="2025-06-17T06:00:34.000Z">
+<meta property="article:modified_time" content="2025-06-17T10:00:17.319Z">
+<meta property="article:author" content="Ak1raKay">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2025/06/17/ehGok1qlzwmFgds.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Category: Java</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags">tags</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2025/06/7fa6ffb39293.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/06/4c66b9d1ff9c.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/06/4c66b9d1ff9c.html&text=Spring-事务传播机制"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/06/4c66b9d1ff9c.html&title=Spring-事务传播机制"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/06/4c66b9d1ff9c.html&is_video=false&description=Spring-事务传播机制"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring-事务传播机制&body=Check out this article: http://example.com/2025/06/4c66b9d1ff9c.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/06/4c66b9d1ff9c.html&title=Spring-事务传播机制"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/06/4c66b9d1ff9c.html&title=Spring-事务传播机制"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/06/4c66b9d1ff9c.html&title=Spring-事务传播机制"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/06/4c66b9d1ff9c.html&title=Spring-事务传播机制"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/06/4c66b9d1ff9c.html&name=Spring-事务传播机制&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/06/4c66b9d1ff9c.html&t=Spring-事务传播机制"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA"><span class="toc-number">1.</span> <span class="toc-text">传播行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">代码示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL"><span class="toc-number">2.1.</span> <span class="toc-text">SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="toc-number">2.2.</span> <span class="toc-text">实体类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%B1%82"><span class="toc-number">2.3.</span> <span class="toc-text">服务层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E7%B1%BB"><span class="toc-number">2.4.</span> <span class="toc-text">启动类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E8%A1%A8%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">行为表现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-REQUIRED"><span class="toc-number">3.1.</span> <span class="toc-text">REQUIRED &#x2F; REQUIRED</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">3.1.1.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-REQUIRES-NEW"><span class="toc-number">3.2.</span> <span class="toc-text">REQUIRED &#x2F; REQUIRES_NEW</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90-v2"><span class="toc-number">3.2.1.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUPPORTS"><span class="toc-number">3.3.</span> <span class="toc-text">SUPPORTS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90-v3"><span class="toc-number">3.4.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-NOT-SUPPORTED"><span class="toc-number">3.5.</span> <span class="toc-text">REQUIRED &#x2F; NOT_SUPPORTED</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-NEVER"><span class="toc-number">3.6.</span> <span class="toc-text">REQUIRED &#x2F; NEVER</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-MANDATORY"><span class="toc-number">3.7.</span> <span class="toc-text">REQUIRED &#x2F; MANDATORY</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-NESTED"><span class="toc-number">3.8.</span> <span class="toc-text">REQUIRED &#x2F; NESTED</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Spring-事务传播机制
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Ak1raKay</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-06-17T06:00:34.000Z" itemprop="datePublished">2025-06-17</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Java/">Java</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Java/" rel="tag">Java</a>, <a class="tag-link-link" href="/tags/Spring/" rel="tag">Spring</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="传播行为"><a class="header-anchor" href="#传播行为"></a>传播行为</h2>
+<p><img src="https://s2.loli.net/2025/06/17/ehGok1qlzwmFgds.jpg" alt="事务传播机制"></p>
+<h2 id="代码示例"><a class="header-anchor" href="#代码示例"></a>代码示例</h2>
+<h3 id="SQL"><a class="header-anchor" href="#SQL"></a>SQL</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> product (</span><br><span class="line">    id <span class="type">BIGINT</span> AUTO_INCREMENT <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    stock <span class="type">INT</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> orders (</span><br><span class="line">    id <span class="type">BIGINT</span> AUTO_INCREMENT <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    product_id <span class="type">BIGINT</span>,</span><br><span class="line">    quantity <span class="type">INT</span>,</span><br><span class="line">    status <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="实体类"><a class="header-anchor" href="#实体类"></a>实体类</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity(name = &quot;orders&quot;)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Order</span> &#123;  </span><br><span class="line">    <span class="meta">@Id</span> </span><br><span class="line">    <span class="meta">@GeneratedValue</span> </span><br><span class="line">    <span class="keyword">private</span> Long id;  </span><br><span class="line">    <span class="keyword">private</span> Long productId;  </span><br><span class="line">    <span class="keyword">private</span> Integer quantity;  </span><br><span class="line">    <span class="keyword">private</span> String status;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// Getters and Setters  </span></span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity(name = &quot;product&quot;)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Product</span> &#123;  </span><br><span class="line">    <span class="meta">@Id</span> </span><br><span class="line">    <span class="meta">@GeneratedValue</span>  </span><br><span class="line">    <span class="keyword">private</span> Long id;  </span><br><span class="line">    <span class="keyword">private</span> String name;  </span><br><span class="line">    <span class="keyword">private</span> Integer stock;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// Getters and Setters  </span></span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="服务层"><a class="header-anchor" href="#服务层"></a>服务层</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 订单服务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderService</span> &#123;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> OrderRepository orderRepo;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> InventoryService inventoryService;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">placeOrder</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">        <span class="type">Order</span> <span class="variable">order</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Order</span>();  </span><br><span class="line">        order.setProductId(productId);  </span><br><span class="line">        order.setQuantity(quantity);  </span><br><span class="line">        order.setStatus(<span class="string">&quot;PENDING&quot;</span>);  </span><br><span class="line">        orderRepo.save(order);  </span><br><span class="line">        System.out.println(<span class="string">&quot;订单保存成功&quot;</span>);   </span><br><span class="line">        </span><br><span class="line">        inventoryService.deductStock(productId, quantity);  </span><br><span class="line">  </span><br><span class="line">        order.setStatus(<span class="string">&quot;CONFIRMED&quot;</span>);  </span><br><span class="line">        orderRepo.save(order);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 库存服务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InventoryService</span> &#123;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> ProductRepository productRepo;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deductStock</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">        <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> productRepo.findById(productId)  </span><br><span class="line">                .orElseThrow(() -&gt; <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;商品不存在&quot;</span>));  </span><br><span class="line">  </span><br><span class="line">        product.setStock(product.getStock() - quantity);  </span><br><span class="line">        productRepo.save(product);  </span><br><span class="line">        System.out.println(<span class="string">&quot;庫存扣减成功&quot;</span>);  </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;手动触发异常&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="启动类"><a class="header-anchor" href="#启动类"></a>启动类</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderDemoApplication</span> <span class="keyword">implements</span> <span class="title class_">CommandLineRunner</span> &#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> ProductRepository productRepo;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> OrderService orderService;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;  </span><br><span class="line">        SpringApplication.run(OrderDemoApplication.class, args);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">(String... args)</span> &#123;  </span><br><span class="line">        <span class="type">Product</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Product</span>();  </span><br><span class="line">        p.setName(<span class="string">&quot;MacBook Pro&quot;</span>);  </span><br><span class="line">        p.setStock(<span class="number">5</span>);  </span><br><span class="line">        productRepo.save(p);  </span><br><span class="line">  </span><br><span class="line">        orderService.placeOrder(p.getId(), <span class="number">10</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="行为表现"><a class="header-anchor" href="#行为表现"></a>行为表现</h2>
+<h3 id="REQUIRED-REQUIRED"><a class="header-anchor" href="#REQUIRED-REQUIRED"></a>REQUIRED / REQUIRED</h3>
+<p><code>REQUIRED</code>: 如果当前有事务，就加入该事务；否则新建一个事务。<br>
+内外层事务传播行为均为 <code>REQUIRED</code> ，此时所有的事务方法处于一个事务之中，要么同时提交，要么同时回滚</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 订单服务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderService</span> &#123;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> OrderRepository orderRepo;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> InventoryService inventoryService;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">placeOrder</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">        <span class="type">Order</span> <span class="variable">order</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Order</span>();  </span><br><span class="line">        order.setProductId(productId);  </span><br><span class="line">        order.setQuantity(quantity);  </span><br><span class="line">        order.setStatus(<span class="string">&quot;PENDING&quot;</span>);  </span><br><span class="line">        orderRepo.save(order);  </span><br><span class="line">        System.out.println(<span class="string">&quot;订单保存成功&quot;</span>);   </span><br><span class="line">        </span><br><span class="line">        inventoryService.deductStock(productId, quantity);  </span><br><span class="line">  </span><br><span class="line">        order.setStatus(<span class="string">&quot;CONFIRMED&quot;</span>);  </span><br><span class="line">        orderRepo.save(order);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 库存服务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span>  </span><br><span class="line"><span class="meta">@Service</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InventoryService</span> &#123;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> ProductRepository productRepo;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deductStock</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">        <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> productRepo.findById(productId)  </span><br><span class="line">                .orElseThrow(() -&gt; <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;商品不存在&quot;</span>));  </span><br><span class="line">  </span><br><span class="line">        product.setStock(product.getStock() - quantity);  </span><br><span class="line">        productRepo.save(product);  </span><br><span class="line">        System.out.println(<span class="string">&quot;庫存扣减成功&quot;</span>);  </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;手动触发异常&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">执行结果：</span><br><span class="line">	订单保存成功</span><br><span class="line">	庫存扣减成功</span><br><span class="line">	java.lang.RuntimeException: 手动触发异常</span><br><span class="line"></span><br><span class="line">正常回滚</span><br><span class="line">orders表无数据</span><br><span class="line">product表库存未减少</span><br></pre></td></tr></table></figure>
+<h4 id="分析"><a class="header-anchor" href="#分析"></a>分析</h4>
+<p>方法 <code>placeOrder</code> 执行过程：</p>
+<ol>
+<li><code>placeOrder</code> 执行时开启事务A，执行新建订单，未提交</li>
+<li>调用 <code>deductStock</code> 减库存，合并 <code>deductStock</code> 事务到事务A中</li>
+<li><code>deductStock</code> 中，执行修改库存，手动抛出异常，事务回滚</li>
+<li><code>placeOrder</code> 回滚新建订单数据</li>
+</ol>
+<p>事务的执行链路：<br>
+<img src="https://s2.loli.net/2025/06/17/GVhcjdvtkR8M4Fi.jpg" alt="执行链路"></p>
+<p>如果 <code>deductStock</code> 正常执行，则会提交事务；如果 <code>deductStock</code> 抛出异常：<br>
+1） <code>deductStock</code> 声明了事务，方法内的数据库操作会回滚<br>
+2）<code>placeOrder</code> 和 <code>deductStock</code> 同属一个事务，<code>placeOrder</code> 也会执行回滚，保证了事务的原子性</p>
+<p>如果 <code>deductStock</code> 异常被 <code>catch</code> 了，此时事务是如何处理的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">placeOrder</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">	<span class="type">Order</span> <span class="variable">order</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Order</span>();  </span><br><span class="line">	order.setProductId(productId);  </span><br><span class="line">	order.setQuantity(quantity);  </span><br><span class="line">	order.setStatus(<span class="string">&quot;PENDING&quot;</span>);  </span><br><span class="line">	orderRepo.save(order);  </span><br><span class="line">	System.out.println(<span class="string">&quot;订单保存成功&quot;</span>);  </span><br><span class="line">	<span class="keyword">try</span> &#123;  </span><br><span class="line">		inventoryService.deductStock(productId, quantity);  </span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">		System.out.println(<span class="string">&quot;外层捕获减库存异常, 异常原因：&quot;</span> + e.getMessage());  </span><br><span class="line">	&#125;  </span><br><span class="line"></span><br><span class="line"><span class="comment">//        inventoryService.deductStock(productId, quantity);  </span></span><br><span class="line"></span><br><span class="line">	order.setStatus(<span class="string">&quot;CONFIRMED&quot;</span>);  </span><br><span class="line">	orderRepo.save(order);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">执行结果：</span><br><span class="line">	订单保存成功</span><br><span class="line">	庫存扣减成功</span><br><span class="line">	外层捕获减库存异常, 异常原因：手动触发异常</span><br><span class="line">	</span><br><span class="line">正常回滚</span><br><span class="line">orders表无数据</span><br><span class="line">product表库存未减少</span><br></pre></td></tr></table></figure>
+<p>根据事务的原子性， <code>deductStock</code> 方法的异常触发回滚操作会引起整个事务的回滚。</p>
+<p>因此，Spring 在处理事务过程中，当事务的传播性设置为REQUIRED，在整个事务的调用链上，任何一个环节抛出的异常都会导致全局回滚。</p>
+<h3 id="REQUIRED-REQUIRES-NEW"><a class="header-anchor" href="#REQUIRED-REQUIRES-NEW"></a>REQUIRED / REQUIRES_NEW</h3>
+<p><code>REQUIRES_NEW</code>: 无论是否存在事务，总是新建一个事务，原来的事务会被挂起。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 订单服务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderService</span> &#123;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> OrderRepository orderRepo;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> InventoryService inventoryService;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">placeOrder</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">        <span class="type">Order</span> <span class="variable">order</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Order</span>();  </span><br><span class="line">        order.setProductId(productId);  </span><br><span class="line">        order.setQuantity(quantity);  </span><br><span class="line">        order.setStatus(<span class="string">&quot;PENDING&quot;</span>);  </span><br><span class="line">        orderRepo.save(order);  </span><br><span class="line">        System.out.println(<span class="string">&quot;订单保存成功&quot;</span>);   </span><br><span class="line">        </span><br><span class="line">        inventoryService.deductStock(productId, quantity);  </span><br><span class="line">  </span><br><span class="line">        order.setStatus(<span class="string">&quot;CONFIRMED&quot;</span>);  </span><br><span class="line">        orderRepo.save(order);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 库存服务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span>  </span><br><span class="line"><span class="meta">@Service</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InventoryService</span> &#123;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> ProductRepository productRepo;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deductStock</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">        <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> productRepo.findById(productId)  </span><br><span class="line">                .orElseThrow(() -&gt; <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;商品不存在&quot;</span>));  </span><br><span class="line">  </span><br><span class="line">        product.setStock(product.getStock() - quantity);  </span><br><span class="line">        productRepo.save(product);  </span><br><span class="line">        System.out.println(<span class="string">&quot;庫存扣减成功&quot;</span>);  </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;手动触发异常&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">执行结果：</span><br><span class="line">	订单保存成功</span><br><span class="line">	庫存扣减成功</span><br><span class="line">	java.lang.RuntimeException: 手动触发异常</span><br><span class="line">	</span><br><span class="line">正常回滚</span><br><span class="line">orders表无数据</span><br><span class="line">product表库存未减少</span><br></pre></td></tr></table></figure>
+<h4 id="分析-v2"><a class="header-anchor" href="#分析-v2"></a>分析</h4>
+<p>方法 <code>placeOrder</code> 执行过程：</p>
+<ol>
+<li><code>placeOrder</code> 执行时开启事务A，执行新建订单，未提交</li>
+<li>调用 <code>deductStock</code> 减库存， <code>deductStock</code> 传播机制为：<code>REQUIRES_NEW</code>，因此挂起事务A，开启新事务B</li>
+<li><code>deductStock</code> 中，执行修改库存，手动抛出异常，事务B回滚</li>
+<li><code>placeOrder</code> 接收到 <code>deductStock</code> 传递的异常，事务A回滚新建订单数据</li>
+</ol>
+<p>如果 <code>placeOrder</code> 中吞掉异常，会是什么结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">placeOrder</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">	<span class="type">Order</span> <span class="variable">order</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Order</span>();  </span><br><span class="line">	order.setProductId(productId);  </span><br><span class="line">	order.setQuantity(quantity);  </span><br><span class="line">	order.setStatus(<span class="string">&quot;PENDING&quot;</span>);  </span><br><span class="line">	orderRepo.save(order);  </span><br><span class="line">	System.out.println(<span class="string">&quot;订单保存成功&quot;</span>);  </span><br><span class="line">	<span class="keyword">try</span> &#123;  </span><br><span class="line">		inventoryService.deductStock(productId, quantity);  </span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">		System.out.println(<span class="string">&quot;外层捕获减库存异常, 异常原因：&quot;</span> + e.getMessage());  </span><br><span class="line">	&#125;  </span><br><span class="line"></span><br><span class="line"><span class="comment">//        inventoryService.deductStock(productId, quantity);  </span></span><br><span class="line"></span><br><span class="line">	order.setStatus(<span class="string">&quot;CONFIRMED&quot;</span>);  </span><br><span class="line">	orderRepo.save(order);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">执行结果：</span><br><span class="line">	订单保存成功</span><br><span class="line">	庫存扣减成功</span><br><span class="line">	外层捕获减库存异常, 异常原因：手动触发异常</span><br><span class="line">	Hibernate: insert into <span class="title function_">orders</span> <span class="params">(product_id,quantity,status,id)</span> values (?,?,?,?)</span><br><span class="line">	Hibernate: update orders set product_id=?,quantity=?,status=? where id=?</span><br><span class="line">	</span><br><span class="line">事务B正常回滚：product表未库存减少</span><br><span class="line">事务A正常提交：orders表有数据</span><br></pre></td></tr></table></figure>
+<h3 id="SUPPORTS"><a class="header-anchor" href="#SUPPORTS"></a>SUPPORTS</h3>
+<p><code>SUPPORTS</code> : 如果当前有事务，就加入事务；否则就以非事务方式执行。<br>
+外层有事务，内层为 <code>SUPPORTS</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">placeOrder</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">	<span class="type">Order</span> <span class="variable">order</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Order</span>();  </span><br><span class="line">	order.setProductId(productId);  </span><br><span class="line">	order.setQuantity(quantity);  </span><br><span class="line">	order.setStatus(<span class="string">&quot;PENDING&quot;</span>);  </span><br><span class="line">	orderRepo.save(order);  </span><br><span class="line">	System.out.println(<span class="string">&quot;订单保存成功&quot;</span>);  </span><br><span class="line"><span class="comment">//        try &#123;  </span></span><br><span class="line"><span class="comment">//            inventoryService.deductStock(productId, quantity);  </span></span><br><span class="line"><span class="comment">//        &#125; catch (Exception e) &#123;  </span></span><br><span class="line"><span class="comment">//            System.out.println(&quot;外层捕获减库存异常, 异常原因：&quot; + e.getMessage());  </span></span><br><span class="line"><span class="comment">//        &#125;  </span></span><br><span class="line"></span><br><span class="line">	inventoryService.deductStock(productId, quantity);  </span><br><span class="line"></span><br><span class="line">	order.setStatus(<span class="string">&quot;CONFIRMED&quot;</span>);  </span><br><span class="line">	orderRepo.save(order);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deductStock</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">    <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> productRepo.findById(productId)  </span><br><span class="line">            .orElseThrow(() -&gt; <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;商品不存在&quot;</span>));  </span><br><span class="line">  </span><br><span class="line">    product.setStock(product.getStock() - quantity);  </span><br><span class="line">    productRepo.save(product);  </span><br><span class="line">    System.out.println(<span class="string">&quot;庫存扣减成功&quot;</span>);  </span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;手动触发异常&quot;</span>);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">执行结果：</span><br><span class="line">	订单保存成功</span><br><span class="line">	庫存扣减成功</span><br><span class="line">	java.lang.RuntimeException: 手动触发异常</span><br><span class="line">	</span><br><span class="line">正常回滚</span><br><span class="line">orders表无数据</span><br><span class="line">product表库存未减少</span><br></pre></td></tr></table></figure>
+<h3 id="分析-v3"><a class="header-anchor" href="#分析-v3"></a>分析</h3>
+<p><code>placeOrder</code> 开启事务，<code>SUPPORTS</code> 为支持事务，所以 <code>deductStock</code> 在事务中运行，行为类似于 <code>REQUIRED</code></p>
+<p>如果 <code>placeOrder</code> 不在事务中，操作又是什么结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)  </span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">placeOrder</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">	<span class="type">Order</span> <span class="variable">order</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Order</span>();  </span><br><span class="line">	order.setProductId(productId);  </span><br><span class="line">	order.setQuantity(quantity);  </span><br><span class="line">	order.setStatus(<span class="string">&quot;PENDING&quot;</span>);  </span><br><span class="line">	orderRepo.save(order);  </span><br><span class="line">	System.out.println(<span class="string">&quot;订单保存成功&quot;</span>);  </span><br><span class="line">	</span><br><span class="line">	inventoryService.deductStock(productId, quantity);  </span><br><span class="line"></span><br><span class="line">	order.setStatus(<span class="string">&quot;CONFIRMED&quot;</span>);  </span><br><span class="line">	orderRepo.save(order);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deductStock</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">    <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> productRepo.findById(productId)  </span><br><span class="line">            .orElseThrow(() -&gt; <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;商品不存在&quot;</span>));  </span><br><span class="line">  </span><br><span class="line">    product.setStock(product.getStock() - quantity);  </span><br><span class="line">    productRepo.save(product);  </span><br><span class="line">    System.out.println(<span class="string">&quot;庫存扣减成功&quot;</span>);  </span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;手动触发异常&quot;</span>);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">执行结果：</span><br><span class="line">	Hibernate: insert into <span class="title function_">orders</span> <span class="params">(product_id,quantity,status,id)</span> values (?,?,?,?)</span><br><span class="line">	订单保存成功</span><br><span class="line">	Hibernate: update product set name=?,stock=? where id=?</span><br><span class="line">	庫存扣减成功</span><br><span class="line">	java.lang.RuntimeException: 手动触发异常</span><br><span class="line"></span><br><span class="line">deductStock 执行减库存操作，数据调整为 -<span class="number">5</span></span><br><span class="line">placeOrder 执行新增订单操作，但是因为异常未执行修改订单状态操作 </span><br></pre></td></tr></table></figure>
+<p>外层无事务，则内层也以非事务形式执行。<br>
+如果异常被吞掉，则订单状态也会被修改为：<code>CONFIRMED</code></p>
+<h3 id="REQUIRED-NOT-SUPPORTED"><a class="header-anchor" href="#REQUIRED-NOT-SUPPORTED"></a>REQUIRED / NOT_SUPPORTED</h3>
+<p><code>NOT_SUPPORTED</code>: 不支持事务，存在事务则挂起</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">placeOrder</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">	<span class="type">Order</span> <span class="variable">order</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Order</span>();  </span><br><span class="line">	order.setProductId(productId);  </span><br><span class="line">	order.setQuantity(quantity);  </span><br><span class="line">	order.setStatus(<span class="string">&quot;PENDING&quot;</span>);  </span><br><span class="line">	orderRepo.save(order);  </span><br><span class="line">	System.out.println(<span class="string">&quot;订单保存成功&quot;</span>);  </span><br><span class="line">	</span><br><span class="line">	inventoryService.deductStock(productId, quantity);  </span><br><span class="line"></span><br><span class="line">	order.setStatus(<span class="string">&quot;CONFIRMED&quot;</span>);  </span><br><span class="line">	orderRepo.save(order);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deductStock</span><span class="params">(Long productId, <span class="type">int</span> quantity)</span> &#123;  </span><br><span class="line">    <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> productRepo.findById(productId)  </span><br><span class="line">            .orElseThrow(() -&gt; <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;商品不存在&quot;</span>));  </span><br><span class="line">  </span><br><span class="line">    product.setStock(product.getStock() - quantity);  </span><br><span class="line">    productRepo.save(product);  </span><br><span class="line">    System.out.println(<span class="string">&quot;庫存扣减成功&quot;</span>);  </span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;手动触发异常&quot;</span>);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">执行结果：</span><br><span class="line">	订单保存成功</span><br><span class="line">	Hibernate: update product set name=?,stock=? where id=?</span><br><span class="line">	庫存扣减成功</span><br><span class="line">	java.lang.RuntimeException: 手动触发异常</span><br><span class="line"></span><br><span class="line">deductStock 未在事务中，执行减库存操作，数据调整为 -<span class="number">5</span></span><br><span class="line">placeOrder 执行新增订单操作，但是因为异常回滚事务</span><br></pre></td></tr></table></figure>
+<h3 id="REQUIRED-NEVER"><a class="header-anchor" href="#REQUIRED-NEVER"></a>REQUIRED / NEVER</h3>
+<p><code>NEVER</code>: 不支持事务，如果外层开启事务，调用内层方法会抛出异常，内层方法内逻辑不会执行<br>
+具体执行结果根据外层是否吞掉异常来决定事务的回滚与提交</p>
+<h3 id="REQUIRED-MANDATORY"><a class="header-anchor" href="#REQUIRED-MANDATORY"></a>REQUIRED / MANDATORY</h3>
+<p><code>MANDATORY</code>: 必须在事务中执行：</p>
+<ul>
+<li>如果外层方法没有开启事务，内层方法抛出异常</li>
+<li>如果外层方法开启事务，内层方法加入事务，在同一事务中执行</li>
+</ul>
+<h3 id="REQUIRED-NESTED"><a class="header-anchor" href="#REQUIRED-NESTED"></a>REQUIRED / NESTED</h3>
+<p><code>NESTED</code>: 嵌套事务：</p>
+<ul>
+<li>如果外层方法不存在事务，内层方法的规则与REQUIRED 一致。</li>
+<li>如果外层方法存在事务，内层方法作为外层方法事务A的子事务执行，两个方法是一起提交，但子事务是独立回滚。<br>
+内层方法抛出异常，则会回滚方法的所有操作，但不影响外层事务方法。（外层方法需要try-catch子事务，避免异常传递到父层事务）<br>
+外层方法回滚，则内层方法也会回滚。</li>
+<li>该传播性的特点是可以保存状态点，当回滚时，只会回滚到某一个状态点，保证了子事务之间的独立性，避免嵌套事务的全局回滚。</li>
+</ul>
+<h2 id="总结"><a class="header-anchor" href="#总结"></a>总结</h2>
+<table>
+<thead>
+<tr>
+<th>传播行为</th>
+<th style="text-align:left">是否创建新事务</th>
+<th>若有现成事务</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>REQUIRED</code></td>
+<td style="text-align:left">是（如果没有）</td>
+<td>加入现有事务</td>
+<td>默认，常用</td>
+</tr>
+<tr>
+<td><code>REQUIRES_NEW</code></td>
+<td style="text-align:left">是</td>
+<td>挂起当前事务</td>
+<td>独立操作，互不影响</td>
+</tr>
+<tr>
+<td><code>NESTED</code></td>
+<td style="text-align:left">否</td>
+<td>嵌套（保存点）</td>
+<td>局部失败处理</td>
+</tr>
+<tr>
+<td><code>SUPPORTS</code></td>
+<td style="text-align:left">否</td>
+<td>加入现有事务</td>
+<td>读操作或非关键性操作</td>
+</tr>
+<tr>
+<td><code>NOT_SUPPORTED</code></td>
+<td style="text-align:left">否</td>
+<td>挂起当前事务</td>
+<td>导出、耗时任务等</td>
+</tr>
+<tr>
+<td><code>NEVER</code></td>
+<td style="text-align:left">否</td>
+<td>抛异常</td>
+<td>严格非事务要求</td>
+</tr>
+<tr>
+<td><code>MANDATORY</code></td>
+<td style="text-align:left">否</td>
+<td>加入现有事务</td>
+<td>必须由外层开启事务</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.hsuyeung.com/article/spring-tx-propagation#b082f8f6-1a3a-4ce4-b105-b51bae21a77d">Spring 事务传播机制-Hsu Yeung的博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/vivotech/p/17944779">Spring 七种事务传播性介绍-vivo 互联网服务器团队 - Zhou Shaobin</a></li>
+</ol>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags">tags</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA"><span class="toc-number">1.</span> <span class="toc-text">传播行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">代码示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL"><span class="toc-number">2.1.</span> <span class="toc-text">SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="toc-number">2.2.</span> <span class="toc-text">实体类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%B1%82"><span class="toc-number">2.3.</span> <span class="toc-text">服务层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E7%B1%BB"><span class="toc-number">2.4.</span> <span class="toc-text">启动类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E8%A1%A8%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">行为表现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-REQUIRED"><span class="toc-number">3.1.</span> <span class="toc-text">REQUIRED &#x2F; REQUIRED</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">3.1.1.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-REQUIRES-NEW"><span class="toc-number">3.2.</span> <span class="toc-text">REQUIRED &#x2F; REQUIRES_NEW</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90-v2"><span class="toc-number">3.2.1.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUPPORTS"><span class="toc-number">3.3.</span> <span class="toc-text">SUPPORTS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90-v3"><span class="toc-number">3.4.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-NOT-SUPPORTED"><span class="toc-number">3.5.</span> <span class="toc-text">REQUIRED &#x2F; NOT_SUPPORTED</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-NEVER"><span class="toc-number">3.6.</span> <span class="toc-text">REQUIRED &#x2F; NEVER</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-MANDATORY"><span class="toc-number">3.7.</span> <span class="toc-text">REQUIRED &#x2F; MANDATORY</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REQUIRED-NESTED"><span class="toc-number">3.8.</span> <span class="toc-text">REQUIRED &#x2F; NESTED</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/06/4c66b9d1ff9c.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/06/4c66b9d1ff9c.html&text=Spring-事务传播机制"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/06/4c66b9d1ff9c.html&title=Spring-事务传播机制"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/06/4c66b9d1ff9c.html&is_video=false&description=Spring-事务传播机制"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring-事务传播机制&body=Check out this article: http://example.com/2025/06/4c66b9d1ff9c.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/06/4c66b9d1ff9c.html&title=Spring-事务传播机制"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/06/4c66b9d1ff9c.html&title=Spring-事务传播机制"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/06/4c66b9d1ff9c.html&title=Spring-事务传播机制"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/06/4c66b9d1ff9c.html&title=Spring-事务传播机制"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/06/4c66b9d1ff9c.html&name=Spring-事务传播机制&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/06/4c66b9d1ff9c.html&t=Spring-事务传播机制"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2025
+    Ak1raKay
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags">tags</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

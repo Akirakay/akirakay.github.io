@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="最简易的分布式锁命令：SETNX  key不存在，则设置成功，否则什么也不做 1234SETNX lockKey uniqueValue(integer) 1SETNX lockKey uniqueValue(integer) 0 释放锁： 12DEL lockKey(integer) 1 也可以使用Lua脚本原子执行，释放锁： 123456&#x2F;&#x2F; 释放锁时，先比较锁对应的 value 值是否相等，">
+    <meta name="description" content="最简易的分布式锁 命令：SETNX  key不存在，则设置成功，否则什么也不做 1234SETNX lockKey uniqueValue(integer) 1SETNX lockKey uniqueValue(integer) 0 释放锁： 12DEL lockKey(integer) 1 也可以使用Lua脚本原子执行，释放锁： 123456&#x2F;&#x2F; 释放锁时，先比较锁对应的 value 值是否相等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis分布式锁实现方案">
 <meta property="og:url" content="http://example.com/2025/04/4648b9b9cb63.html">
 <meta property="og:site_name" content="Ak1raKay&#39;s Blog">
-<meta property="og:description" content="最简易的分布式锁命令：SETNX  key不存在，则设置成功，否则什么也不做 1234SETNX lockKey uniqueValue(integer) 1SETNX lockKey uniqueValue(integer) 0 释放锁： 12DEL lockKey(integer) 1 也可以使用Lua脚本原子执行，释放锁： 123456&#x2F;&#x2F; 释放锁时，先比较锁对应的 value 值是否相等，">
+<meta property="og:description" content="最简易的分布式锁 命令：SETNX  key不存在，则设置成功，否则什么也不做 1234SETNX lockKey uniqueValue(integer) 1SETNX lockKey uniqueValue(integer) 0 释放锁： 12DEL lockKey(integer) 1 也可以使用Lua脚本原子执行，释放锁： 123456&#x2F;&#x2F; 释放锁时，先比较锁对应的 value 值是否相等">
 <meta property="og:locale">
 <meta property="article:published_time" content="2025-04-21T13:00:59.000Z">
 <meta property="article:modified_time" content="2025-05-26T09:19:10.299Z">
@@ -167,28 +167,33 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="最简易的分布式锁"><a href="#最简易的分布式锁" class="headerlink" title="最简易的分布式锁"></a>最简易的分布式锁</h2><p>命令：<code>SETNX</code>  key不存在，则设置成功，否则什么也不做</p>
+    <h2 id="最简易的分布式锁"><a class="header-anchor" href="#最简易的分布式锁"></a>最简易的分布式锁</h2>
+<p>命令：<code>SETNX</code>  key不存在，则设置成功，否则什么也不做</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SETNX lockKey uniqueValue</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">SETNX lockKey uniqueValue</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
 <p>释放锁：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DEL lockKey</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
 <p>也可以使用Lua脚本原子执行，释放锁：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 释放锁时，先比较锁对应的 value 值是否相等，避免锁的误释放</span><br><span class="line"><span class="keyword">if</span> redis.call(<span class="string">&quot;get&quot;</span>,KEYS[<span class="number">1</span>]) == ARGV[<span class="number">1</span>] <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">return</span> redis.call(<span class="string">&quot;del&quot;</span>,KEYS[<span class="number">1</span>])</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>此方式的缺点：如果释放锁过程中出现问题，导致锁没有被正常释放，则其他线程无法再获取到锁</p>
-<h2 id="锁过期"><a href="#锁过期" class="headerlink" title="锁过期"></a>锁过期</h2><p>通过使用<code>SET</code>命令：SET key value EX timeout NX </p>
+<h2 id="锁过期"><a class="header-anchor" href="#锁过期"></a>锁过期</h2>
+<p>通过使用<code>SET</code>命令：SET key value EX timeout NX</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SET lockKey uniqueValue EX 3 NX</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
 <p>注意事项：</p>
 <ul>
 <li>要保证设置指定 key 的值和过期时间是一个原子操作</li>
 <li>如果业务执行时间过久，超过timeout时间会导致锁过期释放，丧失锁的意义</li>
-<li>如果timeout设置的太久，则影响服务质量，降低服务性能<h2 id="锁续期"><a href="#锁续期" class="headerlink" title="锁续期"></a>锁续期</h2></li>
+<li>如果timeout设置的太久，则影响服务质量，降低服务性能</li>
 </ul>
+<h2 id="锁续期"><a class="header-anchor" href="#锁续期"></a>锁续期</h2>
 <p>为解决超时时间设置不合理的问题，<code>redisson</code>引入看门狗机制，定时续期：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">renewExpiration</span><span class="params">()</span> &#123;</span><br><span class="line">         <span class="comment">//......</span></span><br><span class="line">        <span class="type">Timeout</span> <span class="variable">task</span> <span class="operator">=</span> commandExecutor.getConnectionManager().newTimeout(<span class="keyword">new</span> <span class="title class_">TimerTask</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">(Timeout timeout)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">                <span class="comment">//......</span></span><br><span class="line">                <span class="comment">// 异步续期，基于 Lua 脚本</span></span><br><span class="line">                CompletionStage&lt;Boolean&gt; future = renewExpirationAsync(threadId);</span><br><span class="line">                future.whenComplete((res, e) -&gt; &#123;</span><br><span class="line">                    <span class="keyword">if</span> (e != <span class="literal">null</span>) &#123;</span><br><span class="line">                        <span class="comment">// 无法续期</span></span><br><span class="line">                        log.error(<span class="string">&quot;Can&#x27;t update lock &quot;</span> + getRawName() + <span class="string">&quot; expiration&quot;</span>, e);</span><br><span class="line">                        EXPIRATION_RENEWAL_MAP.remove(getEntryName());</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (res) &#123;</span><br><span class="line">                        <span class="comment">// 递归调用实现续期</span></span><br><span class="line">                        renewExpiration();</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">// 取消续期</span></span><br><span class="line">                        cancelExpirationRenewal(<span class="literal">null</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">         <span class="comment">// 延迟 internalLockLeaseTime/3（默认 10s，也就是 30/3） 再调用</span></span><br><span class="line">        &#125;, internalLockLeaseTime / <span class="number">3</span>, TimeUnit.MILLISECONDS);</span><br><span class="line"></span><br><span class="line">        ee.setTimeout(task);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> CompletionStage&lt;Boolean&gt; <span class="title function_">renewExpirationAsync</span><span class="params">(<span class="type">long</span> threadId)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> evalWriteAsync(getRawName(), LongCodec.INSTANCE, RedisCommands.EVAL_BOOLEAN,</span><br><span class="line">            <span class="comment">// 判断是否为持锁线程，如果是就执行续期操作，就锁的过期时间设置为 30s（默认）</span></span><br><span class="line">            <span class="string">&quot;if (redis.call(&#x27;hexists&#x27;, KEYS[1], ARGV[2]) == 1) then &quot;</span> +</span><br><span class="line">                    <span class="string">&quot;redis.call(&#x27;pexpire&#x27;, KEYS[1], ARGV[1]); &quot;</span> +</span><br><span class="line">                    <span class="string">&quot;return 1; &quot;</span> +</span><br><span class="line">                    <span class="string">&quot;end; &quot;</span> +</span><br><span class="line">                    <span class="string">&quot;return 0;&quot;</span>,</span><br><span class="line">            Collections.singletonList(getRawName()),</span><br><span class="line">            internalLockLeaseTime, getLockName(threadId));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="RedLock"><a href="#RedLock" class="headerlink" title="RedLock"></a>RedLock</h2><p>官方分布式锁：</p>
+<h2 id="RedLock"><a class="header-anchor" href="#RedLock"></a>RedLock</h2>
+<p>官方分布式锁：</p>
 <ol>
 <li>第一步是，客户端获取当前时间（t1）</li>
-<li>第二步是，客户端按顺序依次向 N 个 Redis 节点执行加锁操作：<ul>
+<li>第二步是，客户端按顺序依次向 N 个 Redis 节点执行加锁操作：
+<ul>
 <li>加锁操作使用 SET 命令，带上 NX，EX/PX 选项，以及带上客户端的唯一标识。</li>
 <li>如果某个 Redis 节点发生故障了，为了保证在这种情况下，Redlock 算法能够继续运行，我们需要给「加锁操作」设置一个超时时间（不是对「锁」设置超时时间，而是对「加锁操作」设置超时时间），加锁操作的超时时间需要远远地小于锁的过期时间，一般也就是设置为几十毫秒。</li>
 </ul>
@@ -198,9 +203,13 @@
 <p>核心要求：</p>
 <ul>
 <li>过半节点上锁成功</li>
-<li>总耗时不超过锁过期时间<h3 id="RedLock分布式问题"><a href="#RedLock分布式问题" class="headerlink" title="RedLock分布式问题"></a>RedLock分布式问题</h3></li>
+<li>总耗时不超过锁过期时间</li>
 </ul>
-<p>分布式面临的三大问题：NPC<br>N: network delay 网络延迟<br>P: process pause 进程暂停<br>C: clock drift 时钟漂移</p>
+<h3 id="RedLock分布式问题"><a class="header-anchor" href="#RedLock分布式问题"></a>RedLock分布式问题</h3>
+<p>分布式面临的三大问题：NPC<br>
+N: network delay 网络延迟<br>
+P: process pause 进程暂停<br>
+C: clock drift 时钟漂移</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="http://kaito-kidd.com/2021/06/08/is-redis-distributed-lock-really-safe/">深度剖析：Redis分布式锁到底安全吗？看完这篇文章彻底懂了!</a></p>
 </blockquote>
