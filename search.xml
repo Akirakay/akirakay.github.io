@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>PromptEngineering-提示词工程</title>
+      <link href="/2026/03/e379faf019a1.html"/>
+      <url>/2026/03/e379faf019a1.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="定义"><a class="header-anchor" href="#定义"></a>定义</h2><p><code>Prompt</code> : 给大模型发的指令</p><blockquote><p>如何提升指令有效的概率?</p></blockquote><p>核心要点：具体、丰富、少歧义</p><h2 id="构成"><a class="header-anchor" href="#构成"></a>构成</h2><p>角色：<br>指示：<br>上下文：<br>例子：<br>输入：<br>输出：</p><h2 id="进阶"><a class="header-anchor" href="#进阶"></a>进阶</h2><p>思维链（CoT)：一步一步思考<br>自洽行：多次执行之后，标记大概率结果<br>思维树：类似决策树</p><h2 id="防止-Prompt-攻击"><a class="header-anchor" href="#防止-Prompt-攻击"></a>防止 Prompt 攻击</h2><ol><li>分析用户指令意图，把危险性的Prompt拦截</li><li>给用户的指令前强调系统指令</li></ol><h2 id="内容审核"><a class="header-anchor" href="#内容审核"></a>内容审核</h2><p>识别用户msg是否合规</p><h2 id="生产方面的思考"><a class="header-anchor" href="#生产方面的思考"></a>生产方面的思考</h2><ol><li>架构层面：<ul><li>隔离系统指令和用户输入：确保核心prompt始终在system role中</li><li>中间网关拦截：关键词黑名单、开源工具等</li></ul></li><li>提示词工程方面：<ul><li>明确的分隔符：告诉模型哪些部分是指令，哪些部分是不可信任的用户数据。</li><li>后置防御：大模型存在“末尾偏好”（Recency Bias），即对放在提示词最后面的指令记忆最深，核心prompt可以在最后再次强调</li><li>提供注入攻击与应对case</li></ul></li><li>双模型校验<ul><li>前置审核：轻量级llm对用户输入做意图判断</li><li>后置审计：业务模型生成结果后，再次校验输出是否符合预期</li></ul></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Agent </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Agent </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>LearnClaudeCode</title>
       <link href="/2026/03/ffebd761bc08.html"/>
       <url>/2026/03/ffebd761bc08.html</url>

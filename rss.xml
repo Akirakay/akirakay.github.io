@@ -15,8 +15,36 @@
     <atom:link href="http://example.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Tue, 17 Mar 2026 14:09:56 GMT</pubDate>
+    <pubDate>Thu, 19 Mar 2026 10:44:18 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PromptEngineering-提示词工程</title>
+      <link>http://example.com/2026/03/e379faf019a1.html</link>
+      <guid>http://example.com/2026/03/e379faf019a1.html</guid>
+      <pubDate>Thu, 19 Mar 2026 08:53:52 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;定义&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Prompt&lt;/code&gt; :</description>
+          
+        
+      
+      
+      
+      
+      <category domain="http://example.com/categories/Agent/">Agent</category>
+      
+      
+      <category domain="http://example.com/tags/Agent/">Agent</category>
+      
+      
+      <comments>http://example.com/2026/03/e379faf019a1.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>LearnClaudeCode</title>
@@ -569,36 +597,6 @@
       
       
       <comments>http://example.com/2022/03/5fff10cbfe3b.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Java CompletableFuture详解</title>
-      <link>http://example.com/2022/03/6e17fed87e32.html</link>
-      <guid>http://example.com/2022/03/6e17fed87e32.html</guid>
-      <pubDate>Tue, 15 Mar 2022 12:33:38 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;p&gt;引用：&lt;a href=&quot;https://colobu.com/2016/02/29/Java-CompletableFuture/&quot;&gt;Java CompletableFuture 详解&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Future&lt;/code&gt;是Java</description>
-          
-        
-      
-      
-      
-      
-      <category domain="http://example.com/categories/Java/">Java</category>
-      
-      
-      <category domain="http://example.com/tags/Java/">Java</category>
-      
-      <category domain="http://example.com/tags/Concurrent/">Concurrent</category>
-      
-      
-      <comments>http://example.com/2022/03/6e17fed87e32.html#disqus_thread</comments>
       
     </item>
     
