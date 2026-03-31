@@ -1,18 +1,10 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>深入理解MySQL锁机制 · Ak1raKay's Blog</title><meta name="description" content="深入理解MySQL锁机制
-锁是计算机在执行多线程或线程时用于并发访问同一共享资源时的同步机制，MySQL中的锁是在服务器层或者存储引擎层实现的，保证了数据访问的一致性与有效性。
-1. 前言
-MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分为全局锁、表级锁、页级锁、行级锁。按属性可以分为："><meta name="og:description" content="深入理解MySQL锁机制
-锁是计算机在执行多线程或线程时用于并发访问同一共享资源时的同步机制，MySQL中的锁是在服务器层或者存储引擎层实现的，保证了数据访问的一致性与有效性。
-1. 前言
-MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分为全局锁、表级锁、页级锁、行级锁。按属性可以分为："><meta name="twitter:site" content="Ak1raKay's Blog"><meta name="twitter:title" content="深入理解MySQL锁机制"><meta name="twitter:card" content="summary"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Smile</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">Ak1raKay</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/categories">Categories</a></li><li><a href="/tags">Tags</a></li><li><a href="/about/index.html">About</a></li><li class="soc"><a href="http://example.com/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="http://example.com" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>深入理解MySQL锁机制</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2023-11-27</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/MySQL/" title="MySQL">MySQL</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/MySQL/" title="MySQL">MySQL</a><span>&nbsp;</span></span></p><p class="post-abstract"><h1>深入理解MySQL锁机制</h1>
-<p>锁是计算机在执行多线程或线程时用于并发访问同一共享资源时的同步机制，MySQL中的锁是在服务器层或者存储引擎层实现的，保证了数据访问的一致性与有效性。</p>
-<h2 id="1-前言"><a class="header-anchor" href="#1-前言"></a>1. 前言</h2>
-<p>MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分为全局锁、表级锁、页级锁、行级锁。按属性可以分为：共享锁、排它锁。按状态分为：意向共享锁、意向排它锁。按算法分为：间隙锁、临键锁、记录锁。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>深入理解MySQL锁机制 · Ak1raKay's Blog</title><meta name="description" content="深入理解MySQL锁机制锁是计算机在执行多线程或线程时用于并发访问同一共享资源时的同步机制，MySQL中的锁是在服务器层或者存储引擎层实现的，保证了数据访问的一致性与有效性。
+1. 前言MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分为全局锁、表级锁、页级锁、行级锁。按属性可以分为：共享"><meta name="og:description" content="深入理解MySQL锁机制锁是计算机在执行多线程或线程时用于并发访问同一共享资源时的同步机制，MySQL中的锁是在服务器层或者存储引擎层实现的，保证了数据访问的一致性与有效性。
+1. 前言MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分为全局锁、表级锁、页级锁、行级锁。按属性可以分为：共享"><meta name="twitter:site" content="Ak1raKay's Blog"><meta name="twitter:title" content="深入理解MySQL锁机制"><meta name="twitter:card" content="summary"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Smile</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">Ak1raKay</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/categories">Categories</a></li><li><a href="/tags">Tags</a></li><li><a href="/about/index.html">About</a></li><li class="soc"><a href="https://akirakay.github.io/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://akirakay.github.io" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>深入理解MySQL锁机制</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2023-11-27</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/MySQL/" title="MySQL">MySQL</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/MySQL/" title="MySQL">MySQL</a><span>&nbsp;</span></span></p><p class="post-abstract"><h1 id="深入理解MySQL锁机制"><a href="#深入理解MySQL锁机制" class="headerlink" title="深入理解MySQL锁机制"></a>深入理解MySQL锁机制</h1><p>锁是计算机在执行多线程或线程时用于并发访问同一共享资源时的同步机制，MySQL中的锁是在服务器层或者存储引擎层实现的，保证了数据访问的一致性与有效性。</p>
+<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分为全局锁、表级锁、页级锁、行级锁。按属性可以分为：共享锁、排它锁。按状态分为：意向共享锁、意向排它锁。按算法分为：间隙锁、临键锁、记录锁。</p>
 <p><img src="https://s2.loli.net/2023/11/27/yk6gYvzTtPEGbcl.png" alt="image-20231127150400415"></p>
-<h2 id="2-全局锁、表级锁、页级锁、行级锁"><a class="header-anchor" href="#2-全局锁、表级锁、页级锁、行级锁"></a>2. <strong>全局锁、表级锁、页级锁、行级锁</strong></h2>
-<h3 id="1-全局锁"><a class="header-anchor" href="#1-全局锁"></a>1. 全局锁</h3>
-<p>(1) 概念</p>
+<h2 id="2-全局锁、表级锁、页级锁、行级锁"><a href="#2-全局锁、表级锁、页级锁、行级锁" class="headerlink" title="2. 全局锁、表级锁、页级锁、行级锁"></a>2. <strong>全局锁、表级锁、页级锁、行级锁</strong></h2><h3 id="1-全局锁"><a href="#1-全局锁" class="headerlink" title="1. 全局锁"></a>1. 全局锁</h3><p>(1) 概念</p>
 <p>全局锁就是对整个数据库实例加锁。</p>
 <p>(2) 应用场景</p>
 <p>全库逻辑备份（mysqldump）</p>
@@ -23,9 +15,8 @@ MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分
 <p>如果在主库上备份，那么在备份期间都不能执行更新，业务基本上就能停止。</p>
 <p>如果在从库上备份，那么备份期间从库不能执行主库同步过来的binlog，会导致主从延迟。</p>
 <p>解决办法：</p>
-<p>mysqldump使用参数–single-transaction，启动一个事务，确保拿到一致性视图。而由于MVCC的支持，这个过程中数据是可以正常更新的。</p>
-<h3 id="2-表级锁"><a class="header-anchor" href="#2-表级锁"></a>2. 表级锁</h3>
-<p>(1) 概念</p>
+<p>mysqldump使用参数—single-transaction，启动一个事务，确保拿到一致性视图。而由于MVCC的支持，这个过程中数据是可以正常更新的。</p>
+<h3 id="2-表级锁"><a href="#2-表级锁" class="headerlink" title="2. 表级锁"></a>2. 表级锁</h3><p>(1) 概念</p>
 <p>当前操作的整张表加锁，最常使用的 MyISAM 与 InnoDB 都支持表级锁定。</p>
 <p>MySQL 里面表级别的锁有两种：一种是表锁，一种是元数据锁（meta data lock，MDL)。</p>
 <p>(2) 实现方式</p>
@@ -63,11 +54,9 @@ MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分
 </ul>
 <p>(4) 解决办法</p>
 <p>首先我们要解决长事务，事务不提交，就会一直占着 MDL 锁。在 MySQL 的information_schema 库的 innodb_trx 表中，你可以查到当前执行中的事务。如果你要做 DDL 变更的表刚好有长事务在执行，要考虑先暂停 DDL，或者 kill 掉这个长事务。这也是为什么需要在低峰期做ddl 变更。</p>
-<h3 id="3-页级锁"><a class="header-anchor" href="#3-页级锁"></a>3. 页级锁</h3>
-<p>(1) 概念</p>
+<h3 id="3-页级锁"><a href="#3-页级锁" class="headerlink" title="3. 页级锁"></a>3. 页级锁</h3><p>(1) 概念</p>
 <p>页级锁是 MySQL 中锁定粒度介于行级锁和表级锁中间的一种锁。表级锁速度快，但冲突多，行级冲突少，但速度慢。因此，采取了折衷的页级锁，一次锁定相邻的一组记录。BDB 引擎支持页级锁。</p>
-<h3 id="4-行级锁"><a class="header-anchor" href="#4-行级锁"></a>4.行级锁</h3>
-<p>(1) 概念</p>
+<h3 id="4-行级锁"><a href="#4-行级锁" class="headerlink" title="4.行级锁"></a>4.行级锁</h3><p>(1) 概念</p>
 <p>行级锁是粒度最低的锁，发生锁冲突的概率也最低、并发度最高。但是加锁慢、开销大，容易发生死锁现象。</p>
 <p>MySQL中只有InnoDB支持行级锁，行级锁分为共享锁和排他锁。</p>
 <p>(2) 实现方式</p>
@@ -80,9 +69,7 @@ MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分
 <p>那么如果session2执行id=2的操作会不会成功呢？</p>
 <p>执行id=2的操作是可以成功的。</p>
 <p><img src="https://s2.loli.net/2023/11/27/sgyeU3rWu9jVD1S.png" alt="image-20231127164312229"></p>
-<h2 id="3-乐观锁和悲观锁"><a class="header-anchor" href="#3-乐观锁和悲观锁"></a>3. 乐观锁和悲观锁</h2>
-<h3 id="1-乐观锁"><a class="header-anchor" href="#1-乐观锁"></a>1. 乐观锁</h3>
-<p>(1) 概念</p>
+<h2 id="3-乐观锁和悲观锁"><a href="#3-乐观锁和悲观锁" class="headerlink" title="3. 乐观锁和悲观锁"></a>3. 乐观锁和悲观锁</h2><h3 id="1-乐观锁"><a href="#1-乐观锁" class="headerlink" title="1. 乐观锁"></a>1. 乐观锁</h3><p>(1) 概念</p>
 <p>乐观锁是相对悲观锁而言的，乐观锁假设数据一般情况下不会造成冲突，所以在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，如果发现冲突了，则返回给用户错误的信息，让用户决定如何去做。</p>
 <p>(2) 应用场景</p>
 <p>适用于读多写少，因为如果出现大量的写操作，写冲突的可能性就会增大，业务层需要不断重试，会大大降低系统性能。</p>
@@ -96,8 +83,7 @@ MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分
 <p>2.用户支付成功</p>
 <p>3.修改订单状态</p>
 <p><strong>update set status = 支付成功, version = version + 1 where id = #{id} and version = #{ version};</strong></p>
-<h3 id="2-悲观锁"><a class="header-anchor" href="#2-悲观锁"></a>2. 悲观锁</h3>
-<p>(1) 概念</p>
+<h3 id="2-悲观锁"><a href="#2-悲观锁" class="headerlink" title="2. 悲观锁"></a>2. 悲观锁</h3><p>(1) 概念</p>
 <p>悲观锁，正如其名，具有强烈的独占和排他特性，每次去拿数据的时候都认为别人会修改，对数据被外界（包括本系统当前的其他事务，以及来自外部系统的事务处理）修改持保守态度，因此，在整个数据处理过程中，将数据处于锁定状态。</p>
 <p>(2) 应用场景</p>
 <p>适用于并发量不大、写入操作比较频繁、数据一致性比较高的场景。</p>
@@ -116,9 +102,7 @@ MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分
 <p><strong>commit;</strong></p>
 <p>说明：select…for update是MySQL提供的实现悲观锁的方式，属于排它锁，在goods表中，id为1的那条数据就被当前事务锁定了，其它的要执行select id,name,number from goods where id=1for update;的事务必须等本次事务提交之后才能执行。这样我们可以保证当前的数据不会被其它事务修改。</p>
 <p>注意：此时MySQL InnoDB默认行级锁。行级锁都是基于索引的，如果一条SQL语句用不到索引是不会使用行级锁的，会使用表级锁把整张表锁住。</p>
-<h2 id="4-共享锁和排它锁"><a class="header-anchor" href="#4-共享锁和排它锁"></a>4. 共享锁和排它锁</h2>
-<h3 id="1-共享锁"><a class="header-anchor" href="#1-共享锁"></a>1. 共享锁</h3>
-<p>(1) 概念</p>
+<h2 id="4-共享锁和排它锁"><a href="#4-共享锁和排它锁" class="headerlink" title="4. 共享锁和排它锁"></a>4. 共享锁和排它锁</h2><h3 id="1-共享锁"><a href="#1-共享锁" class="headerlink" title="1. 共享锁"></a>1. 共享锁</h3><p>(1) 概念</p>
 <p>共享锁，又称之为读锁，简称S锁，当事务A对数据加上读锁后，其他事务只能对该数据加读锁，不能做任何修改操作，也就是不能添加写锁。只有当事务A上的读锁被释放后，其他事务才能对其添加写锁。</p>
 <p>(2) 应用场景</p>
 <p>共享锁主要是为了支持并发的读取数据而出现的，读取数据时，不允许其他事务对当前数据进行修改操作，从而避免”不可重读”的问题的出现。</p>
@@ -129,8 +113,7 @@ MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分
 <p><img src="https://s2.loli.net/2023/11/27/1VXNKQq5BihUO4A.png" alt="image-1VXNKQq5BihUO4A"></p>
 <p><img src="https://s2.loli.net/2023/11/27/qemDiXHWVF8JvMS.png" alt="image-qemDiXHWVF8JvMS"></p>
 <p>session1持有共享锁，未提交。session2的查询不受影响，但是update操作会被一直阻塞，直到超时。</p>
-<h3 id="2-排它锁"><a class="header-anchor" href="#2-排它锁"></a>2. 排它锁</h3>
-<p>(1) 概念</p>
+<h3 id="2-排它锁"><a href="#2-排它锁" class="headerlink" title="2. 排它锁"></a>2. 排它锁</h3><p>(1) 概念</p>
 <p>排它锁，又称之为写锁，简称X锁，当事务对数据加上写锁后，其他事务既不能对该数据添加读写，也不能对该数据添加写锁，写锁与其他锁都是互斥的。只有当前数据写锁被释放后，其他事务才能对其添加写锁或者是读锁。</p>
 <p>MySQL InnoDB 引擎默认 update, delete, insert 都会自动给涉及到的数据加上排他锁，select语句默认不会加任何锁类型。</p>
 <p>(2) 应用场景</p>
@@ -141,12 +124,9 @@ MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分
 <p>session1排它锁查询。session2也做排它锁查询会被阻塞。</p>
 <p><img src="https://s2.loli.net/2023/11/27/THf3IDBcmMLga69.png" alt="image-THf3IDBcmMLga69"></p>
 <p><img src="https://s2.loli.net/2023/11/27/aUohk9dGwNMIj1y.png" alt="image-aUohk9dGwNMIj1y"></p>
-<h2 id="5-意向共享锁和意向排它锁"><a class="header-anchor" href="#5-意向共享锁和意向排它锁"></a>5. 意向共享锁和意向排它锁</h2>
-<h3 id="1-概念"><a class="header-anchor" href="#1-概念"></a>1. 概念</h3>
-<p>意向锁是表锁，为了协调行锁和表锁的关系，支持多粒度（表锁与行锁）的锁并存。</p>
-<h3 id="2-作用"><a class="header-anchor" href="#2-作用"></a>2. 作用</h3>
-<p>当有事务A有行锁时，MySQL会自动为该表添加意向锁，事务B如果想申请整个表的写锁，那么不需要遍历每一行判断是否存在行锁，而直接判断是否存在意向锁，增强性能。</p>
-<h3 id="3-意向锁的兼容互斥性"><a class="header-anchor" href="#3-意向锁的兼容互斥性"></a>3. 意向锁的兼容互斥性</h3>
+<h2 id="5-意向共享锁和意向排它锁"><a href="#5-意向共享锁和意向排它锁" class="headerlink" title="5. 意向共享锁和意向排它锁"></a>5. 意向共享锁和意向排它锁</h2><h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h3><p>意向锁是表锁，为了协调行锁和表锁的关系，支持多粒度（表锁与行锁）的锁并存。</p>
+<h3 id="2-作用"><a href="#2-作用" class="headerlink" title="2. 作用"></a>2. 作用</h3><p>当有事务A有行锁时，MySQL会自动为该表添加意向锁，事务B如果想申请整个表的写锁，那么不需要遍历每一行判断是否存在行锁，而直接判断是否存在意向锁，增强性能。</p>
+<h3 id="3-意向锁的兼容互斥性"><a href="#3-意向锁的兼容互斥性" class="headerlink" title="3. 意向锁的兼容互斥性"></a>3. 意向锁的兼容互斥性</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -168,6 +148,7 @@ MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>4. 实战</strong></p>
 <p><strong>注意：这里的排它</strong> <strong>/</strong> <strong>共享锁指的都是表锁！！！意向锁不会与行级的共享</strong> <strong>/</strong> <strong>排它锁互斥！！！</strong></p>
 <p>session1获取了某一行的排他锁，并未提交：</p>
@@ -178,21 +159,16 @@ MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分
 <p>此时session2 检测session1 持有goods 表的意向排他锁，就可以得知session1必然持有该表中某些数据行的排他锁，那么session2 对 goods 表的加锁请求就会被排斥（阻塞），而无需去检测表中的每一行数据是否存在排它锁。</p>
 <p><img src="https://s2.loli.net/2023/11/27/DQK2WjLN45q9wbm.png" alt="image-DQK2WjLN45q9wbm"></p>
 <p><img src="https://s2.loli.net/2023/11/27/uh3vK6XHjMxBrcz.png" alt="image-uh3vK6XHjMxBrcz"></p>
-<h2 id="6-间隙锁、临键锁、记录锁"><a class="header-anchor" href="#6-间隙锁、临键锁、记录锁"></a>6. 间隙锁、临键锁、记录锁</h2>
-<h3 id="概念"><a class="header-anchor" href="#概念"></a>概念</h3>
-<p>记录锁、间隙锁、临键锁都是排它锁，而记录锁的使用方法跟排它锁介绍一致。</p>
-<h3 id="记录锁"><a class="header-anchor" href="#记录锁"></a>记录锁</h3>
-<p>记录锁是封锁记录，记录锁也叫行锁，例如：</p>
-<p><strong>select</strong> *** from** <strong>goods</strong> <strong>where</strong> <code>**id**</code>= 1 <strong>for</strong> <strong>update</strong>;</p>
+<h2 id="6-间隙锁、临键锁、记录锁"><a href="#6-间隙锁、临键锁、记录锁" class="headerlink" title="6. 间隙锁、临键锁、记录锁"></a>6. 间隙锁、临键锁、记录锁</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>记录锁、间隙锁、临键锁都是排它锁，而记录锁的使用方法跟排它锁介绍一致。</p>
+<h3 id="记录锁"><a href="#记录锁" class="headerlink" title="记录锁"></a>记录锁</h3><p>记录锁是封锁记录，记录锁也叫行锁，例如：</p>
+<p><strong>select</strong> <strong>* from</strong> <strong>goods</strong> <strong>where</strong> <code>**id**</code>= 1 <strong>for</strong> <strong>update</strong>;</p>
 <p>它会在 id = 1 的记录上加上记录锁，以阻止其他事务插入，更新，删除 id = 1 这一行。</p>
-<h3 id="间隙锁"><a class="header-anchor" href="#间隙锁"></a>间隙锁</h3>
-<p>间隙锁基于非唯一索引，它锁定一段范围内的索引记录。使用间隙锁锁住的是一个区间，而不仅仅是这个区间中的每一条数据。</p>
+<h3 id="间隙锁"><a href="#间隙锁" class="headerlink" title="间隙锁"></a>间隙锁</h3><p>间隙锁基于非唯一索引，它锁定一段范围内的索引记录。使用间隙锁锁住的是一个区间，而不仅仅是这个区间中的每一条数据。</p>
 <p><strong>select * from goods where id between 1 and 10 for update;</strong></p>
 <p>即所有在（1，10）区间内的记录行都会被锁住，所有id 为 2、3、4、5、6、7、8、9 的数据行的插入会被阻塞，但是 1和 10 两条记录行并不会被锁住。</p>
 <p><img src="https://s2.loli.net/2023/11/27/mseE1kVbd5iSyTv.png" alt="image-mseE1kVbd5iSyTv"></p>
 <p><img src="https://s2.loli.net/2023/11/27/ouRx8j9DalnCzXb.png" alt="image-ouRx8j9DalnCzXb"></p>
-<h3 id="临键锁"><a class="header-anchor" href="#临键锁"></a>临键锁</h3>
-<p>临键锁，是记录锁与间隙锁的组合，它的封锁范围，既包含索引记录，又包含索引区间，是一个左开右闭区间。临键锁的主要目的，也是为了避免幻读(Phantom Read)。如果把事务的隔离级别降级为RC，临键锁则也会失效。</p>
+<h3 id="临键锁"><a href="#临键锁" class="headerlink" title="临键锁"></a>临键锁</h3><p>临键锁，是记录锁与间隙锁的组合，它的封锁范围，既包含索引记录，又包含索引区间，是一个左开右闭区间。临键锁的主要目的，也是为了避免幻读(Phantom Read)。如果把事务的隔离级别降级为RC，临键锁则也会失效。</p>
 <p>每个数据行上的非唯一索引列上都会存在一把临键锁，当某个事务持有该数据行的临键锁时，会锁住一段左开右闭区间的数据。需要强调的一点是，InnoDB 中行级锁是基于索引实现的，临键锁只与非唯一索引列有关，在唯一索引列（包括主键列）上不存在临键锁。</p>
 <p><img src="https://s2.loli.net/2023/11/27/B729rGJUMExfoRY.png" alt="image-B729rGJUMExfoRY"></p>
 <p>goods表中隐藏的临键锁有：(-∞, 96],(96, 99],(99, +∞]</p>
@@ -200,16 +176,11 @@ MySQL锁可以按模式分类为：乐观锁与悲观锁。按粒度分可以分
 <p>session1 在对 number 为 96 的列进行 update 操作的同时，也获取了(-∞, 96],(96, 99]这两个区间内的临键锁。</p>
 <p>最终我们就可以得知，在根据非唯一索引对记录行进行 UPDATE \ FOR UPDATE \LOCK IN SHARE MODE 操作时，InnoDB 会获取该记录行的临键锁，公式为：左gap lock + record lock + 右gap lock。</p>
 <p>即session1在执行了上述的 SQL 后，最终被锁住的记录区间为 (-∞, 99)。</p>
-<h2 id="Ref"><a class="header-anchor" href="#Ref"></a>Ref</h2>
-<ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/52678870">深入理解数据库行锁与表锁</a></p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/52678870">深入理解数据库行锁与表锁</a></p>
 </li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6931752749545553933">史上最全MySQL各种锁详解</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6931752749545553933">史上最全MySQL各种锁详解</a></p>
 </li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/keme/p/11065025.html">MySQL全局锁和表锁</a></p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/keme/p/11065025.html">MySQL全局锁和表锁</a></li>
 </ul>
-</p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></span><span class="soc"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></span><span class="soc"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=http://example.com/2023/11/8f7f5661afb6.html%20Ak1raKay's Blog%20深入理解MySQL锁机制"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/2025/04/3c1700d4ee90.html" title="【REF】一文讲清多线程与多线程同步"><i class="fa fa-angle-double-left"></i>&nbsp;Previous post: 【REF】一文讲清多线程与多线程同步</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2023/06/cc1e007cc495.html" title="Netty粘包拆包解决方案">Next post: Netty粘包拆包解决方案&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="http://example.com" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
+</p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></span><span class="soc"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></span><span class="soc"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=https://akirakay.github.io/2023/11/8f7f5661afb6.html%20Ak1raKay's Blog%20深入理解MySQL锁机制"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/2025/04/3c1700d4ee90.html" title="【REF】一文讲清多线程与多线程同步"><i class="fa fa-angle-double-left"></i>&nbsp;Previous post: 【REF】一文讲清多线程与多线程同步</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2023/06/cc1e007cc495.html" title="Netty粘包拆包解决方案">Next post: Netty粘包拆包解决方案&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://akirakay.github.io" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>

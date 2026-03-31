@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>秒杀系统学习笔记 · Ak1raKay's Blog</title><meta name="description" content="核心问题
-秒杀主要解决的是两个问题：并发读、并发写
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>秒杀系统学习笔记 · Ak1raKay's Blog</title><meta name="description" content="核心问题秒杀主要解决的是两个问题：并发读、并发写
 从用户到应用的链路的过程中尽量遵循：请求的数据和数量尽量少、链路尽量短、依赖尽量少、尽量避免服务单点
 在秒杀架构的设计上需要保证：
 
@@ -7,10 +6,8 @@
 准-数据一致性
 快-高性能
 
-架构原则
-秒杀系统本质上就是一个满足大并发、高性能和高可用的分布式系统
-"><meta name="og:description" content="核心问题
-秒杀主要解决的是两个问题：并发读、并发写
+架构原则秒杀系统本质上就是一个满足大并发、高性能和高可用的分布式系统
+架构"><meta name="og:description" content="核心问题秒杀主要解决的是两个问题：并发读、并发写
 从用户到应用的链路的过程中尽量遵循：请求的数据和数量尽量少、链路尽量短、依赖尽量少、尽量避免服务单点
 在秒杀架构的设计上需要保证：
 
@@ -18,11 +15,9 @@
 准-数据一致性
 快-高性能
 
-架构原则
-秒杀系统本质上就是一个满足大并发、高性能和高可用的分布式系统
-"><meta name="twitter:site" content="Ak1raKay's Blog"><meta name="twitter:title" content="秒杀系统学习笔记"><meta name="twitter:card" content="summary"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Smile</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">Ak1raKay</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/categories">Categories</a></li><li><a href="/tags">Tags</a></li><li><a href="/about/index.html">About</a></li><li class="soc"><a href="http://example.com/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="http://example.com" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>秒杀系统学习笔记</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-24</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Concurrent/" title="Concurrent">Concurrent</a><span>&nbsp;</span><a class="a-tag" href="/tags/秒杀/" title="秒杀">秒杀</a><span>&nbsp;</span></span></p><p class="post-abstract"><h2 id="核心问题"><a class="header-anchor" href="#核心问题"></a>核心问题</h2>
-<p>秒杀主要解决的是两个问题：<strong>并发读</strong>、<strong>并发写</strong></p>
+架构原则秒杀系统本质上就是一个满足大并发、高性能和高可用的分布式系统
+架构"><meta name="twitter:site" content="Ak1raKay's Blog"><meta name="twitter:title" content="秒杀系统学习笔记"><meta name="twitter:card" content="summary"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Smile</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">Ak1raKay</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/categories">Categories</a></li><li><a href="/tags">Tags</a></li><li><a href="/about/index.html">About</a></li><li class="soc"><a href="https://akirakay.github.io/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://akirakay.github.io" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>秒杀系统学习笔记</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-24</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Concurrent/" title="Concurrent">Concurrent</a><span>&nbsp;</span><a class="a-tag" href="/tags/秒杀/" title="秒杀">秒杀</a><span>&nbsp;</span></span></p><p class="post-abstract"><h2 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h2><p>秒杀主要解决的是两个问题：<strong>并发读</strong>、<strong>并发写</strong></p>
 <p>从用户到应用的链路的过程中尽量遵循：请求的数据和数量尽量少、链路尽量短、依赖尽量少、尽量避免服务单点</p>
 <p>在秒杀架构的设计上需要保证：</p>
 <ul>
@@ -30,35 +25,22 @@
 <li>准-数据一致性</li>
 <li>快-高性能</li>
 </ul>
-<h2 id="架构原则"><a class="header-anchor" href="#架构原则"></a>架构原则</h2>
-<p>秒杀系统<strong>本质上就是一个满足大并发、高性能和高可用的分布式系统</strong></p>
-<h3 id="架构的思考要素"><a class="header-anchor" href="#架构的思考要素"></a>架构的思考要素</h3>
-<ol>
-<li>
-<p>减少请求的数据<br>
-请求的数据网络传输需要时间，并且数据的解压缩、编解码、序列化和反序列化等操作都是比较消耗CPU的操作，占用CPU资源</p>
+<h2 id="架构原则"><a href="#架构原则" class="headerlink" title="架构原则"></a>架构原则</h2><p>秒杀系统<strong>本质上就是一个满足大并发、高性能和高可用的分布式系统</strong></p>
+<h3 id="架构的思考要素"><a href="#架构的思考要素" class="headerlink" title="架构的思考要素"></a>架构的思考要素</h3><ol>
+<li><p>减少请求的数据<br>请求的数据网络传输需要时间，并且数据的解压缩、编解码、序列化和反序列化等操作都是比较消耗CPU的操作，占用CPU资源</p>
 </li>
-<li>
-<p>减少请求数量<br>
-减少非必要请求数，可以有效降低请求过程中在DNS解析、三次握手等方面的时间消耗</p>
+<li><p>减少请求数量<br>减少非必要请求数，可以有效降低请求过程中在DNS解析、三次握手等方面的时间消耗</p>
 </li>
-<li>
-<p>路径尽量短<br>
-从发出请求到返回数据的整个路径过程中，依赖的节点数越多，建立的连接数就会越多，从而导致请求的可用性降低</p>
+<li><p>路径尽量短<br>从发出请求到返回数据的整个路径过程中，依赖的节点数越多，建立的连接数就会越多，从而导致请求的可用性降低</p>
 </li>
-<li>
-<p>依赖尽量少<br>
-对完成一次用户请求必须依赖的系统或者服务，视为强依赖。在保证业务核心服务的前提下，其他的依赖尽量少，避免非核心服务拖累核心服务</p>
+<li><p>依赖尽量少<br>对完成一次用户请求必须依赖的系统或者服务，视为强依赖。在保证业务核心服务的前提下，其他的依赖尽量少，避免非核心服务拖累核心服务</p>
 </li>
-<li>
-<p>避免有单点服务<br>
-服务的无状态化，解耦服务状态与机器，避免因为服务单点失败，导致整条业务处理链路宕机</p>
+<li><p>避免有单点服务<br>服务的无状态化，解耦服务状态与机器，避免因为服务单点失败，导致整条业务处理链路宕机</p>
 </li>
 </ol>
 <p>追求性能的极致，意味着”定制化“越多，通用性就相对来说会降低</p>
-<h3 id="动静分离"><a class="header-anchor" href="#动静分离"></a>动静分离</h3>
-<ul>
+<h3 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h3><ul>
 <li><strong>把静态数据缓存到离用户最近的地方</strong>：类似浏览器存储、就近CDN服务器、服务端Cache</li>
 <li><strong>直接缓存 HTTP 连接</strong>：直接缓存 HTTP 连接而不是仅仅缓存数据</li>
 </ul>
-</p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></span><span class="soc"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></span><span class="soc"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=http://example.com/2025/06/4a25340fbd9c.html%20Ak1raKay's Blog%20秒杀系统学习笔记"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/2026/03/ffebd761bc08.html" title="LearnClaudeCode"><i class="fa fa-angle-double-left"></i>&nbsp;Previous post: LearnClaudeCode</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2025/06/dd241f7d78bf.html" title="Spring-Bean实例化源码探究">Next post: Spring-Bean实例化源码探究&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="http://example.com" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
+</p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></span><span class="soc"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></span><span class="soc"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=https://akirakay.github.io/2025/06/4a25340fbd9c.html%20Ak1raKay's Blog%20秒杀系统学习笔记"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/2026/03/ffebd761bc08.html" title="LearnClaudeCode"><i class="fa fa-angle-double-left"></i>&nbsp;Previous post: LearnClaudeCode</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2025/06/dd241f7d78bf.html" title="Spring-Bean实例化源码探究">Next post: Spring-Bean实例化源码探究&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://akirakay.github.io" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
