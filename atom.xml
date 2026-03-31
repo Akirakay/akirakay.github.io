@@ -28,7 +28,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;&lt;code&gt;Prompt&lt;/code&gt; :</summary>
+    <summary type="html">&lt;h2 id=&quot;定义&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Prompt&lt;/code&gt; :</summary>
         
       
     
@@ -55,6 +56,7 @@
         
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;学习：&lt;a href=&quot;https://tw93.fun/2026-03-12/claude.html&quot;&gt;https://tw93.fun/2026-03-12/claude.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2</summary>
         
       
@@ -80,7 +82,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;核心问题&quot;&gt;&lt;a href=&quot;#核心问题&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;核心问题&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
         
       
     
@@ -109,7 +111,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot; title=&quot;目的&quot;&gt;&lt;/a&gt;目的&lt;/h2&gt;&lt;blockquote&gt;
+    <summary type="html">&lt;h2 id=&quot;目的&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#目的&quot;&gt;&lt;/a&gt;目的&lt;/h2&gt;
+&lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;BeanDefination&lt;/code&gt; 即：框架将资源配置通过加载，解析生成的对象，是</summary>
         
       
@@ -137,7 +140,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;传播行为&quot;&gt;&lt;a href=&quot;#传播行为&quot; class=&quot;headerlink&quot; title=&quot;传播行为&quot;&gt;&lt;/a&gt;传播行为&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://s2.loli.net/2025/06/17/ehGok1qlzwmFgds.jpg&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;传播行为&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#传播行为&quot;&gt;&lt;/a&gt;传播行为&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.loli.net/2025/06/17/ehGok1qlzwmFgds.jpg&quot;</summary>
         
       
     
@@ -164,7 +168,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;Spring中事务的属性：&quot;&gt;&lt;a href=&quot;#Spring中事务的属性：&quot; class=&quot;headerlink&quot; title=&quot;Spring中事务的属性：&quot;&gt;&lt;/a&gt;Spring中事务的属性：&lt;/h2&gt;&lt;figure class=&quot;highlight</summary>
+    <summary type="html">&lt;h2 id=&quot;Spring中事务的属性：&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#Spring中事务的属性：&quot;&gt;&lt;/a&gt;Spring中事务的属性：&lt;/h2&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
         
       
     
@@ -191,7 +196,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;三级缓存&quot;&gt;&lt;a href=&quot;#三级缓存&quot; class=&quot;headerlink&quot; title=&quot;三级缓存&quot;&gt;&lt;/a&gt;三级缓存&lt;/h2&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+    <summary type="html">&lt;h2 id=&quot;三级缓存&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#三级缓存&quot;&gt;&lt;/a&gt;三级缓存&lt;/h2&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
         
       
     
@@ -218,7 +224,8 @@
       
         
         
-    <summary type="html">&lt;h3 id=&quot;setter注入&quot;&gt;&lt;a href=&quot;#setter注入&quot; class=&quot;headerlink&quot; title=&quot;setter注入&quot;&gt;&lt;/a&gt;setter注入&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+    <summary type="html">&lt;h3 id=&quot;setter注入&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#setter注入&quot;&gt;&lt;/a&gt;setter注入&lt;/h3&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
         
       
     
@@ -245,7 +252,7 @@
       
         
         
-    <summary type="html">&lt;h3 id=&quot;1-窗口函数概念和语法&quot;&gt;&lt;a href=&quot;#1-窗口函数概念和语法&quot; class=&quot;headerlink&quot; title=&quot;1. 窗口函数概念和语法&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.</summary>
+    <summary type="html">&lt;h3 id=&quot;1-窗口函数概念和语法&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#1-窗口函数概念和语法&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.</summary>
         
       
     
@@ -270,7 +277,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;深分页的原因：&quot;&gt;&lt;a href=&quot;#深分页的原因：&quot; class=&quot;headerlink&quot; title=&quot;深分页的原因：&quot;&gt;&lt;/a&gt;深分页的原因：&lt;/h2&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+    <summary type="html">&lt;h2 id=&quot;深分页的原因：&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#深分页的原因：&quot;&gt;&lt;/a&gt;深分页的原因：&lt;/h2&gt;
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
         
       
     
@@ -295,7 +303,9 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;最简易的分布式锁&quot;&gt;&lt;a href=&quot;#最简易的分布式锁&quot; class=&quot;headerlink&quot; title=&quot;最简易的分布式锁&quot;&gt;&lt;/a&gt;最简易的分布式锁&lt;/h2&gt;&lt;p&gt;命令：&lt;code&gt;SETNX&lt;/code&gt; </summary>
+    <summary type="html">&lt;h2 id=&quot;最简易的分布式锁&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#最简易的分布式锁&quot;&gt;&lt;/a&gt;最简易的分布式锁&lt;/h2&gt;
+&lt;p&gt;命令：&lt;code&gt;SETNX&lt;/code&gt;  key不存在，则设置成功，否则什么也不做&lt;/p&gt;
+&lt;figure</summary>
         
       
     
@@ -320,7 +330,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;分布式ID介绍&quot;&gt;&lt;a href=&quot;#分布式ID介绍&quot; class=&quot;headerlink&quot; title=&quot;分布式ID介绍&quot;&gt;&lt;/a&gt;分布式ID介绍&lt;/h2&gt;&lt;h3 id=&quot;什么是-ID？&quot;&gt;&lt;a href=&quot;#什么是-ID？&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;分布式ID介绍&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#分布式ID介绍&quot;&gt;&lt;/a&gt;分布式ID介绍&lt;/h2&gt;
+&lt;h3 id=&quot;什么是-ID？&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
         
       
     
@@ -345,7 +356,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot; title=&quot;引入&quot;&gt;&lt;/a&gt;引入&lt;/h2&gt;&lt;p&gt;对于常规的&lt;code&gt;hash(obj) % n&lt;/code&gt;算法，如果n有变化，则会导致计算的偏离，致使数据无法找回等。&lt;/p&gt;
+    <summary type="html">&lt;h2 id=&quot;引入&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#引入&quot;&gt;&lt;/a&gt;引入&lt;/h2&gt;
+&lt;p&gt;对于常规的&lt;code&gt;hash(obj) % n&lt;/code&gt;算法，如果n有变化，则会导致计算的偏离，致使数据无法找回等。&lt;/p&gt;
 &lt;h2</summary>
         
       
@@ -373,7 +385,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;全局配置&quot;&gt;&lt;a href=&quot;#全局配置&quot; class=&quot;headerlink&quot; title=&quot;全局配置&quot;&gt;&lt;/a&gt;全局配置&lt;/h2&gt;&lt;p&gt;一般的情况下执行如下命令，可以对全局项目设置统一的用户名：&lt;/p&gt;
+    <summary type="html">&lt;h2 id=&quot;全局配置&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#全局配置&quot;&gt;&lt;/a&gt;全局配置&lt;/h2&gt;
+&lt;p&gt;一般的情况下执行如下命令，可以对全局项目设置统一的用户名：&lt;/p&gt;
 &lt;figure class=&quot;highlight</summary>
         
       
@@ -399,7 +412,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;完全背包&quot;&gt;&lt;a href=&quot;#完全背包&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;完全背包&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
         
       
     
@@ -451,7 +464,9 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;深入理解MySQL锁机制&quot;&gt;&lt;a href=&quot;#深入理解MySQL锁机制&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1&gt;深入理解MySQL锁机制&lt;/h1&gt;
+&lt;p&gt;锁是计算机在执行多线程或线程时用于并发访问同一共享资源时的同步机制，MySQL中的锁是在服务器层或者存储引擎层实现的，保证了数据访问的一致性与有效性。&lt;/p&gt;
+&lt;h2 id=&quot;1-前言&quot;&gt;&lt;a</summary>
         
       
     
@@ -476,7 +491,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;引言&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
         
       
     
@@ -503,7 +518,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;3-1-生命周期&quot;&gt;&lt;a href=&quot;#3-1-生命周期&quot; class=&quot;headerlink&quot; title=&quot;3.1 生命周期&quot;&gt;&lt;/a&gt;3.1 生命周期&lt;/h2&gt;&lt;h3 id=&quot;3-1-1-认识生命周期&quot;&gt;&lt;a href=&quot;#3-1-1-认识生命周期&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;3-1-生命周期&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#3-1-生命周期&quot;&gt;&lt;/a&gt;3.1 生命周期&lt;/h2&gt;
+&lt;h3 id=&quot;3-1-1-认识生命周期&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
         
       
     
@@ -528,7 +544,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;2-8-泛型与特征&quot;&gt;&lt;a href=&quot;#2-8-泛型与特征&quot; class=&quot;headerlink&quot; title=&quot;2.8 泛型与特征&quot;&gt;&lt;/a&gt;2.8 泛型与特征&lt;/h2&gt;&lt;h3 id=&quot;2-8-1-泛型-Generics&quot;&gt;&lt;a</summary>
+    <summary type="html">&lt;h2 id=&quot;2-8-泛型与特征&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#2-8-泛型与特征&quot;&gt;&lt;/a&gt;2.8 泛型与特征&lt;/h2&gt;
+&lt;h3 id=&quot;2-8-1-泛型-Generics&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
         
       
     

@@ -2,21 +2,39 @@
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Smile</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">Ak1raKay</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a class="current" href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/categories">Categories</a></li><li><a href="/tags">Tags</a></li><li><a href="/about/index.html">About</a></li><li class="soc"><a href="https://akirakay.github.io/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://akirakay.github.io" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-container"><p class="post-title"><a href="/2022/03/6e17fed87e32.html">Java CompletableFuture详解</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2022-03-15</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Concurrent/" title="Concurrent">Concurrent</a><span>&nbsp;</span></span></p><p class="post-abstract">引用：Java CompletableFuture 详解
 Future是Java 5添加的类，用来描述一个异步计算的结果。你可以使用isDone方法检查计算是否完成，或者使用get阻塞住调用线程，直到计算完成返回结果，你也可以使用cancel方法停止任务的执行。
   
-虽然Future以及相关使用方法提供了异步执...</p></div><div class="post-container"><p class="post-title"><a href="/2022/03/8d1e485b5f22.html">2.Rust基础入门（一）</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2022-03-10</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Rust/" title="Rust">Rust</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Rust/" title="Rust">Rust</a><span>&nbsp;</span></span></p><p class="post-abstract">2.1 变量绑定与解构为何 Rust 选择了手动设定变量的可变性一般来说，变量一旦创建，要么可变（灵活）或者不可变（安全），而 Rust 的变量两者都具有。
-变量绑定  
-变量可变性Rust 的变量在默认情况下是不可变的，可以通过 mut 关键字让变量变为可变的
+虽然Future以及相关使用方法提供了异步执...</p></div><div class="post-container"><p class="post-title"><a href="/2022/03/8d1e485b5f22.html">2.Rust基础入门（一）</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2022-03-10</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Rust/" title="Rust">Rust</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Rust/" title="Rust">Rust</a><span>&nbsp;</span></span></p><p class="post-abstract">2.1 变量绑定与解构
+为何 Rust 选择了手动设定变量的可变性
+一般来说，变量一旦创建，要么可变（灵活）或者不可变（安全），而 Rust 的变量两者都具有。
+变量绑定
+  
+变量可变性
+Rust 的变量在默认情况下是不可变的，可以通过 mut 关键字让变量变为可变的
 编写代码：
   
 保存并运行：
   
-具体的错误原...</p></div><div class="post-container"><p class="post-title"><a href="/2022/03/6562e4ff8b6f.html">1.Rust安装与初览</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2022-03-10</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Rust/" title="Rust">Rust</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Rust/" title="Rust">Rust</a><span>&nbsp;</span></span></p><p class="post-abstract">1. 牛刀小试1.1 安装Rust环境安装Rustrustup 是 Rust 的安装程序，也是它的版本管理程序。
-Linux或macOS上安装rustup  
+具体...</p></div><div class="post-container"><p class="post-title"><a href="/2022/03/6562e4ff8b6f.html">1.Rust安装与初览</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2022-03-10</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Rust/" title="Rust">Rust</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Rust/" title="Rust">Rust</a><span>&nbsp;</span></span></p><p class="post-abstract">1. 牛刀小试
+1.1 安装Rust环境
+安装Rust
+rustup 是 Rust 的安装程序，也是它的版本管理程序。
+Linux或macOS上安装rustup
+  
 中间会经历一些配置选择，只需默认回车即可
 如果安装成功，终端会出现如下字样：
   
-检查是否安装成功  
-卸载要卸载 Rust 和 rustup，在终端执...</p></div><div class="post-container"><p class="post-title"><a href="/2021/10/41ba87453dc6.html">设计模式</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2021-10-12</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/DesignPattern/" title="DesignPattern">DesignPattern</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/DesignPattern/" title="DesignPattern">DesignPattern</a><span>&nbsp;</span></span></p><p class="post-abstract">设计模式创建型工厂方法模式意图定义一个创建产品对象的工厂接口，将实际创建工作推迟到子类中
-解决方案核心类变成了一个抽象工厂角色，仅负责给出具体工厂子类必须实现的接口，具体实现细节由子类决定。
+检查是否安装成功
+  
+卸载
+要卸载 Rust 和 rustu...</p></div><div class="post-container"><p class="post-title"><a href="/2021/10/41ba87453dc6.html">设计模式</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2021-10-12</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/DesignPattern/" title="DesignPattern">DesignPattern</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/DesignPattern/" title="DesignPattern">DesignPattern</a><span>&nbsp;</span></span></p><p class="post-abstract">设计模式
+创建型
+工厂方法模式
+意图
+定义一个创建产品对象的工厂接口，将实际创建工作推迟到子类中
+解决方案
+核心类变成了一个抽象工厂角色，仅负责给出具体工厂子类必须实现的接口，具体实现细节由子类决定。
 UML类图
-Code Demo抽象工厂（ExportFactory）角色：担任这个角色的是工厂方法模式的核心，任何在模式中...</p></div><div class="post-container"><p class="post-title"><a href="/2021/06/0e41306eec32.html">【REF】圣杯与银弹 · 没用的设计模式</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2021-06-24</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/DesignPattern/" title="DesignPattern">DesignPattern</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/DesignPattern/" title="DesignPattern">DesignPattern</a><span>&nbsp;</span></span></p><p class="post-abstract">圣杯与银弹 · 没用的设计模式原文：圣杯与银弹 · 没用的设计模式
+
+Code Demo
+抽象工厂（ExportFactory）角色：担任这个角色的是工厂方法模式的核心...</p></div><div class="post-container"><p class="post-title"><a href="/2021/06/0e41306eec32.html">【REF】圣杯与银弹 · 没用的设计模式</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2021-06-24</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/DesignPattern/" title="DesignPattern">DesignPattern</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/DesignPattern/" title="DesignPattern">DesignPattern</a><span>&nbsp;</span></span></p><p class="post-abstract">圣杯与银弹 · 没用的设计模式
+原文：圣杯与银弹 · 没用的设计模式
 </p></div><div class="pagination no-margin-bottom"><p class="clearfix"><p> Page 5 / 6 &nbsp;</p><p><span class="pre pagbuttons"><i class="fa fa-angle-double-left"></i>&nbsp;<a role="navigation" href="/page/4/" aria-label="Previous">Previous</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/page/6/" aria-label="Next">Next</a>&nbsp;<i class="fa fa-angle-double-right"></i></span></p></p></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://akirakay.github.io" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>

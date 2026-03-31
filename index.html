@@ -1,21 +1,36 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>Ak1raKay's Blog</title><meta name="description" content="A Blog Powered By Hexo"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Smile</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">Ak1raKay</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a class="current" href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/categories">Categories</a></li><li><a href="/tags">Tags</a></li><li><a href="/about/index.html">About</a></li><li class="soc"><a href="https://akirakay.github.io/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://akirakay.github.io" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-container"><p class="post-title"><a href="/2026/03/e379faf019a1.html">PromptEngineering-提示词工程</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2026-03-19</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Agent/" title="Agent">Agent</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Agent/" title="Agent">Agent</a><span>&nbsp;</span></span></p><p class="post-abstract">定义Prompt : 给大模型发的指令
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Smile</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">Ak1raKay</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a class="current" href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/categories">Categories</a></li><li><a href="/tags">Tags</a></li><li><a href="/about/index.html">About</a></li><li class="soc"><a href="https://akirakay.github.io/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://akirakay.github.io" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-container"><p class="post-title"><a href="/2026/03/e379faf019a1.html">PromptEngineering-提示词工程</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2026-03-19</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Agent/" title="Agent">Agent</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Agent/" title="Agent">Agent</a><span>&nbsp;</span></span></p><p class="post-abstract">定义
+Prompt : 给大模型发的指令
 
 如何提升指令有效的概率?
 
- 核心要点：具体、丰富、少歧义
-构成角色：指示：上下文：例子：输入：输出：
-进阶思维链（CoT)：一步一步思考自洽行：多次执行之后，标记大概率结果思维树：类似决策树
+核心要点：具体、丰富、少歧义
+构成
+角色：
+指示：
+上下文：
+例子：
+输入：
+输出：
+进阶
+思维链（CoT)：一步一步思考
+自洽行：多次执行之后，标记大概率结果
+思维树：类似决策树
 防止 Prompt 攻击
-分析用户指令意图，把危险性的Prompt拦截
-给用户...</p></div><div class="post-container"><p class="post-title"><a href="/2026/03/ffebd761bc08.html">LearnClaudeCode</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2026-03-15</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Agent/" title="Agent">Agent</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Agent/" title="Agent">Agent</a><span>&nbsp;</span></span></p><p class="post-abstract">
+
+分析用户指令意图，把危险性的Pr...</p></div><div class="post-container"><p class="post-title"><a href="/2026/03/ffebd761bc08.html">LearnClaudeCode</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2026-03-15</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Agent/" title="Agent">Agent</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Agent/" title="Agent">Agent</a><span>&nbsp;</span></span></p><p class="post-abstract">
 学习：https://tw93.fun/2026-03-12/claude.html
-S01-Agent循环“One loop &amp; Bash is all you need” — 一个工具 + 一个循环 = 一个智能体。
+
+S01-Agent循环
+
+“One loop &amp; Bash is all you need” – 一个工具 + 一个循环 = 一个智能体。
 
   
   
 S02-工具
-“加一个工具, 只加一个 handler”_ — 循环...</p></div><div class="post-container"><p class="post-title"><a href="/2025/06/4a25340fbd9c.html">秒杀系统学习笔记</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-24</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Concurrent/" title="Concurrent">Concurrent</a><span>&nbsp;</span><a class="a-tag" href="/tags/秒杀/" title="秒杀">秒杀</a><span>&nbsp;</span></span></p><p class="post-abstract">核心问题秒杀主要解决的是两个问题：并发读、并发写
+
+“加一个工具, 只加一个 handler”_ ...</p></div><div class="post-container"><p class="post-title"><a href="/2025/06/4a25340fbd9c.html">秒杀系统学习笔记</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-24</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Concurrent/" title="Concurrent">Concurrent</a><span>&nbsp;</span><a class="a-tag" href="/tags/秒杀/" title="秒杀">秒杀</a><span>&nbsp;</span></span></p><p class="post-abstract">核心问题
+秒杀主要解决的是两个问题：并发读、并发写
 从用户到应用的链路的过程中尽量遵循：请求的数据和数量尽量少、链路尽量短、依赖尽量少、尽量避免服务单点
 在秒杀架构的设计上需要保证：
 
@@ -23,16 +38,28 @@ S02-工具
 准-数据一致性
 快-高性能
 
-架构原则秒杀系统本质上就是一个满足大并发、高性能和高可用的分布式系统
-架构的思考要素
-减...</p></div><div class="post-container"><p class="post-title"><a href="/2025/06/dd241f7d78bf.html">Spring-Bean实例化源码探究</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-24</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Spring/" title="Spring">Spring</a><span>&nbsp;</span></span></p><p class="post-abstract">目的
+架构原则
+秒杀系统本质上就是一个满足大并发、高性能和高可用的分布式系统
+架构的思考要素...</p></div><div class="post-container"><p class="post-title"><a href="/2025/06/dd241f7d78bf.html">Spring-Bean实例化源码探究</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-24</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Spring/" title="Spring">Spring</a><span>&nbsp;</span></span></p><p class="post-abstract">目的
+
 BeanDefination 即：框架将资源配置通过加载，解析生成的对象，是 Spring Bean 的描述信息
 
 探究此番源码的目的主要是想知道：框架是如何将 BeanDefinition 转换为 Bean 实例的
-GetBean的过程</p></div><div class="post-container"><p class="post-title"><a href="/2025/06/4c66b9d1ff9c.html">Spring-事务传播机制</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-17</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Spring/" title="Spring">Spring</a><span>&nbsp;</span></span></p><p class="post-abstract">传播行为
-代码示例SQL  
-实体类  
-服务层  
-启动类  
-行为表现REQUIRED / REQUIREDREQUIRED: 如果当前有事务，就加入该事务；否则新建一个事务。内外层事务传播行为均为 REQUIRED ，此时所有的事务方法处于一个事务之中，要么同时提交，要么同时回滚  
-分析方法 placeO...</p></div><div class="pagination no-margin-bottom"><p class="clearfix"><p> Page 1 / 6 &nbsp;</p><p><span class="pre pagbuttons"><i class="fa fa-angle-double-left"></i>&nbsp;<a role="navigation" href="/" aria-label="Previous">Previous</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/page/2/" aria-label="Next">Next</a>&nbsp;<i class="fa fa-angle-double-right"></i></span></p></p></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://akirakay.github.io" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
+GetBean的过程
+</p></div><div class="post-container"><p class="post-title"><a href="/2025/06/4c66b9d1ff9c.html">Spring-事务传播机制</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-17</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Spring/" title="Spring">Spring</a><span>&nbsp;</span></span></p><p class="post-abstract">传播行为
+
+代码示例
+SQL
+  
+实体类
+  
+服务层
+  
+启动类
+  
+行为表现
+REQUIRED / REQUIRED
+REQUIRED: 如果当前有事务，就加入该事务；否则新建一个事务。
+内外层事务传播行为均为 REQUIRED ，此时所有的事务方法处于一个事务之中，要么同时提交，要么同时回滚
+  
+分...</p></div><div class="pagination no-margin-bottom"><p class="clearfix"><p> Page 1 / 6 &nbsp;</p><p><span class="pre pagbuttons"><i class="fa fa-angle-double-left"></i>&nbsp;<a role="navigation" href="/" aria-label="Previous">Previous</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/page/2/" aria-label="Next">Next</a>&nbsp;<i class="fa fa-angle-double-right"></i></span></p></p></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://akirakay.github.io" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
