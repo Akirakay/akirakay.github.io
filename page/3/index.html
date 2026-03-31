@@ -1,309 +1,41 @@
-<!DOCTYPE html>
-<html lang=cn>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Ak1raKay&#39;s Blog">
-<meta property="og:url" content="http://example.com/page/3/index.html">
-<meta property="og:site_name" content="Ak1raKay&#39;s Blog">
-<meta property="og:locale">
-<meta property="article:author" content="Ak1raKay">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>Ak1raKay&#39;s Blog</title>
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/rss.xml" title="Ak1raKay's Blog" type="application/rss+xml">
-</head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-    <div class="content index py4">
-        
-          <header id="header">
-  <a href="/">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>Ak1raKay's Blog</title><meta name="description" content="A Blog Powered By Hexo"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Smile</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">Ak1raKay</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a class="current" href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/categories">Categories</a></li><li><a href="/tags">Tags</a></li><li><a href="/about/index.html">About</a></li><li class="soc"><a href="http://example.com/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="http://example.com" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-container"><p class="post-title"><a href="/2025/04/4648b9b9cb63.html">Redis分布式锁实现方案</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-04-21</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/分布式/" title="分布式">分布式</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/分布式/" title="分布式">分布式</a><span>&nbsp;</span></span></p><p class="post-abstract">最简易的分布式锁
+命令：SETNX  key不存在，则设置成功，否则什么也不做
   
-    
-      <div id="logo" style="background-image: url(/images/logo.png);"></div>
-    
+释放锁：
   
-    <div id="title">
-      <h1>Ak1raKay&#39;s Blog</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x"></i></a>
-      </li>
-       
-        <li><a href="/">Home</a></li>
-       
-        <li><a href="/archives/">Writing</a></li>
-       
-        <li><a href="/tags">tags</a></li>
-       
-        <li><a href="/about/">About</a></li>
-       
-        <li><a href="/search/">Search</a></li>
-      
-    </ul>
-  </div>
-</header>
-
-        
-        <section id="about">
+也可以使用Lua脚本原子执行，释放锁：
   
+此方式的缺点：如果释放锁过程中出现问题，导致锁没有被正常释放，则其他线程无法再获取到锁
+锁过期
+通过使用SET命令：SET key value EX timeout ...</p></div><div class="post-container"><p class="post-title"><a href="/2025/04/53672db5ba40.html">分布式ID解决方案</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-04-18</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/分布式/" title="分布式">分布式</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/分布式/" title="分布式">分布式</a><span>&nbsp;</span></span></p><p class="post-abstract">分布式ID介绍
+什么是 ID？
+简单来说，ID 就是数据的唯一标识。
+什么是分布式 ID？
+分布式 ID 是分布式系统下的 ID。分布式 ID 不存在与现实生活中，属于计算机系统中的一个概念。
+随着数据量越来越大，系统开始分库之后， 数据遍布在不同服务器上的数据库，数据库的自增主键已经没办法满足生成的主键唯一了。...</p></div><div class="post-container"><p class="post-title"><a href="/2025/04/4227f15fd919.html">一致性Hash算法</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-04-17</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/分布式/" title="分布式">分布式</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Algorithm/" title="Algorithm">Algorithm</a><span>&nbsp;</span><a class="a-tag" href="/tags/分布式/" title="分布式">分布式</a><span>&nbsp;</span></span></p><p class="post-abstract">引入
+对于常规的hash(obj) % n算法，如果n有变化，则会导致计算的偏离，致使数据无法找回等。
+简介
+判断hash算法好坏的定义：
+
+平衡性：hash结果尽可能分散，充分利用所有缓冲空间
+单调性：哈希的结果应能够保证原有已分配的内容可以被映射到原有的或者新的缓冲中去
+分散性：分布式环境中，终端有可能只能看...</p></div><div class="post-container"><p class="post-title"><a href="/2025/04/f99615d1c9ba.html">不同Git仓库配置不同的用户名</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-04-17</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Git/" title="Git">Git</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Git/" title="Git">Git</a><span>&nbsp;</span></span></p><p class="post-abstract">全局配置
+一般的情况下执行如下命令，可以对全局项目设置统一的用户名：
   
-    <p>
-      Find me on
-      
-      
-      
-        
-          <a class="icon" target="_blank" rel="noopener" href="http://github.com/akirakay" aria-label="github">
-            <i class="fab fa-github"></i><!--
-      ---></a><!--
-    ---><!--
-    --->, 
-        
-      
-        
-          <a class="icon" target="_blank" rel="noopener" href="mailto:zk_tao@163.com" aria-label="mail">
-            <i class="fas fa-envelope"></i><!--
-      ---></a>
-        <!--
-    ---> and 
-        
-      
-        
-          <a class="icon" target="_blank" rel="noopener" href="/rss.xml" aria-label="rss">
-            <i class="fas fa-rss"></i>
-          </a>
-        <!--
-    --->.
-        
-      
-    </p>
+如果我们需要对不同的项目，配置不同的用户名，可以有以下两种方式：
+
+单独配置
+批量配置
+
+单独配置
+在需要配置的项目下进行单独配置
   
-</section>
-
-<section id="writing">
-  <span class="h1"><a href="/archives/">Writing</a></span>
-  
-  <ul class="post-list">
-    
-    
-      
-    
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2026-03-19T08:53:52.000Z" itemprop="datePublished">2026-03-19</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2026/03/e379faf019a1.html">PromptEngineering-提示词工程</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2026-03-15T12:34:39.000Z" itemprop="datePublished">2026-03-15</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2026/03/ffebd761bc08.html">LearnClaudeCode</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-06-24T09:46:21.000Z" itemprop="datePublished">2025-06-24</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2025/06/4a25340fbd9c.html">秒杀系统学习笔记</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-06-24T09:22:31.000Z" itemprop="datePublished">2025-06-24</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2025/06/dd241f7d78bf.html">Spring-Bean实例化源码探究</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-06-17T06:00:34.000Z" itemprop="datePublished">2025-06-17</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2025/06/4c66b9d1ff9c.html">Spring-事务传播机制</a>
-    
-
-
-</span>
-      </li>
-    
-  </ul>
-  
-</section>
-
-
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    Ak1raKay
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags">tags</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
- 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
-
-
-
-
-<!-- clipboard -->
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Google Analytics -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Umami Analytics -->
-
-<!-- Disqus Comments -->
-
-
-</body>
-</html>
+之后可以观察当前项目 .git 文件夹下 .gitconfig 文件是否生效
+批量配置
+使用 git...</p></div><div class="post-container"><p class="post-title"><a href="/2025/04/e7d65b34eac2.html">背包问题</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-04-17</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Algorithm/" title="Algorithm">Algorithm</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Algorithm/" title="Algorithm">Algorithm</a><span>&nbsp;</span></span></p><p class="post-abstract">完全背包
+完全背包问题的基本场景是这样的：
+你有一个背包，它有最大载重量。同时，你有无限数量的不同物品可以选择。每种物品都有自己的重量和价值。你的目标是在不超过背包最大载重的情况下，让背包中物品的总价值最大。
+与01背包不同，完全背包中的每种物品可以无限次选择，而不是只能选择0次或1次。
+让我举一个具体的例子：
+...</p></div><div class="pagination no-margin-bottom"><p class="clearfix"><p> Page 3 / 6 &nbsp;</p><p><span class="pre pagbuttons"><i class="fa fa-angle-double-left"></i>&nbsp;<a role="navigation" href="/page/2/" aria-label="Previous">Previous</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/page/4/" aria-label="Next">Next</a>&nbsp;<i class="fa fa-angle-double-right"></i></span></p></p></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="http://example.com" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>

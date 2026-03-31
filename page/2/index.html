@@ -1,309 +1,61 @@
-<!DOCTYPE html>
-<html lang=cn>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Ak1raKay&#39;s Blog">
-<meta property="og:url" content="http://example.com/page/2/index.html">
-<meta property="og:site_name" content="Ak1raKay&#39;s Blog">
-<meta property="og:locale">
-<meta property="article:author" content="Ak1raKay">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>Ak1raKay&#39;s Blog</title>
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/rss.xml" title="Ak1raKay's Blog" type="application/rss+xml">
-</head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-    <div class="content index py4">
-        
-          <header id="header">
-  <a href="/">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>Ak1raKay's Blog</title><meta name="description" content="A Blog Powered By Hexo"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Smile</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">Ak1raKay</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a class="current" href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/categories">Categories</a></li><li><a href="/tags">Tags</a></li><li><a href="/about/index.html">About</a></li><li class="soc"><a href="http://example.com/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="http://example.com" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-container"><p class="post-title"><a href="/2025/06/dbdc4e26334c.html">Spring-事务管理</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-16</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Spring/" title="Spring">Spring</a><span>&nbsp;</span></span></p><p class="post-abstract">Spring中事务的属性：
   
-    
-      <div id="logo" style="background-image: url(/images/logo.png);"></div>
-    
+隔离级别
+三种问题
+
+脏读
+读取到其他事务未提交数据
+不可重复读
+一行记录同一事务前后读取不一致
+幻读
+相同的查询语句，一个事务前后读取到的数据量不一致
+
+快照读 &amp; 当前读
+
+
+快照读
+InnoDB存储引擎通过多版本并发控制(MVCC)的方式来读取当前执行时间数据库中行...</p></div><div class="post-container"><p class="post-title"><a href="/2025/06/9a0ce78ef6fe.html">Spring-如何解决循环依赖</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-11</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Spring/" title="Spring">Spring</a><span>&nbsp;</span></span></p><p class="post-abstract">三级缓存
   
-    <div id="title">
-      <h1>Ak1raKay&#39;s Blog</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x"></i></a>
-      </li>
-       
-        <li><a href="/">Home</a></li>
-       
-        <li><a href="/archives/">Writing</a></li>
-       
-        <li><a href="/tags">tags</a></li>
-       
-        <li><a href="/about/">About</a></li>
-       
-        <li><a href="/search/">Search</a></li>
-      
-    </ul>
-  </div>
-</header>
 
-        
-        <section id="about">
+第一层缓存（singletonObjects）：单例对象缓存池，已经实例化并且属性赋值，这里的对象是成熟对象；
+第二层缓存（earlySingletonObjects）：单例对象缓存池，已经实例化但尚未属性赋值，这里的对象是半成品对象；
+第三层缓存（singletonFactories）: 单例...</p></div><div class="post-container"><p class="post-title"><a href="/2025/06/76dd52308ab3.html">Spring-依赖注入的方式</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-06-10</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/Java/" title="Java">Java</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Java/" title="Java">Java</a><span>&nbsp;</span><a class="a-tag" href="/tags/Spring/" title="Spring">Spring</a><span>&nbsp;</span></span></p><p class="post-abstract">setter注入
   
+缺点：
+
+不可以注入final修饰的对象
+注入对象可以被set方法修改
+
+构造器注入
   
-    <p>
-      Find me on
-      
-      
-      
-        
-          <a class="icon" target="_blank" rel="noopener" href="http://github.com/akirakay" aria-label="github">
-            <i class="fab fa-github"></i><!--
-      ---></a><!--
-    ---><!--
-    --->, 
-        
-      
-        
-          <a class="icon" target="_blank" rel="noopener" href="mailto:zk_tao@163.com" aria-label="mail">
-            <i class="fas fa-envelope"></i><!--
-      ---></a>
-        <!--
-    ---> and 
-        
-      
-        
-          <a class="icon" target="_blank" rel="noopener" href="/rss.xml" aria-label="rss">
-            <i class="fas fa-rss"></i>
-          </a>
-        <!--
-    --->.
-        
-      
-    </p>
+优点：
+
+可以注入final修饰的对象
+注入对象不会被修改
+注入对象完全初始化
+更加通用
+
+注解注入
   
-</section>
+缺点：
 
-<section id="writing">
-  <span class="h1"><a href="/archives/">Writing</a></span>
+无法注入final修饰的对象
+只适用于IoC容器
+
+推荐构造器注入的理由
+
+注入...</p></div><div class="post-container"><p class="post-title"><a href="/2025/05/0d76087c8b31.html">MySQL窗口函数</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-05-27</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/MySQL/" title="MySQL">MySQL</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/MySQL/" title="MySQL">MySQL</a><span>&nbsp;</span></span></p><p class="post-abstract">1. 窗口函数概念和语法
+窗口函数对一组查询行执行类似聚合的操作。然而，聚合操作将查询行分组到单个结果行，而窗口函数为每个查询行产生一个结果:
+
+函数求值发生的行称为当前行
+与发生函数求值的当前行相关的查询行组成了当前行的窗口
+
+相比之下，窗口操作不会将一组查询行折叠到单个输出行。相反，它们为每一行生成一个结果。...</p></div><div class="post-container"><p class="post-title"><a href="/2025/04/83e42223e4f8.html">深分页解决方案</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2025-04-26</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/MySQL/" title="MySQL">MySQL</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/MySQL/" title="MySQL">MySQL</a><span>&nbsp;</span></span></p><p class="post-abstract">深分页的原因：
   
-  <ul class="post-list">
-    
-    
-      
-    
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2026-03-19T08:53:52.000Z" itemprop="datePublished">2026-03-19</time>
-        
-      
-    </div>
+数据量比较大的时候，此种方式的查询效果性能会显著下降
+性能问题
+成因：
 
-
-        <span>
-    
-        <a class="" href="/2026/03/e379faf019a1.html">PromptEngineering-提示词工程</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2026-03-15T12:34:39.000Z" itemprop="datePublished">2026-03-15</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2026/03/ffebd761bc08.html">LearnClaudeCode</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-06-24T09:46:21.000Z" itemprop="datePublished">2025-06-24</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2025/06/4a25340fbd9c.html">秒杀系统学习笔记</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-06-24T09:22:31.000Z" itemprop="datePublished">2025-06-24</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2025/06/dd241f7d78bf.html">Spring-Bean实例化源码探究</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-06-17T06:00:34.000Z" itemprop="datePublished">2025-06-17</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2025/06/4c66b9d1ff9c.html">Spring-事务传播机制</a>
-    
-
-
-</span>
-      </li>
-    
-  </ul>
-  
-</section>
-
-
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    Ak1raKay
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags">tags</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
- 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
-
-
-
-
-<!-- clipboard -->
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Google Analytics -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Umami Analytics -->
-
-<!-- Disqus Comments -->
-
-
-</body>
-</html>
+全表扫描：当 OFFSET 值增大时，MySQL必须跳过前面的所有记录。这意味着 MySQL 需要对前面的记录进行排序（如果使用 ORDER BY），即使这些记录并不在最终结果中。这导致查询的执行时间线性增长。
+内存消...</p></div><div class="pagination no-margin-bottom"><p class="clearfix"><p> Page 2 / 6 &nbsp;</p><p><span class="pre pagbuttons"><i class="fa fa-angle-double-left"></i>&nbsp;<a role="navigation" href="/" aria-label="Previous">Previous</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/page/3/" aria-label="Next">Next</a>&nbsp;<i class="fa fa-angle-double-right"></i></span></p></p></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="http://example.com" rel="noopener noreferrer">Ak1raKay</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>

@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ak1raKay&#39;s Blog</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2026-03-19T10:44:18.884Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Ak1raKay</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PromptEngineering-提示词工程</title>
+    <link href="http://example.com/2026/03/e379faf019a1.html"/>
+    <id>http://example.com/2026/03/e379faf019a1.html</id>
+    <published>2026-03-19T08:53:52.000Z</published>
+    <updated>2026-03-19T10:44:18.884Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;定义&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Prompt&lt;/code&gt; :</summary>
+        
+      
+    
+    
+    
+    <category term="Agent" scheme="http://example.com/categories/Agent/"/>
+    
+    
+    <category term="Agent" scheme="http://example.com/tags/Agent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LearnClaudeCode</title>
+    <link href="http://example.com/2026/03/ffebd761bc08.html"/>
+    <id>http://example.com/2026/03/ffebd761bc08.html</id>
+    <published>2026-03-15T12:34:39.000Z</published>
+    <updated>2026-03-17T14:09:56.161Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;学习：&lt;a href=&quot;https://tw93.fun/2026-03-12/claude.html&quot;&gt;https://tw93.fun/2026-03-12/claude.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Agent" scheme="http://example.com/categories/Agent/"/>
+    
+    
+    <category term="Agent" scheme="http://example.com/tags/Agent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>秒杀系统学习笔记</title>
+    <link href="http://example.com/2025/06/4a25340fbd9c.html"/>
+    <id>http://example.com/2025/06/4a25340fbd9c.html</id>
+    <published>2025-06-24T09:46:21.000Z</published>
+    <updated>2025-06-27T10:28:43.704Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;核心问题&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="Concurrent" scheme="http://example.com/tags/Concurrent/"/>
+    
+    <category term="秒杀" scheme="http://example.com/tags/%E7%A7%92%E6%9D%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring-Bean实例化源码探究</title>
+    <link href="http://example.com/2025/06/dd241f7d78bf.html"/>
+    <id>http://example.com/2025/06/dd241f7d78bf.html</id>
+    <published>2025-06-24T09:22:31.000Z</published>
+    <updated>2025-08-14T03:10:52.745Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;目的&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#目的&quot;&gt;&lt;/a&gt;目的&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;BeanDefination&lt;/code&gt; 即：框架将资源配置通过加载，解析生成的对象，是</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="Spring" scheme="http://example.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring-事务传播机制</title>
+    <link href="http://example.com/2025/06/4c66b9d1ff9c.html"/>
+    <id>http://example.com/2025/06/4c66b9d1ff9c.html</id>
+    <published>2025-06-17T06:00:34.000Z</published>
+    <updated>2025-06-17T10:00:17.319Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;传播行为&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#传播行为&quot;&gt;&lt;/a&gt;传播行为&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.loli.net/2025/06/17/ehGok1qlzwmFgds.jpg&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="Spring" scheme="http://example.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring-事务管理</title>
+    <link href="http://example.com/2025/06/dbdc4e26334c.html"/>
+    <id>http://example.com/2025/06/dbdc4e26334c.html</id>
+    <published>2025-06-16T07:50:26.000Z</published>
+    <updated>2025-06-20T06:37:43.872Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Spring中事务的属性：&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#Spring中事务的属性：&quot;&gt;&lt;/a&gt;Spring中事务的属性：&lt;/h2&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="Spring" scheme="http://example.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring-如何解决循环依赖</title>
+    <link href="http://example.com/2025/06/9a0ce78ef6fe.html"/>
+    <id>http://example.com/2025/06/9a0ce78ef6fe.html</id>
+    <published>2025-06-11T07:42:13.000Z</published>
+    <updated>2025-06-11T08:09:41.097Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;三级缓存&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#三级缓存&quot;&gt;&lt;/a&gt;三级缓存&lt;/h2&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="Spring" scheme="http://example.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring-依赖注入的方式</title>
+    <link href="http://example.com/2025/06/76dd52308ab3.html"/>
+    <id>http://example.com/2025/06/76dd52308ab3.html</id>
+    <published>2025-06-10T05:54:48.000Z</published>
+    <updated>2025-06-10T05:57:21.073Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;setter注入&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#setter注入&quot;&gt;&lt;/a&gt;setter注入&lt;/h3&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="Spring" scheme="http://example.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL窗口函数</title>
+    <link href="http://example.com/2025/05/0d76087c8b31.html"/>
+    <id>http://example.com/2025/05/0d76087c8b31.html</id>
+    <published>2025-05-27T15:01:33.000Z</published>
+    <updated>2025-05-27T15:31:46.472Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-窗口函数概念和语法&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#1-窗口函数概念和语法&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="http://example.com/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="http://example.com/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深分页解决方案</title>
+    <link href="http://example.com/2025/04/83e42223e4f8.html"/>
+    <id>http://example.com/2025/04/83e42223e4f8.html</id>
+    <published>2025-04-26T03:32:18.000Z</published>
+    <updated>2025-05-26T09:19:10.299Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;深分页的原因：&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#深分页的原因：&quot;&gt;&lt;/a&gt;深分页的原因：&lt;/h2&gt;
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="http://example.com/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="http://example.com/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis分布式锁实现方案</title>
+    <link href="http://example.com/2025/04/4648b9b9cb63.html"/>
+    <id>http://example.com/2025/04/4648b9b9cb63.html</id>
+    <published>2025-04-21T13:00:59.000Z</published>
+    <updated>2025-05-26T09:19:10.299Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;最简易的分布式锁&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#最简易的分布式锁&quot;&gt;&lt;/a&gt;最简易的分布式锁&lt;/h2&gt;
+&lt;p&gt;命令：&lt;code&gt;SETNX&lt;/code&gt;  key不存在，则设置成功，否则什么也不做&lt;/p&gt;
+&lt;figure</summary>
+        
+      
+    
+    
+    
+    <category term="分布式" scheme="http://example.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+    <category term="分布式" scheme="http://example.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分布式ID解决方案</title>
+    <link href="http://example.com/2025/04/53672db5ba40.html"/>
+    <id>http://example.com/2025/04/53672db5ba40.html</id>
+    <published>2025-04-18T01:46:19.000Z</published>
+    <updated>2025-05-26T09:19:10.299Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;分布式ID介绍&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#分布式ID介绍&quot;&gt;&lt;/a&gt;分布式ID介绍&lt;/h2&gt;
+&lt;h3 id=&quot;什么是-ID？&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="分布式" scheme="http://example.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+    <category term="分布式" scheme="http://example.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一致性Hash算法</title>
+    <link href="http://example.com/2025/04/4227f15fd919.html"/>
+    <id>http://example.com/2025/04/4227f15fd919.html</id>
+    <published>2025-04-17T06:25:25.000Z</published>
+    <updated>2025-05-26T13:03:42.264Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;引入&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#引入&quot;&gt;&lt;/a&gt;引入&lt;/h2&gt;
+&lt;p&gt;对于常规的&lt;code&gt;hash(obj) % n&lt;/code&gt;算法，如果n有变化，则会导致计算的偏离，致使数据无法找回等。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="分布式" scheme="http://example.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+    <category term="Algorithm" scheme="http://example.com/tags/Algorithm/"/>
+    
+    <category term="分布式" scheme="http://example.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>不同Git仓库配置不同的用户名</title>
+    <link href="http://example.com/2025/04/f99615d1c9ba.html"/>
+    <id>http://example.com/2025/04/f99615d1c9ba.html</id>
+    <published>2025-04-17T01:41:39.000Z</published>
+    <updated>2025-05-26T09:19:10.299Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;全局配置&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#全局配置&quot;&gt;&lt;/a&gt;全局配置&lt;/h2&gt;
+&lt;p&gt;一般的情况下执行如下命令，可以对全局项目设置统一的用户名：&lt;/p&gt;
+&lt;figure class=&quot;highlight</summary>
+        
+      
+    
+    
+    
+    <category term="Git" scheme="http://example.com/categories/Git/"/>
+    
+    
+    <category term="Git" scheme="http://example.com/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>背包问题</title>
+    <link href="http://example.com/2025/04/e7d65b34eac2.html"/>
+    <id>http://example.com/2025/04/e7d65b34eac2.html</id>
+    <published>2025-04-17T01:27:13.000Z</published>
+    <updated>2025-05-26T09:19:10.299Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;完全背包&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="http://example.com/categories/Algorithm/"/>
+    
+    
+    <category term="Algorithm" scheme="http://example.com/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【REF】一文讲清多线程与多线程同步</title>
+    <link href="http://example.com/2025/04/3c1700d4ee90.html"/>
+    <id>http://example.com/2025/04/3c1700d4ee90.html</id>
+    <published>2025-04-16T12:40:11.000Z</published>
+    <updated>2025-06-24T09:40:43.491Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="Concurrent" scheme="http://example.com/tags/Concurrent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解MySQL锁机制</title>
+    <link href="http://example.com/2023/11/8f7f5661afb6.html"/>
+    <id>http://example.com/2023/11/8f7f5661afb6.html</id>
+    <published>2023-11-27T06:12:23.000Z</published>
+    <updated>2025-05-26T09:16:15.428Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;深入理解MySQL锁机制&lt;/h1&gt;
+&lt;p&gt;锁是计算机在执行多线程或线程时用于并发访问同一共享资源时的同步机制，MySQL中的锁是在服务器层或者存储引擎层实现的，保证了数据访问的一致性与有效性。&lt;/p&gt;
+&lt;h2 id=&quot;1-前言&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="http://example.com/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="http://example.com/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Netty粘包拆包解决方案</title>
+    <link href="http://example.com/2023/06/cc1e007cc495.html"/>
+    <id>http://example.com/2023/06/cc1e007cc495.html</id>
+    <published>2023-06-27T05:47:07.000Z</published>
+    <updated>2025-05-26T13:04:28.511Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;引言&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="Netty" scheme="http://example.com/tags/Netty/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>4.Rust高级进阶</title>
+    <link href="http://example.com/2022/05/4403e2f5fb06.html"/>
+    <id>http://example.com/2022/05/4403e2f5fb06.html</id>
+    <published>2022-05-05T05:56:33.000Z</published>
+    <updated>2022-07-21T11:06:19.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;3-1-生命周期&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#3-1-生命周期&quot;&gt;&lt;/a&gt;3.1 生命周期&lt;/h2&gt;
+&lt;h3 id=&quot;3-1-1-认识生命周期&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Rust" scheme="http://example.com/categories/Rust/"/>
+    
+    
+    <category term="Rust" scheme="http://example.com/tags/Rust/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3.Rust基础入门（二）</title>
+    <link href="http://example.com/2022/03/5fff10cbfe3b.html"/>
+    <id>http://example.com/2022/03/5fff10cbfe3b.html</id>
+    <published>2022-03-21T13:53:52.000Z</published>
+    <updated>2022-04-17T03:35:46.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;2-8-泛型与特征&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#2-8-泛型与特征&quot;&gt;&lt;/a&gt;2.8 泛型与特征&lt;/h2&gt;
+&lt;h3 id=&quot;2-8-1-泛型-Generics&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Rust" scheme="http://example.com/categories/Rust/"/>
+    
+    
+    <category term="Rust" scheme="http://example.com/tags/Rust/"/>
+    
+  </entry>
+  
+</feed>
