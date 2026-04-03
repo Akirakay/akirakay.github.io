@@ -6,7 +6,7 @@
   <link href="https://akirakay.github.io/atom.xml" rel="self"/>
   
   <link href="https://akirakay.github.io/"/>
-  <updated>2026-03-19T10:44:18.884Z</updated>
+  <updated>2026-04-03T07:21:31.220Z</updated>
   <id>https://akirakay.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Let&#39;s-build-a-gpt-from-zero-to-small-hero</title>
+    <link href="https://akirakay.github.io/2026/04/4584a2cfbe48.html"/>
+    <id>https://akirakay.github.io/2026/04/4584a2cfbe48.html</id>
+    <published>2026-04-03T07:19:59.000Z</published>
+    <updated>2026-04-03T07:21:31.220Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;source: &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Agent" scheme="https://akirakay.github.io/categories/Agent/"/>
+    
+    
+    <category term="Agent" scheme="https://akirakay.github.io/tags/Agent/"/>
+    
+  </entry>
   
   <entry>
     <title>PromptEngineering-提示词工程</title>
@@ -520,32 +546,6 @@
         
     <summary type="html">&lt;h2 id=&quot;3-1-生命周期&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#3-1-生命周期&quot;&gt;&lt;/a&gt;3.1 生命周期&lt;/h2&gt;
 &lt;h3 id=&quot;3-1-1-认识生命周期&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Rust" scheme="https://akirakay.github.io/categories/Rust/"/>
-    
-    
-    <category term="Rust" scheme="https://akirakay.github.io/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3.Rust基础入门（二）</title>
-    <link href="https://akirakay.github.io/2022/03/5fff10cbfe3b.html"/>
-    <id>https://akirakay.github.io/2022/03/5fff10cbfe3b.html</id>
-    <published>2022-03-21T13:53:52.000Z</published>
-    <updated>2022-04-17T03:35:46.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;2-8-泛型与特征&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#2-8-泛型与特征&quot;&gt;&lt;/a&gt;2.8 泛型与特征&lt;/h2&gt;
-&lt;h3 id=&quot;2-8-1-泛型-Generics&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
         
       
     
