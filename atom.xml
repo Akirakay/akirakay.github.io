@@ -6,7 +6,7 @@
   <link href="https://akirakay.github.io/atom.xml" rel="self"/>
   
   <link href="https://akirakay.github.io/"/>
-  <updated>2026-04-03T07:21:31.220Z</updated>
+  <updated>2026-04-26T14:45:51.237Z</updated>
   <id>https://akirakay.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>富士相机参数解析</title>
+    <link href="https://akirakay.github.io/2026/04/7700820e251a.html"/>
+    <id>https://akirakay.github.io/2026/04/7700820e251a.html</id>
+    <published>2026-04-26T14:41:37.000Z</published>
+    <updated>2026-04-26T14:45:51.237Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;富士机内设置&lt;/h1&gt;
+&lt;h2 id=&quot;1-色彩相关：&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#1-色彩相关：&quot;&gt;&lt;/a&gt;1. 色彩相关：&lt;/h2&gt;
+&lt;h3 id=&quot;1-1-色彩：&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="其他" scheme="https://akirakay.github.io/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="Camera" scheme="https://akirakay.github.io/tags/Camera/"/>
+    
+  </entry>
   
   <entry>
     <title>Let&#39;s-build-a-gpt-from-zero-to-small-hero</title>
@@ -529,32 +556,6 @@
     <category term="Java" scheme="https://akirakay.github.io/tags/Java/"/>
     
     <category term="Netty" scheme="https://akirakay.github.io/tags/Netty/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>4.Rust高级进阶</title>
-    <link href="https://akirakay.github.io/2022/05/4403e2f5fb06.html"/>
-    <id>https://akirakay.github.io/2022/05/4403e2f5fb06.html</id>
-    <published>2022-05-05T05:56:33.000Z</published>
-    <updated>2022-07-21T11:06:19.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;3-1-生命周期&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#3-1-生命周期&quot;&gt;&lt;/a&gt;3.1 生命周期&lt;/h2&gt;
-&lt;h3 id=&quot;3-1-1-认识生命周期&quot;&gt;&lt;a class=&quot;header-anchor&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Rust" scheme="https://akirakay.github.io/categories/Rust/"/>
-    
-    
-    <category term="Rust" scheme="https://akirakay.github.io/tags/Rust/"/>
     
   </entry>
   
